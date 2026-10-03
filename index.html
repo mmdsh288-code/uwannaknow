@@ -1,157 +1,34 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>all about mee :3 ✦ リリイ・シュシュ</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=M+PLUS+Rounded+1c:wght@700;800&family=VT323&display=swap" rel="stylesheet">
 <style>
 /* =========================
+   EASY EDIT SETTINGS
    SETTINGS & THEME
    ========================= */
 :root{
   --pink:#ff6bbd;
-  --soft-pink:#ffd3ec;
-  --blue:#72d9ff;
-  --purple:#b38cff;
-  --yellow:#fff58a;
-  --ink:#211c2e;
-  --paper:#fffaff;
-  --glass:rgba(255,255,255,.82);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;color:var(--ink);
-  font-family:"Trebuchet MS", Arial, sans-serif;
-  background:
-    radial-gradient(circle at 10% 10%,#ffd7f1 0 8%,transparent 23%),
-    radial-gradient(circle at 90% 20%,#c7efff 0 7%,transparent 25%),
-    linear-gradient(135deg,#fff 0%,#e8e4ff 48%,#fff 100%);
-  background-attachment:fixed;
-  overflow-x:hidden;
-  position:relative;
-}
-
-/* Y2K & Grunge Background Watermark Symbols */
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
-  background-image:radial-gradient(#777 1px,transparent 1px);
-  background-size:8px 8px;mix-blend-mode:multiply;
-  z-index:0;
-}
-.bg-symbols{
-  position:fixed;inset:0;pointer-events:none;z-index:0;
-  display:flex;flex-wrap:wrap;justify-content:space-around;align-content:space-around;
-  font-family:'VT323', monospace;font-size:26px;color:#856b9c;opacity:0.22;
-  user-select:none;line-height:2.8;padding:20px;
-}
-.bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
-
-a{color:inherit}
-.wrap{max-width:1080px;margin:auto;padding:18px;position:relative;z-index:2;}
-.topbar{
-  border:3px solid var(--ink);background:#fff;
-  box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
-  display:flex;justify-content:space-between;gap:12px;align-items:center;
-  font-size:12px;font-weight:bold;letter-spacing:1px;
-}
-.logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
-.japanese-sub{font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;letter-spacing:2px;color:#7e5296;}
-
-.marquee{
-  margin:20px 0;border:3px dashed var(--pink);background:#fff;
-  padding:8px;overflow:hidden;white-space:nowrap;font-size:13px;font-weight:bold;
-  box-shadow:4px 4px 0 rgba(33,28,46,0.1);
-}
-.marquee span{display:inline-block;animation:slide 16s linear infinite}
-@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-.grid{
-  display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
-}
-.card{
-  background:var(--glass);backdrop-filter:blur(8px);
-  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
-  padding:20px;margin-bottom:20px;border-radius:6px;
-  position:relative;
-}
-.hero{min-height:330px;position:relative;overflow:hidden}
-.sticker{
-  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
-  padding:5px 12px;transform:rotate(-3deg);font-size:12px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);border-radius:4px;
-}
-
-/* Cute Kawaii Title */
-h1.kawaii-title{
-  font-family:'Fredoka','Trebuchet MS',sans-serif;
-  font-size:clamp(46px,8.5vw,94px);
-  line-height:.95;margin:22px 0 16px;
-  letter-spacing:-2px;
-  color:#ff47ab;
-  text-shadow:
-    4px 4px 0 #fff,
-    7px 7px 0 var(--ink),
-    0 0 20px rgba(255,107,189,0.4);
-}
-
-.subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.links a{
-  text-decoration:none;background:#fff;border:2px solid var(--ink);
-  padding:9px 14px;font-size:12px;font-weight:bold;
-  box-shadow:3px 3px 0 var(--ink);transition:.15s;border-radius:5px;
-}
-.links a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#ffeaf6;}
-h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
-.post{border-top:2px dotted #9c91ab;padding:14px 0}
-.post:first-of-type{border-top:0}
-.date{font-size:11px;color:#776b86;letter-spacing:1px;font-weight:bold;}
-.post h3{margin:6px 0;font-size:17px;color:#1e1829;}
+@@ -113,7 +113,7 @@
 .post p{font-size:13.5px;line-height:1.7;margin:7px 0}
 
 /* =========================
+   SPOTIFY SECTION (🧁🍓)
    SPOTIFY PLAYER (DUAL TRACK)
    ========================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
-  border:3px solid var(--ink);padding:16px;
-  box-shadow:inset 0 0 10px rgba(255,107,189,0.15);
-  border-radius:6px;
-}
-.spotify-tag-row{
-  display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;
-}
-.spotify-live{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#20192b;color:#67ffaa;font-size:10px;padding:3px 8px;
-  font-family:'VT323',monospace;letter-spacing:1px;border-radius:4px;
-  box-shadow:1px 1px 0 var(--ink);
-}
-.live-dot{
-  width:7px;height:7px;border-radius:50%;background:#1ed760;
-  box-shadow:0 0 8px #1ed760;animation:pulse 1s infinite alternate;
-}
-@keyframes pulse{from{opacity:0.3;transform:scale(0.8)}to{opacity:1;transform:scale(1.2)}}
-.cute-cupcake{font-size:18px;}
-
-.now{display:flex;align-items:center;gap:12px}
-.cover{
-  width:60px;height:60px;border:2px solid var(--ink);
+@@ -143,9 +143,10 @@
   background:radial-gradient(circle,#ffc8e9 10%,#ff6bbd 90%);
   display:grid;place-items:center;font-size:26px;
   box-shadow:3px 3px 0 var(--ink);border-radius:8px;
   transition:transform 0.2s;
 }
+.song{font-weight:bold;font-size:14px;color:#281831;font-family:'Fredoka',sans-serif;}
+.artist{font-size:12px;color:#644c77;margin-top:2px;font-weight:600;}
 .song{font-weight:bold;font-size:13px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 .bar{height:10px;background:#ffd7ef;margin-top:14px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;position:relative;}
 .bar i{
   display:block;width:60%;height:100%;
-  background:linear-gradient(90deg,#ff6bbd,#72d9ff);
-  animation:playProgress 18s linear infinite;
+@@ -154,27 +155,38 @@
 }
 @keyframes playProgress{0%{width:10%}100%{width:95%}}
 
@@ -175,160 +52,89 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .audio-ctrl:hover{background:#ff4cae;}
 
 .spotify-actions{
+  margin-top:14px;display:flex;flex-direction:column;gap:8px;
   margin-top:10px;display:flex;flex-direction:column;gap:6px;
 }
 .spotify-btn{
   display:block;text-align:center;text-decoration:none;
   background:#fff;border:2px solid var(--ink);
+  padding:8px;font-size:11.5px;font-weight:bold;
   padding:7px;font-size:11.5px;font-weight:bold;
   box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
 }
 .spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
+.audio-ctrl{
+  cursor:pointer;background:#ff6bbd;color:#fff;
+  border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold;
+  width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px;
+  transition:.15s;
+}
+.audio-ctrl:hover{background:#ff4cae;}
 
 /* =======================================
+   CUSTOM ALTERNATIVE ABOUT ME CARD
+   Stripes + Fade Art BG + Wiggle Title
    CUSTOM ABOUT ME CARD (STRIPES + ART BG)
    ======================================= */
 .card-about{
   background:
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 230, 245, 0.75),
-      rgba(255, 230, 245, 0.75) 12px,
-      rgba(255, 255, 255, 0.85) 12px,
-      rgba(255, 255, 255, 0.85) 24px
-    );
-  position:relative;
+@@ -189,15 +201,15 @@
   overflow:hidden;
 }
 
+/* Faded Art House Background */
 /* Faded Art House Background (handles both about-bg.jpg and about-bg.jpg.jpg) */
 .card-about::before{
   content:"";
   position:absolute;
   inset:0;
+  background-image:url('about-bg.jpg');
   background-image:url('about-bg.jpg'), url('about-bg.jpg.jpg');
   background-size:cover;
   background-position:center;
+  opacity:0.24;
   opacity:0.35;
   pointer-events:none;
   filter:contrast(115%) saturate(110%);
   z-index:0;
-}
-
-.about-inner{
-  position:relative;
+@@ -208,7 +220,6 @@
   z-index:2;
 }
 
+/* Animated Wiggling Title */
 .about-wiggle-title{
   display:inline-block;
   font-size:15px;
-  font-weight:900;
-  letter-spacing:1.5px;
-  color:#ff2497;
-  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink);
-  margin-bottom:14px;
-  animation:wiggleTitle 2.4s ease-in-out infinite;
-}
-
-@keyframes wiggleTitle{
-  0%, 100%{ transform: rotate(0deg) translateY(0); }
-  25%{ transform: rotate(-2.5deg) translateY(-2px); }
-  75%{ transform: rotate(2.5deg) translateY(1px); }
-}
-
-.alt-facts{
-  font-size:13px;
-  line-height:2.1;
-  font-weight:600;
-  color:#1f182c;
-  text-shadow:0 1px 3px rgba(255,255,255,0.9);
-}
-
-.alt-name{
-  font-family:'Fredoka',sans-serif;
-  color:#e7007d;
-  font-size:15px;
-  letter-spacing:1px;
-  text-shadow:1px 1px 0 #fff;
-  background:rgba(255,255,255,0.6);
-  padding:1px 6px;
-  border-radius:4px;
+@@ -246,21 +257,9 @@
   border:1px dashed #ff72c8;
 }
 
+.alt-place{
+  color:#0071a8;
+  font-weight:700;
+}
+
+.alt-activities{
+  color:#5d1e8c;
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+
+.alt-mood{
+  font-size:15px;
+  letter-spacing:2px;
+}
 .alt-place{color:#0071a8;font-weight:700;}
 .alt-activities{color:#5d1e8c;font-weight:700;letter-spacing:0.5px;}
 .alt-mood{font-size:15px;letter-spacing:2px;}
 
 .side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px;font-weight:bold;}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
-.badge{border:1px solid var(--ink);background:#fff;padding:4px 8px;font-size:10px;border-radius:3px;box-shadow:1px 1px 0 var(--ink);}
-.guestbook{font-size:12px;line-height:1.7}
-
-/* =========================
-   DANCING CHARACTERS
-   ========================= */
-.character{
-  position:fixed;z-index:99;bottom:0px;pointer-events:none;
-  filter:drop-shadow(4px 6px 0 rgba(33,28,46,.45));
-}
-.character.left{
-  left:10px;width:130px;
-  animation:danceLeft 1.6s ease-in-out infinite;
-}
-.character.right{
-  right:15px;width:150px;
-  animation:danceRight 2s ease-in-out infinite;
-}
-
-.akame-img-wrap{
-  width:100%;height:auto;
-  border:3px solid var(--ink);
-  background:#fff;
-  box-shadow:4px 4px 0 var(--ink);
-  overflow:hidden;
-  border-radius:6px;
-}
-.akame-img-wrap img{
-  width:100%;height:220px;
-  object-fit:cover;
-  object-position:top center;
-  display:block;
-}
-
-.char-tag{
-  background:#fff;border:2px solid var(--ink);
-  font-size:10px;font-weight:bold;padding:3px 6px;
-  text-align:center;margin-top:4px;box-shadow:2px 2px 0 var(--ink);
-  border-radius:4px;
-}
-
-@keyframes danceLeft{
-  0%,100%{transform:translateY(0) rotate(-3deg) scale(1)}
-  25%{transform:translateY(-16px) rotate(4deg) scale(1.03)}
-  50%{transform:translateY(0) rotate(-2deg) scale(1)}
-  75%{transform:translateY(-10px) rotate(4deg) scale(1.02)}
-}
-@keyframes danceRight{
-  0%,100%{transform:translateY(0) rotate(2deg) scale(1)}
-  25%{transform:translateY(-14px) rotate(-3deg) scale(1.03)}
-  50%{transform:translateY(0) rotate(1deg) scale(1)}
-  75%{transform:translateY(-8px) rotate(-2deg) scale(1.01)}
-}
-
-footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
-
-@media(max-width:800px){
-  .grid{grid-template-columns:1fr}
-  .character.left{width:80px;left:0}
-  .character.right{width:95px;right:0}
-  .akame-img-wrap img{height:140px;}
-}
-</style>
+@@ -330,16 +329,16 @@
 </head>
 <body>
 
+<!-- Ambient Symbols: Wi-Fi, Skeleton, Jaydes, HIM -->
 <!-- Ambient Symbols -->
 <div class="bg-symbols">
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
@@ -336,58 +142,35 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎</span>
 </div>
 
+<!-- Audio Player for "you're so vile" by datealyfe -->
 <!-- Audio Player Element -->
 <audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
   <source id="audioSrc" src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="wrap">
-  <header class="topbar">
-    <span class="logo">all about mee :3</span>
-    <span class="japanese-sub">リリイ・シュシュ ✦ ONLINE</span>
+@@ -349,7 +348,7 @@
   </header>
 
   <div class="marquee">
+    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ yumeko jabami 🎲 ★ akame ⚔️ ★ now playing: datealyfe ★ cupcakes & tunes 🧁🍓 ★</span>
     <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ yumeko jabami 🎲 ★ akame ⚔️ ★ now playing: Takeshi Abo & datealyfe 🧁🍓 ★</span>
   </div>
 
   <div class="grid">
-    <main>
-      <section class="card hero">
-        <span class="sticker">WELCOME! 🧁₊˚✧</span>
-        <h1 class="kawaii-title">all about<br>mee :3</h1>
-        <p class="subtitle">
-          this is my personal space on the web — a tiny aesthetic corner about me,
-          music, cute symbols, anime, random thoughts and whatever i feel like posting.
-        </p>
-        <div class="links">
-          <a href="https://instagram.com/" target="_blank">♡ INSTAGRAM</a>
-          <a href="https://t.me/" target="_blank">✉ TELEGRAM</a>
-          <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank">♫ SPOTIFY</a>
-          <a href="#blog">▣ BLOG</a>
-        </div>
-      </section>
-
-      <section class="card" id="blog">
-        <h2>★ my weblog</h2>
-
-        <article class="post">
-          <div class="date">03 / 10 / 2026 — 17:00</div>
-          <h3>リリイ・シュシュ ✦</h3>
-          <p>
-            floating through sounds and headphone wires... welcome to my aesthetic haven.
-          </p>
-        </article>
-
+@@ -383,35 +382,40 @@ <h3>リリイ・シュシュ ✦</h3>
         <article class="post">
           <div class="date">02 / 10 / 2026</div>
           <h3>currently listening... 🍓</h3>
+          <p>datealyfe - you're so vile</p>
           <p>阿保剛 (Takeshi Abo) - LEASE / datealyfe - you're so vile</p>
         </article>
       </section>
     </main>
 
     <aside>
+      <!-- SPOTIFY CUTE SECTION (🧁🍓) -->
       <!-- SPOTIFY DUAL TRACK PLAYER -->
       <section class="card">
         <div class="side-title">♪ spotify feed</div>
@@ -395,20 +178,24 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <div class="spotify-tag-row">
             <div class="spotify-live">
               <div class="live-dot"></div>
+              <span>PLAYING NOW</span>
               <span id="playerBadge">TRACK 1/2</span>
             </div>
             <span class="cute-cupcake">🧁🍓</span>
           </div>
 
           <div class="now">
+            <div class="cover">🍰</div>
             <div class="cover" id="albumCover">🍰</div>
             <div>
+              <div class="song">you're so vile</div>
+              <div class="artist">datealyfe ✦</div>
               <div class="song" id="trackTitle">you're so vile</div>
               <div class="artist" id="trackArtist">datealyfe ✦</div>
             </div>
           </div>
           <div class="bar"><i></i></div>
-          
+
           <div class="player-controls">
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
             <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
@@ -416,75 +203,24 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           </div>
 
           <div class="spotify-actions">
+            <button class="audio-ctrl" id="playBtn">▶ Click to Play Audio 🍬</button>
             <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
               🎧 View My Spotify Profile
             </a>
-            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
-              🧁 Open Playlists
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- CUSTOM ABOUT ME CARD -->
-      <section class="card card-about">
-        <div class="about-inner">
-          <div class="about-wiggle-title">
-            ‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙
-          </div>
-          <div class="alt-facts">
-            NAME: <b class="alt-name">LOSTRUSHI</b><br>
-            PLACE: <span class="alt-place">tehran ✧</span><br>
-            ִ ࣪...𖤐: <span class="alt-activities">listenn to music, studyy andd gym</span><br>
-            MOOD: <span class="alt-mood">🪼⋆｡𖦹°🫧⋆.ೃ࿔</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
+@@ -441,7 +445,7 @@ <h3>currently listening... 🍓</h3>
         <div class="side-title">★ interests</div>
         <div class="badges">
           <span class="badge">🧁 CUPCAKES</span>
+          <span class="badge">MUSIC</span>
           <span class="badge">LEASE</span>
           <span class="badge">JAYDES</span>
           <span class="badge">HIM</span>
           <span class="badge">YUMEKO</span>
-          <span class="badge">AKAME</span>
-          <span class="badge">Y2K</span>
-          <span class="badge">リリイ・シュシュ</span>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="side-title">♡ guestbook</div>
-        <div class="guestbook">
-          leave your thoughts here or say hi :3 
-        </div>
-      </section>
-    </aside>
-  </div>
-
-  <footer>all about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
-</div>
-
-<!-- =========================
-     CHARACTERS
-     ========================= -->
-<!-- Yumeko (Left) -->
-<div class="character left">
-  <img src="https://media.tenor.com/13131059/yumeko-jabami-kakegurui-happy-dance.gif" alt="Yumeko Dancing" style="width:100%;height:auto;display:block;">
-  <div class="char-tag">Yumeko 🎲</div>
-</div>
-
-<!-- Tall Akame (Right) -->
-<div class="character right">
-  <div class="akame-img-wrap">
-    <img src="akame.jpg" alt="Akame" onerror="this.src='https://i.pinimg.com/736x/b7/87/f1/b787f1f2963f685a30c562f46dbeef8b.jpg'">
-  </div>
-  <div class="char-tag">Akame ⚔️</div>
+@@ -481,16 +485,56 @@ <h3>currently listening... 🍓</h3>
 </div>
 
 <script>
+  // Audio Control
   // Playlist Definition
   const playlist = [
     {
@@ -534,19 +270,21 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     if (!isPlaying) {
       audio.play().then(() => {
         isPlaying = true;
+        playBtn.innerText = '❚❚ Pause Audio 🍬';
         playBtn.innerText = '❚❚ Pause 🍬';
       }).catch(() => {});
     }
   }, { once: true });
-
-  playBtn.addEventListener('click', (e) => {
+@@ -499,14 +543,26 @@ <h3>currently listening... 🍓</h3>
     e.stopPropagation();
     if (audio.paused) {
       audio.play();
+      playBtn.innerText = '❚❚ Pause Audio 🍬';
       playBtn.innerText = '❚❚ Pause 🍬';
       isPlaying = true;
     } else {
       audio.pause();
+      playBtn.innerText = '▶ Click to Play Audio 🍬';
       playBtn.innerText = '▶ Play 🍬';
       isPlaying = false;
     }
@@ -562,89 +300,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     e.stopPropagation();
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, isPlaying);
-  });
-   // Playlist Definition (آهنگ دوم مستقیماً آنلاین پخش می‌شود)
-  const playlist = [
-    {
-      title: "you're so vile",
-      artist: "datealyfe ✦",
-      file: "music.mp3",
-      cover: "🍰"
-    },
-    {
-      title: "LEASE",
-      artist: "阿保剛 (Takeshi Abo) ✦",
-      file: "https://ia801503.us.archive.org/15/items/takeshi-abo-lease/lease.mp3",
-      cover: "💿"
-    }
-  ];
-
-  let currentIdx = 0;
-  const audio = document.getElementById('bgMusic');
-  const playBtn = document.getElementById('playBtn');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const trackTitle = document.getElementById('trackTitle');
-  const trackArtist = document.getElementById('trackArtist');
-  const albumCover = document.getElementById('albumCover');
-  const playerBadge = document.getElementById('playerBadge');
-  let isPlaying = false;
-
-  function loadTrack(index, autoPlay = true) {
-    currentIdx = index;
-    const track = playlist[currentIdx];
-    audio.src = track.file;
-    audio.load();
-    trackTitle.innerText = track.title;
-    trackArtist.innerText = track.artist;
-    albumCover.innerText = track.cover;
-    playerBadge.innerText = `TRACK ${currentIdx + 1}/${playlist.length}`;
-
-    if (autoPlay) {
-      audio.play().then(() => {
-        isPlaying = true;
-        playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch((e) => {
-        console.log(e);
-      });
-    }
-  }
-
-  // Autoplay on first click
-  document.body.addEventListener('click', () => {
-    if (!isPlaying) {
-      audio.play().then(() => {
-        isPlaying = true;
-        playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch(() => {});
-    }
-  }, { once: true });
-
-  playBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (audio.paused) {
-      audio.play();
-      playBtn.innerText = '❚❚ Pause 🍬';
-      isPlaying = true;
-    } else {
-      audio.pause();
-      playBtn.innerText = '▶ Play 🍬';
-      isPlaying = false;
-    }
-  });
-
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
-    loadTrack(currentIdx, true);
-  });
-
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentIdx = (currentIdx + 1) % playlist.length;
-    loadTrack(currentIdx, true);
   });
 </script>
 
 </body>
-</html>
