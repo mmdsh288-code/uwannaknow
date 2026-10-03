@@ -38,7 +38,7 @@ body{
   position:relative;
 }
 
-/* انیمیشن جذاب لود اولیه صفحه از پایین به بالا */
+/* انیمیشن لود اولیه صفحه */
 @keyframes slideUpEntrance {
   0% {
     opacity: 0;
@@ -192,9 +192,7 @@ h1.kawaii-title{
 
 .subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
 
-/* ==============================================================
-   دکمه‌های شبکه‌های اجتماعی: راه‌راه صورتی و سفید + هاور روان
-   ============================================================== */
+/* دکمه‌های شبکه‌های اجتماعی */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -287,7 +285,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 
-/* نوار موجی تایم‌‌لاین */
+/* نوار موجی تایم‌لاین */
 .timeline-container{
   margin-top:14px;
 }
@@ -356,7 +354,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
 
 /* =======================================
-   CUSTOM ABOUT ME CARD (بدون خط‌چین + سمبل بزرگ‌تر)
+   CUSTOM ABOUT ME CARD
    ======================================= */
 .card-about{
   background:
@@ -389,11 +387,10 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   z-index:2;
 }
 
-/* سمبل بزرگ‌تر، برجسته و بدون خط‌چین */
 .about-wiggle-title{
   display:inline-block;
-  font-size:22px; /* بزرگ‌تر شد */
-  border:none; /* خط‌چین برداشته شد */
+  font-size:22px;
+  border:none;
   font-weight:900;
   letter-spacing:2px;
   color:#ff2497;
@@ -416,7 +413,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   text-shadow:0 1px 3px rgba(255,255,255,0.9);
 }
 
-/* بدون خط‌چین دور اسم */
 .alt-name{
   font-family:'Fredoka',sans-serif;
   color:#e7007d;
@@ -426,7 +422,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   background:rgba(255,255,255,0.7);
   padding:2px 8px;
   border-radius:6px;
-  border:none; /* خط‌چین برداشته شد */
+  border:none;
   font-weight:800;
 }
 
@@ -440,37 +436,67 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .guestbook{font-size:12px;line-height:1.7}
 
 /* ==============================================================
-   CHARACTERS: CUTE CHOCOLATE AKAME & MATCHING LEFT CHARACTER
+   DRAGGABLE & FLOATING CHARACTERS (قابل جابه‌جایی آزادانه)
    ============================================================== */
 .character{
-  position:fixed;z-index:99;bottom:15px;pointer-events:none;
+  position:fixed;
+  z-index:999; /* قرارگیری در بالاترین لایه هنگام جابه‌جایی */
+  cursor: grab;
+  touch-action: none; /* پشتیبانی کامل از لمس روی موبایل */
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
 }
 
-/* انیمیشن بسیار آرام، کند و شناور آکامه */
+.character:hover{
+  filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6));
+}
+
+.character.dragging{
+  cursor: grabbing !important;
+  transform: scale(1.06) !important;
+  z-index: 1000 !important;
+}
+
+/* موقعیت اولیه کاراکترها */
 .character.right{
-  right:18px;width:155px;
+  right:18px;
+  bottom:15px;
+  width:155px;
+}
+
+.character.left{
+  left:18px;
+  bottom:15px;
+  width:145px;
+}
+
+/* انیمیشن شناور محتویات داخل کادر تا مانع جابه‌جایی آزاد نشود */
+.character.right .akame-choco-frame{
   animation:slowFloat 6s ease-in-out infinite alternate;
 }
-
-/* انیمیشن آرام و شناور کاراکتر سمت چپ */
-.character.left{
-  left:18px;width:145px;
+.character.left .left-char-frame{
   animation:slowFloatLeft 5.5s ease-in-out infinite alternate;
 }
 
 @keyframes slowFloat{
   0%{transform:translateY(0px) rotate(0deg);}
-  50%{transform:translateY(-14px) rotate(1.5deg);}
-  100%{transform:translateY(-5px) rotate(-1deg);}
+  50%{transform:translateY(-12px) rotate(1.5deg);}
+  100%{transform:translateY(-4px) rotate(-1deg);}
 }
 
 @keyframes slowFloatLeft{
   0%{transform:translateY(0px) rotate(0deg);}
-  50%{transform:translateY(-12px) rotate(-1.5deg);}
-  100%{transform:translateY(-4px) rotate(1deg);}
+  50%{transform:translateY(-10px) rotate(-1.5deg);}
+  100%{transform:translateY(-3px) rotate(1deg);}
 }
 
-/* قاب شکلاتی، نرم و گوگولی همرنگ لباس آکامه */
+/* متوقف شدن انیمیشن شناور هنگام جابه‌جایی برای دقت بالا */
+.character.dragging .akame-choco-frame,
+.character.dragging .left-char-frame{
+  animation: none !important;
+}
+
+/* قاب شکلاتی آکامه */
 .akame-choco-frame{
   width:100%;
   border:4px solid var(--choco-dark);
@@ -482,6 +508,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
     3px 4px 0 var(--ink),
     inset 0 0 10px rgba(255, 182, 193, 0.25);
   overflow:hidden;
+  pointer-events: none;
 }
 
 .akame-choco-frame img{
@@ -491,9 +518,10 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   display:block;
   border-radius:12px;
   border:2px dashed #ffb8d9;
+  pointer-events: none;
 }
 
-/* تگ اسم شکلاتی بیسکویتی گوگولی */
+/* تگ اسم شکلاتی بیسکویتی */
 .akame-choco-tag{
   background:linear-gradient(135deg, #533236, #372023);
   color:#ffd9e8;
@@ -504,6 +532,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   border-radius:12px;
   letter-spacing:0.5px;
   display:flex;align-items:center;justify-content:center;gap:4px;
+  pointer-events: none;
 }
 
 /* قاب کاراکتر سمت چپ */
@@ -517,6 +546,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
     0 8px 20px rgba(255, 107, 189, 0.35),
     3px 4px 0 var(--ink);
   overflow:hidden;
+  pointer-events: none;
 }
 .left-char-frame img{
   width:100%;height:210px;
@@ -525,6 +555,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   display:block;
   border-radius:12px;
   border:2px dashed #ff6bbd;
+  pointer-events: none;
 }
 .left-char-tag{
   background:#fff;
@@ -534,14 +565,15 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   text-align:center;margin-top:6px;
   box-shadow:2px 2px 0 var(--ink);
   border-radius:12px;
+  pointer-events: none;
 }
 
 footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
 
 @media(max-width:800px){
   .grid{grid-template-columns:1fr}
-  .character.left{width:90px;left:5px}
-  .character.right{width:95px;right:5px}
+  .character.left{width:90px;}
+  .character.right{width:95px;}
   .akame-choco-frame img{height:140px;}
   .left-char-frame img{height:130px;}
 }
@@ -589,7 +621,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           music, cute symbols, anime, random thoughts and whatever i feel like posting.
         </p>
 
-        <!-- دکمه‌های شبکه‌های اجتماعی (اینستاگرام، تلگرام، توییتر، تیک‌تاک و اسپاتیفای) -->
+        <!-- دکمه‌های شبکه‌های اجتماعی -->
         <div class="links">
           <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
             <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
@@ -652,7 +684,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
           </div>
           
-          <!-- نوار پیشرفت و تایم‌‌لاین کیوت -->
+          <!-- نوار پیشرفت و تایم‌لاین کیوت -->
           <div class="timeline-container">
             <div class="timeline-bar" id="timelineBar">
               <div class="timeline-fill" id="timelineFill"></div>
@@ -680,7 +712,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <!-- CUSTOM ABOUT ME CARD -->
       <section class="card card-about">
         <div class="about-inner">
-          <!-- سمبل بزرگ‌تر بدون هیچ خط‌چینی -->
           <div class="about-wiggle-title">
             ‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙
           </div>
@@ -719,11 +750,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <footer>all about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
 </div>
 
-<!-- ==============================================
-     CHARACTERS: LEFT (NEW GIRL) & RIGHT (AKAME)
-     ============================================== -->
+<!-- ==============================================================
+     CHARACTERS (DRAGGABLE - هر دو قاب با ماوس یا لمس جابه‌جا می‌شوند)
+     ============================================================== -->
 <!-- Left Character -->
-<div class="character left">
+<div class="character left" id="leftChar">
   <div class="left-char-frame">
     <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
   </div>
@@ -731,7 +762,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <!-- Tall Akame (Right) -->
-<div class="character right">
+<div class="character right" id="rightChar">
   <div class="akame-choco-frame">
     <img src="akame.jpg" alt="Akame" onerror="this.src='https://i.pinimg.com/736x/b7/87/f1/b787f1f2963f685a30c562f46dbeef8b.jpg'">
   </div>
@@ -762,12 +793,96 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
-  // پخش صدای کلیک برای عناصر تعاملی
+  // پخش صدای کلیک
   document.addEventListener('click', (e) => {
     if (e.target.closest('button, a, .timeline-bar, .badge')) {
       playCuteClick();
     }
   });
+
+  // ==============================================================
+  // سیستم حرکت و درگ کردن آزادانه قاب‌های دو طرف (Drag & Drop)
+  // ==============================================================
+  function makeElementDraggable(elmnt) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    elmnt.addEventListener('mousedown', dragMouseDown);
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      if (e.button !== 0) return; // فقط کلیک چپ
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+
+      // تبدیل موقعیت به top/left دقیق بر حسب پیکسل صفحه
+      const rect = elmnt.getBoundingClientRect();
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+      elmnt.style.left = rect.left + 'px';
+      elmnt.style.top = rect.top + 'px';
+
+      elmnt.classList.add('dragging');
+      document.addEventListener('mouseup', closeDragElement);
+      document.addEventListener('mousemove', elementDrag);
+    }
+
+    function elementDrag(e) {
+      e.preventDefault();
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+      elmnt.classList.remove('dragging');
+      document.removeEventListener('mouseup', closeDragElement);
+      document.removeEventListener('mousemove', elementDrag);
+    }
+
+    // پشتیبانی کامل از تاچ برای گوشی/تبلت
+    function dragTouchStart(e) {
+      const touch = e.touches[0];
+      pos3 = touch.clientX;
+      pos4 = touch.clientY;
+
+      const rect = elmnt.getBoundingClientRect();
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+      elmnt.style.left = rect.left + 'px';
+      elmnt.style.top = rect.top + 'px';
+
+      elmnt.classList.add('dragging');
+      document.addEventListener('touchend', closeTouchDrag);
+      document.addEventListener('touchmove', touchDrag, { passive: false });
+    }
+
+    function touchDrag(e) {
+      e.preventDefault();
+      const touch = e.touches[0];
+      pos1 = pos3 - touch.clientX;
+      pos2 = pos4 - touch.clientY;
+      pos3 = touch.clientX;
+      pos4 = touch.clientY;
+
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeTouchDrag() {
+      elmnt.classList.remove('dragging');
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', touchDrag);
+    }
+  }
+
+  // فعال‌سازی قابلیت جابه‌جایی برای کاراکتر چپ و راست
+  makeElementDraggable(document.getElementById('leftChar'));
+  makeElementDraggable(document.getElementById('rightChar'));
 
   // پلی‌لیست دوترکه با کاورها
   const playlist = [
