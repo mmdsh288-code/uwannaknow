@@ -122,7 +122,7 @@ a{color:inherit}
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 
-/* بخش آنلاین با نوشته ژاپنی و چراغ چشمک‌زن واقعی */
+/* وضعیت آنلاین به همراه چراغ سبز */
 .online-status-wrap{
   display:inline-flex;
   align-items:center;
@@ -193,7 +193,7 @@ h1.kawaii-title{
 .subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
 
 /* ==============================================================
-   دکمه‌های شبکه‌های اجتماعی: راه‌راه صورتی و سفید + هاور روان و بزرگ‌شونده
+   دکمه‌های شبکه‌های اجتماعی: راه‌راه صورتی و سفید + هاور روان
    ============================================================== */
 .links{
   display:flex;
@@ -203,7 +203,6 @@ h1.kawaii-title{
 }
 .links a{
   text-decoration:none;
-  /* زمینه راه‌راه مورب کیوت صورتی و سفید */
   background: repeating-linear-gradient(
     -45deg,
     #ffffff,
@@ -237,6 +236,7 @@ h1.kawaii-title{
 .links a.btn-ig{ color:#bc1888; border-color:#d62976; }
 .links a.btn-tg{ color:#0088cc; border-color:#229ed9; }
 .links a.btn-tw{ color:#0c85d0; border-color:#1da1f2; }
+.links a.btn-tt{ color:#ff0050; border-color:#fe2c55; }
 .links a.btn-sp{ color:#1aa34a; border-color:#1db954; }
 
 h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
@@ -287,7 +287,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 
-/* نوار موجی تایم‌لاین */
+/* نوار موجی تایم‌‌لاین */
 .timeline-container{
   margin-top:14px;
 }
@@ -343,7 +343,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 }
 .audio-ctrl:hover{background:#ff4cae;}
 
-/* دکمه‌های پایین پنل موزیک */
+/* دکمه‌های پنل موزیک */
 .spotify-actions{
   margin-top:10px;display:flex;flex-direction:column;gap:6px;
 }
@@ -356,7 +356,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
 
 /* =======================================
-   CUSTOM ABOUT ME CARD
+   CUSTOM ABOUT ME CARD (بدون خط‌چین + سمبل بزرگ‌تر)
    ======================================= */
 .card-about{
   background:
@@ -389,14 +389,15 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   z-index:2;
 }
 
+/* سمبل بزرگ‌تر، برجسته و بدون خط‌چین */
 .about-wiggle-title{
   display:inline-block;
-  font-size:15px;
-  border:1px dashed #ff72c8;
+  font-size:22px; /* بزرگ‌تر شد */
+  border:none; /* خط‌چین برداشته شد */
   font-weight:900;
-  letter-spacing:1.5px;
+  letter-spacing:2px;
   color:#ff2497;
-  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink);
+  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5);
   margin-bottom:14px;
   animation:wiggleTitle 2.4s ease-in-out infinite;
 }
@@ -408,23 +409,25 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 }
 
 .alt-facts{
-  font-size:13px;
-  line-height:2.1;
+  font-size:13.5px;
+  line-height:2.2;
   font-weight:600;
   color:#1f182c;
   text-shadow:0 1px 3px rgba(255,255,255,0.9);
 }
 
+/* بدون خط‌چین دور اسم */
 .alt-name{
   font-family:'Fredoka',sans-serif;
   color:#e7007d;
-  font-size:15px;
+  font-size:17px;
   letter-spacing:1px;
   text-shadow:1px 1px 0 #fff;
-  background:rgba(255,255,255,0.6);
-  padding:1px 6px;
-  border-radius:4px;
-  border:1px dashed #ff72c8;
+  background:rgba(255,255,255,0.7);
+  padding:2px 8px;
+  border-radius:6px;
+  border:none; /* خط‌چین برداشته شد */
+  font-weight:800;
 }
 
 .alt-place{color:#0071a8;font-weight:700;}
@@ -564,7 +567,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">꧁ঔৣ</span>
     <span class="logo">all about mee :3</span>
     
-    <!-- نوشته ژاپنی درخواستی به همراه چراغ سبز چشمک‌زن واقعی -->
     <div class="online-status-wrap">
       <span class="online-dot"></span>
       <span>私をすごく愛しているなら ✦ ONLINE</span>
@@ -574,7 +576,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   </header>
 
   <div class="marquee">
-    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ takeshi abo & datealyfe ★ lostrushi space 🧁🍓 ★</span>
+    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ takeshi abo & datealyfe ★ kiawn space 🧁🍓 ★</span>
   </div>
 
   <div class="grid">
@@ -587,7 +589,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           music, cute symbols, anime, random thoughts and whatever i feel like posting.
         </p>
 
-        <!-- دکمه‌های شبکه‌های اجتماعی با استایل راه‌راه صورتی و سفید و هاور نرم -->
+        <!-- دکمه‌های شبکه‌های اجتماعی (اینستاگرام، تلگرام، توییتر، تیک‌تاک و اسپاتیفای) -->
         <div class="links">
           <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
             <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
@@ -598,7 +600,10 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
             <span>💬</span> 𝕏 TWITTER (@kianhcn)
           </a>
-          <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="btn-sp">
+          <a href="https://www.tiktok.com/@kianhcn" target="_blank" class="btn-tt">
+            <span>🎵</span> ✰ TIKTOK (@kianhcn)
+          </a>
+          <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="btn-sp">
             <span>🎧</span> ♫ SPOTIFY (Playlist)
           </a>
         </div>
@@ -624,7 +629,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     </main>
 
     <aside>
-      <!-- SPOTIFY DUAL TRACK PLAYER (سالم و کامل در سایدبار راست) -->
+      <!-- SPOTIFY DUAL TRACK PLAYER -->
       <section class="card">
         <div class="side-title">♪ spotify feed</div>
         <div class="spotify">
@@ -647,7 +652,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
           </div>
           
-          <!-- نوار پیشرفت و تایم‌لاین کیوت -->
+          <!-- نوار پیشرفت و تایم‌‌لاین کیوت -->
           <div class="timeline-container">
             <div class="timeline-bar" id="timelineBar">
               <div class="timeline-fill" id="timelineFill"></div>
@@ -665,8 +670,8 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           </div>
 
           <div class="spotify-actions">
-            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
-              🎧 View My Spotify Profile
+            <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="spotify-btn">
+              🎧 Open My Spotify Playlist
             </a>
           </div>
         </div>
@@ -675,11 +680,12 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <!-- CUSTOM ABOUT ME CARD -->
       <section class="card card-about">
         <div class="about-inner">
+          <!-- سمبل بزرگ‌تر بدون هیچ خط‌چینی -->
           <div class="about-wiggle-title">
             ‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙
           </div>
           <div class="alt-facts">
-            NAME: <b class="alt-name">LOSTRUSHI</b><br>
+            NAME: <b class="alt-name">kiawn</b><br>
             PLACE: <span class="alt-place">tehran ✧</span><br>
             ִ ࣪...𖤐: <span class="alt-activities">listen to music, studyy andd gym</span><br>
             MOOD: <span class="alt-mood">🪼⋆｡𖦹°🫧⋆.ೃ࿔</span>
@@ -756,7 +762,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
-  // اضافه کردن افکت صدا به دکمه‌ها و لینک‌ها
+  // پخش صدای کلیک برای عناصر تعاملی
   document.addEventListener('click', (e) => {
     if (e.target.closest('button, a, .timeline-bar, .badge')) {
       playCuteClick();
