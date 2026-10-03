@@ -180,50 +180,13 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   CUTE MARQUEE WITH FADED / SOFT BLENDED DOLL
+   CUTE MARQUEE (بدون عروسک، شروع فوری و حرکت یکدست)
    ============================================================== */
 .marquee-wrapper {
   position: relative;
-  margin: 54px 0 22px;
+  margin: 22px 0;
 }
 
-/* ظرف و فیلتر فید نرم عروسک نشسته */
-.sitting-doll-container {
-  position: absolute;
-  top: -62px;
-  right: 48px;
-  z-index: 10;
-  pointer-events: none;
-  user-select: none;
-  animation: dollSubtleBreathing 4s ease-in-out infinite alternate;
-}
-
-.sitting-doll-container img {
-  width: 82px;
-  height: auto;
-  display: block;
-  opacity: 0.62; /* فید ملایم و نرم */
-  mix-blend-mode: multiply; /* ترکیب ملایم با پس‌زمینه سایت */
-  filter: 
-    contrast(1.05) 
-    brightness(1.02) 
-    drop-shadow(0 4px 10px rgba(255, 107, 189, 0.35));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0.15) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0.15) 100%);
-  transition: opacity 0.3s ease;
-}
-
-.marquee-wrapper:hover .sitting-doll-container img {
-  opacity: 0.78; /* کمی واضح‌تر هنگام قرار گرفتن ماوس */
-}
-
-@keyframes dollSubtleBreathing {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-2px) rotate(0.8deg); }
-  100% { transform: translateY(0.5px) rotate(-0.5deg); }
-}
-
-/* بدنه نوار مارکی */
 .marquee {
   position: relative;
   border: 3px solid var(--ink);
@@ -252,7 +215,6 @@ a{color:inherit}
   border-color: #ff2a9d;
 }
 
-/* شروع آنی و حرکت روان بدون وقفه */
 .marquee-content {
   display: inline-flex;
   white-space: nowrap;
@@ -684,8 +646,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   .character.right{width:95px;}
   .akame-choco-frame img{height:140px;}
   .left-char-frame img{height:130px;}
-  .sitting-doll-container{top: -48px; right: 24px;}
-  .sitting-doll-container img{width: 62px;}
 }
 </style>
 </head>
@@ -718,12 +678,8 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <!-- نوار مارکی متحرک (عروسک فید شده نرم + شروع آنی و روان) -->
+  <!-- نوار مارکی متحرک تمیز (بدون عروسک + شروع آنی و حرکت روان) -->
   <div class="marquee-wrapper">
-    <div class="sitting-doll-container">
-      <img src="doll-sitting.png" alt="Sitting Doll">
-    </div>
-
     <div class="marquee">
       <div class="marquee-content">
         <span>
