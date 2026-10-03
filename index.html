@@ -50,10 +50,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* =======================================
-   LEFT MARGIN COVER IMAGE (SIDE-CHAR)
-   فید شده، پوشش کامل حاشیه چپ با پارالاکس
-   ======================================= */
+/* حاشیه سمت چپ عکس فید شده */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -62,8 +59,8 @@ body:before{
   height: 110vh;
   object-fit: cover;
   object-position: center;
-  opacity: 0.35; /* فید و نیمه‌شفاف */
-  z-index: 1; /* قرارگیری در پس‌زمینه محتوا و زیر کاراکتر یومکو */
+  opacity: 0.35;
+  z-index: 1;
   pointer-events: none;
   filter: contrast(1.1) saturate(1.05);
   mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 60%, transparent 100%);
@@ -146,7 +143,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .post p{font-size:13.5px;line-height:1.7;margin:7px 0}
 
 /* =======================================
-   SPOTIFY DUAL TRACK PLAYER (🧁🍓)
+   SPOTIFY DUAL TRACK PLAYER + CUTE WAVE TIMELINE
    ======================================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
@@ -171,25 +168,62 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .cute-cupcake{font-size:18px;}
 
 .now{display:flex;align-items:center;gap:12px}
-.cover{
-  width:60px;height:60px;border:2px solid var(--ink);
-  background:radial-gradient(circle,#ffc8e9 10%,#ff6bbd 90%);
-  display:grid;place-items:center;font-size:26px;
+.cover-img-box{
+  width:64px;height:64px;border:2px solid var(--ink);
   box-shadow:3px 3px 0 var(--ink);border-radius:8px;
-  transition:transform 0.2s;
+  overflow:hidden;flex-shrink:0;background:#ffc8e9;
 }
-.song{font-weight:bold;font-size:13px;color:#281831;font-family:'Fredoka',sans-serif;}
+.cover-img-box img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.3s ease;
+}
+.cover-img-box:hover img{
+  transform:scale(1.08);
+}
+.song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
-.bar{height:10px;background:#ffd7ef;margin-top:14px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;position:relative;}
-.bar i{
-  display:block;width:60%;height:100%;
-  background:linear-gradient(90deg,#ff6bbd,#72d9ff);
-  animation:playProgress 18s linear infinite;
+
+/* TIMELINE (WAVY & CUTE) */
+.timeline-container{
+  margin-top:14px;
 }
-@keyframes playProgress{0%{width:10%}100%{width:95%}}
+.timeline-bar{
+  width:100%;height:14px;background:#ffd4ec;
+  border:2px solid var(--ink);border-radius:10px;
+  overflow:hidden;position:relative;cursor:pointer;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,0.15);
+}
+.timeline-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%);
+  background-size:24px 24px;
+  /* انیمیشن موجی و بافت شیرینی پاستیلی Y2K */
+  background-image:linear-gradient(
+    45deg, 
+    rgba(255,255,255,0.4) 25%, 
+    transparent 25%, 
+    transparent 50%, 
+    rgba(255,255,255,0.4) 50%, 
+    rgba(255,255,255,0.4) 75%, 
+    transparent 75%, 
+    transparent
+  );
+  animation:wavePattern 1.2s linear infinite;
+  border-radius:6px;
+  transition:width 0.1s linear;
+}
+@keyframes wavePattern {
+  0% { background-position: 0 0; }
+  100% { background-position: 24px 0; }
+}
+.time-display{
+  display:flex;justify-content:space-between;
+  font-family:'VT323',monospace;font-size:13px;
+  color:#5d3b66;margin-top:4px;font-weight:bold;
+}
 
 .player-controls{
-  display:flex;gap:6px;align-items:center;margin-top:12px;
+  display:flex;gap:6px;align-items:center;margin-top:10px;
 }
 .track-nav-btn{
   cursor:pointer;background:#fff;border:2px solid var(--ink);
@@ -361,20 +395,18 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
-<!-- عکس پس‌زمینه حاشیه سمت چپ (فید شده با حرکت پارالاکس) -->
+<!-- عکس پس‌زمینه حاشیه سمت چپ -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
 
 <!-- Ambient Symbols -->
 <div class="bg-symbols">
-  <span>☠︎︎</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
+  <span>☠</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
   <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎</span>
 </div>
 
-<!-- Audio Player Element -->
-<audio id="bgMusic" loop preload="auto">
-  <source id="audioSrc" src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- المان اصلی پخش صدا (بدون تگ source اضافه تا باگ لود شدن ترک ۲ حل شود) -->
+<audio id="bgMusic" preload="auto"></audio>
 
 <div class="wrap">
   <header class="topbar">
@@ -437,13 +469,26 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           </div>
 
           <div class="now">
-            <div class="cover" id="albumCover">🍰</div>
+            <!-- کاور عکس‌دار به جای ایموجی -->
+            <div class="cover-img-box">
+              <img id="trackCoverImg" src="cover1.jpg" onerror="this.src='https://i.pinimg.com/564x/e7/7b/72/e77b72ebfbe1f092782b3d368e7ec892.jpg'" alt="Album Art">
+            </div>
             <div>
               <div class="song" id="trackTitle">you're so vile</div>
               <div class="artist" id="trackArtist">datealyfe ✦</div>
             </div>
           </div>
-          <div class="bar"><i></i></div>
+          
+          <!-- نوار پیشرفت و تایم‌لاین کیوت با انیمیشن موجی -->
+          <div class="timeline-container">
+            <div class="timeline-bar" id="timelineBar">
+              <div class="timeline-fill" id="timelineFill"></div>
+            </div>
+            <div class="time-display">
+              <span id="currentTime">00:00</span>
+              <span id="totalDuration">00:00</span>
+            </div>
+          </div>
 
           <div class="player-controls">
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
@@ -522,58 +567,118 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // Dual Track Playlist
+  // تعریف دقیق پلی‌لیست به همراه کاور اختصاصی و مسیرهای جایگزین
   const playlist = [
     {
       title: "you're so vile",
       artist: "datealyfe ✦",
       src: "music.mp3",
-      badge: "TRACK 1/2",
-      cover: "🍰"
+      cover: "cover1.jpg",
+      fallbackCover: "https://i.pinimg.com/564x/e7/7b/72/e77b72ebfbe1f092782b3d368e7ec892.jpg",
+      badge: "TRACK 1/2"
     },
     {
       title: "LEASE",
       artist: "阿保剛 (Takeshi Abo) ✦",
       src: "music2.mp3",
-      badge: "TRACK 2/2",
-      cover: "🍓"
+      cover: "cover2.jpg",
+      fallbackCover: "https://i.pinimg.com/564x/cb/c7/30/cbc730bfe7ec38dbf5c53106571beff4.jpg",
+      badge: "TRACK 2/2"
     }
   ];
+
   let currentIdx = 0;
   let isPlaying = false;
 
   const audio = document.getElementById('bgMusic');
-  const audioSrc = document.getElementById('audioSrc');
   const playBtn = document.getElementById('playBtn');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const trackTitle = document.getElementById('trackTitle');
   const trackArtist = document.getElementById('trackArtist');
   const playerBadge = document.getElementById('playerBadge');
-  const albumCover = document.getElementById('albumCover');
+  const trackCoverImg = document.getElementById('trackCoverImg');
 
-  function loadTrack(idx, autoPlay = false) {
+  const timelineBar = document.getElementById('timelineBar');
+  const timelineFill = document.getElementById('timelineFill');
+  const currentTimeDisplay = document.getElementById('currentTime');
+  const totalDurationDisplay = document.getElementById('totalDuration');
+
+  // فرمت زمان به دقیقه و ثانیه (مثلاً 03:25)
+  function formatTime(sec) {
+    if (isNaN(sec)) return "00:00";
+    const minutes = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
+    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  // بارگذاری قطعی آهنگ و رفع مشکل تغییر ترک
+  function loadTrack(idx, shouldPlay = false) {
     currentIdx = idx;
     const track = playlist[currentIdx];
-    audioSrc.src = track.src;
+
+    // بارگذاری فایل و آدرس صوتی
+    audio.pause();
+    audio.src = track.src;
     audio.load();
+
     trackTitle.innerText = track.title;
     trackArtist.innerText = track.artist;
     if (playerBadge) playerBadge.innerText = track.badge;
-    if (albumCover) albumCover.innerText = track.cover;
 
-    if (autoPlay) {
+    // لود کاور با پشتیبانی از خطای لودینگ
+    trackCoverImg.src = track.cover;
+    trackCoverImg.onerror = function() {
+      this.src = track.fallbackCover;
+    };
+
+    timelineFill.style.width = '0%';
+    currentTimeDisplay.innerText = "00:00";
+
+    if (shouldPlay) {
       audio.play().then(() => {
         isPlaying = true;
         playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch(() => {});
+      }).catch(err => {
+        console.warn("پخش خودکار متوقف شد:", err);
+      });
     } else {
       isPlaying = false;
       playBtn.innerText = '▶ Play 🍬';
     }
   }
 
-  // Play / Pause
+  // رویداد آپدیت زمان و نوار موجی تایم‌لاین
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      timelineFill.style.width = `${percent}%`;
+      currentTimeDisplay.innerText = formatTime(audio.currentTime);
+      totalDurationDisplay.innerText = formatTime(audio.duration);
+    }
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    totalDurationDisplay.innerText = formatTime(audio.duration);
+  });
+
+  // وقتی آهنگ به پایان رسید، خودکار برود ترک بعدی
+  audio.addEventListener('ended', () => {
+    currentIdx = (currentIdx + 1) % playlist.length;
+    loadTrack(currentIdx, true);
+  });
+
+  // کلیک روی نوار زمان برای عقب و جلو بردن آهنگ
+  timelineBar.addEventListener('click', (e) => {
+    const rect = timelineBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    if (audio.duration) {
+      audio.currentTime = (clickX / width) * audio.duration;
+    }
+  });
+
+  // دکمه پلی / پاز
   playBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (audio.paused) {
@@ -588,20 +693,20 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // Previous & Next Track
+  // دکمه‌های ترک قبلی و بعدی
   prevBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
-    loadTrack(currentIdx, isPlaying);
+    loadTrack(currentIdx, true);
   });
 
   nextBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     currentIdx = (currentIdx + 1) % playlist.length;
-    loadTrack(currentIdx, isPlaying);
+    loadTrack(currentIdx, true);
   });
 
-  // Autoplay on first click anywhere
+  // پخش هنگام اولین کلیک در صفحه
   window.addEventListener('click', () => {
     if (!isPlaying && audio.paused) {
       audio.play().then(() => {
@@ -611,14 +716,16 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }, { once: true });
 
-  // افکت پارالاکس نرم عکس حاشیه چپ با اسکرول صفحه
+  // افکت پارالاکس عکس حاشیه چپ
   window.addEventListener('scroll', () => {
     const sideImg = document.getElementById('leftSideImg');
     if (sideImg) {
-      const offset = window.scrollY * 0.12;
-      sideImg.style.transform = `translateY(${offset}px)`;
+      sideImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
     }
   }, { passive: true });
+
+  // راه‌اندازی اولیه
+  loadTrack(0, false);
 </script>
 
 </body>
