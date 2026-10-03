@@ -38,6 +38,18 @@ body{
   position:relative;
 }
 
+/* انیمیشن جذاب لود اولیه صفحه از پایین به بالا */
+@keyframes slideUpEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Y2K Ambient Symbols */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
@@ -84,7 +96,14 @@ body:before{
 }
 
 a{color:inherit}
-.wrap{max-width:1080px;margin:auto;padding:18px;position:relative;z-index:2;}
+.wrap{
+  max-width:1080px;
+  margin:auto;
+  padding:18px;
+  position:relative;
+  z-index:2;
+  animation: slideUpEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
 /* TOPBAR */
 .topbar{
@@ -102,7 +121,38 @@ a{color:inherit}
   user-select:none;
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
-.japanese-sub{font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;letter-spacing:2px;color:#7e5296;}
+
+/* بخش آنلاین با نوشته ژاپنی و چراغ چشمک‌زن واقعی */
+.online-status-wrap{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-size:13px;
+  letter-spacing:1px;
+  color:#7e5296;
+}
+.online-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#00ff66;
+  border:1.5px solid var(--ink);
+  box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
+  animation:blinkGreen 1s ease-in-out infinite alternate;
+}
+@keyframes blinkGreen{
+  0%{
+    opacity: 0.15;
+    transform: scale(0.75);
+    box-shadow: 0 0 2px #00ff66;
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
+  }
+}
 
 .marquee{
   margin:20px 0;border:3px dashed var(--pink);background:#fff;
@@ -142,18 +192,52 @@ h1.kawaii-title{
 
 .subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
 
-/* دکمه‌های شبکه‌های اجتماعی (اینستاگرام، تلگرام، توییتر) */
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.links a{
-  text-decoration:none;background:#fff;border:2px solid var(--ink);
-  padding:9px 15px;font-size:12.5px;font-weight:bold;
-  box-shadow:3px 3px 0 var(--ink);transition:.15s;border-radius:8px;
-  display:inline-flex;align-items:center;gap:6px;
+/* ==============================================================
+   دکمه‌های شبکه‌های اجتماعی: راه‌راه صورتی و سفید + هاور روان و بزرگ‌شونده
+   ============================================================== */
+.links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
 }
-.links a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#ffeaf6;}
-.links a.btn-ig{border-color:#d62976;color:#bc1888;}
-.links a.btn-tg{border-color:#229ed9;color:#0088cc;}
-.links a.btn-tw{border-color:#1da1f2;color:#0c85d0;}
+.links a{
+  text-decoration:none;
+  /* زمینه راه‌راه مورب کیوت صورتی و سفید */
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 9px,
+    #ffe1f2 9px,
+    #ffe1f2 18px
+  );
+  border:2.5px solid var(--ink);
+  padding:10px 16px;
+  font-size:12.5px;
+  font-weight:800;
+  box-shadow:3px 3px 0 var(--ink);
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transform: scale(1);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  user-select:none;
+}
+.links a:hover{
+  transform: scale(1.08) translateY(-3px);
+  box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45);
+  filter: saturate(1.15);
+}
+.links a:active{
+  transform: scale(0.98) translateY(1px);
+  box-shadow:2px 2px 0 var(--ink);
+}
+
+.links a.btn-ig{ color:#bc1888; border-color:#d62976; }
+.links a.btn-tg{ color:#0088cc; border-color:#229ed9; }
+.links a.btn-tw{ color:#0c85d0; border-color:#1da1f2; }
+.links a.btn-sp{ color:#1aa34a; border-color:#1db954; }
 
 h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
 .post{border-top:2px dotted #9c91ab;padding:14px 0}
@@ -258,6 +342,18 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   transition:.15s;text-align:center;
 }
 .audio-ctrl:hover{background:#ff4cae;}
+
+/* دکمه‌های پایین پنل موزیک */
+.spotify-actions{
+  margin-top:10px;display:flex;flex-direction:column;gap:6px;
+}
+.spotify-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:#fff;border:2px solid var(--ink);
+  padding:7px;font-size:11.5px;font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
+}
+.spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
 
 /* =======================================
    CUSTOM ABOUT ME CARD
@@ -407,7 +503,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   display:flex;align-items:center;justify-content:center;gap:4px;
 }
 
-/* قاب کاراکتر جدید سمت چپ */
+/* قاب کاراکتر سمت چپ */
 .left-char-frame{
   width:100%;
   border:4px solid var(--ink);
@@ -467,7 +563,13 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <header class="topbar">
     <span class="flair-symbol">꧁ঔৣ</span>
     <span class="logo">all about mee :3</span>
-    <span class="japanese-sub">リリイ・シュシュ ✦ ONLINE</span>
+    
+    <!-- نوشته ژاپنی درخواستی به همراه چراغ سبز چشمک‌زن واقعی -->
+    <div class="online-status-wrap">
+      <span class="online-dot"></span>
+      <span>私をすごく愛しているなら ✦ ONLINE</span>
+    </div>
+
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
@@ -485,7 +587,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           music, cute symbols, anime, random thoughts and whatever i feel like posting.
         </p>
 
-        <!-- لینک‌های سوشال دقیقاً طبق درخواست -->
+        <!-- دکمه‌های شبکه‌های اجتماعی با استایل راه‌راه صورتی و سفید و هاور نرم -->
         <div class="links">
           <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
             <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
@@ -495,6 +597,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           </a>
           <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
             <span>💬</span> 𝕏 TWITTER (@kianhcn)
+          </a>
+          <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="btn-sp">
+            <span>🎧</span> ♫ SPOTIFY (Playlist)
           </a>
         </div>
       </section>
@@ -519,7 +624,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     </main>
 
     <aside>
-      <!-- SPOTIFY DUAL TRACK PLAYER -->
+      <!-- SPOTIFY DUAL TRACK PLAYER (سالم و کامل در سایدبار راست) -->
       <section class="card">
         <div class="side-title">♪ spotify feed</div>
         <div class="spotify">
@@ -557,6 +662,12 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
             <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
             <button class="track-nav-btn" id="nextBtn" title="Next Track">⏭</button>
+          </div>
+
+          <div class="spotify-actions">
+            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
+              🎧 View My Spotify Profile
+            </a>
           </div>
         </div>
       </section>
@@ -605,7 +716,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 <!-- ==============================================
      CHARACTERS: LEFT (NEW GIRL) & RIGHT (AKAME)
      ============================================== -->
-<!-- Left Character (جایگزین یومکو با عکس ارسالی شما) -->
+<!-- Left Character -->
 <div class="character left">
   <div class="left-char-frame">
     <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
@@ -613,7 +724,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <div class="left-char-tag">🤍 Pout :3 ✦</div>
 </div>
 
-<!-- Tall Akame (Right) با قاب شکلاتی گوگولی و انیمیشن کند و شناور -->
+<!-- Tall Akame (Right) -->
 <div class="character right">
   <div class="akame-choco-frame">
     <img src="akame.jpg" alt="Akame" onerror="this.src='https://i.pinimg.com/736x/b7/87/f1/b787f1f2963f685a30c562f46dbeef8b.jpg'">
@@ -645,7 +756,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
-  // اضافه کردن افکت صدا به همه دکمه‌ها و لینک‌ها
+  // اضافه کردن افکت صدا به دکمه‌ها و لینک‌ها
   document.addEventListener('click', (e) => {
     if (e.target.closest('button, a, .timeline-bar, .badge')) {
       playCuteClick();
