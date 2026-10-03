@@ -50,7 +50,7 @@ body{
   }
 }
 
-/* Y2K Ambient Symbols */
+/* پس‌زمینه علائم Y2K */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
@@ -65,7 +65,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* Left Side Margin Artwork */
+/* آرت سمت چپ صفحه */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -83,9 +83,7 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
-/* ==============================================================
-   مانگای فید شده گوشه بالا سمت راست (حاشیه یک‌چهارم سمت راست)
-   ============================================================== */
+/* آرت مانگای محو شده بالا راست */
 .top-right-manga {
   position: fixed;
   top: 0;
@@ -149,7 +147,7 @@ a{color:inherit}
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 
-/* وضعیت آنلاین به همراه چراغ سبز */
+/* وضعیت آنلاین */
 .online-status-wrap{
   display:inline-flex;
   align-items:center;
@@ -181,13 +179,83 @@ a{color:inherit}
   }
 }
 
-.marquee{
-  margin:20px 0;border:3px dashed var(--pink);background:#fff;
-  padding:8px;overflow:hidden;white-space:nowrap;font-size:13px;font-weight:bold;
-  box-shadow:4px 4px 0 rgba(33,28,46,0.1);
+/* ==============================================================
+   CUTE MARQUEE WITH CHIBI DOLLS
+   ============================================================== */
+.marquee-wrapper {
+  position: relative;
+  margin: 34px 0 24px;
 }
-.marquee span{display:inline-block;animation:slide 16s linear infinite}
-@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.marquee-doll {
+  position: absolute;
+  top: -26px;
+  z-index: 5;
+  font-size: 26px;
+  filter: drop-shadow(0 4px 6px rgba(255, 107, 189, 0.45));
+  user-select: none;
+  pointer-events: none;
+  animation: dollBounce 2.5s ease-in-out infinite alternate;
+}
+.marquee-doll.left-doll {
+  left: 24px;
+}
+.marquee-doll.right-doll {
+  right: 24px;
+  animation-delay: 1.2s;
+}
+
+@keyframes dollBounce {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-5px) rotate(4deg); }
+}
+
+.marquee {
+  position: relative;
+  border: 3px solid var(--ink);
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 10px,
+    #fff0f8 10px,
+    #fff0f8 20px
+  );
+  padding: 10px 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 14px;
+  box-shadow: 
+    5px 5px 0 var(--ink),
+    0 0 16px rgba(255, 107, 189, 0.35);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.marquee:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    7px 7px 0 var(--ink),
+    0 0 24px rgba(255, 107, 189, 0.6);
+  border-color: #ff2a9d;
+}
+
+.marquee span {
+  display: inline-block;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: #3b284c;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
+  animation: slide 110s linear infinite;
+}
+.marquee span em {
+  font-style: normal;
+  color: #ff1f8f;
+  margin: 0 12px;
+}
+
+@keyframes slide{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
 .grid{
   display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
 }
@@ -204,7 +272,7 @@ a{color:inherit}
   box-shadow:2px 2px 0 var(--ink);border-radius:4px;
 }
 
-/* Cute Kawaii Title */
+/* تیتر کاوایی */
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
   font-size:clamp(46px,8.5vw,94px);
@@ -219,7 +287,7 @@ h1.kawaii-title{
 
 .subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
 
-/* دکمه‌های شبکه‌های اجتماعی */
+/* لینک‌ها و دکمه‌ها */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -312,7 +380,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 
-/* نوار موجی تایم‌لاین */
 .timeline-container{
   margin-top:14px;
 }
@@ -368,7 +435,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 }
 .audio-ctrl:hover{background:#ff4cae;}
 
-/* دکمه‌های پنل موزیک */
 .spotify-actions{
   margin-top:10px;display:flex;flex-direction:column;gap:6px;
 }
@@ -463,7 +529,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .guestbook{font-size:12px;line-height:1.7}
 
 /* ==============================================================
-   DRAGGABLE & FLOATING CHARACTERS (قابل جابه‌جایی آزادانه)
+   DRAGGABLE & FLOATING CHARACTERS
    ============================================================== */
 .character{
   position:fixed;
@@ -484,7 +550,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   z-index: 1000 !important;
 }
 
-/* موقعیت اولیه کاراکترها */
 .character.right{
   right:18px;
   bottom:15px;
@@ -497,7 +562,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   width:145px;
 }
 
-/* انیمیشن شناور محتویات داخل کادر */
 .character.right .akame-choco-frame{
   animation:slowFloat 6s ease-in-out infinite alternate;
 }
@@ -547,7 +611,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   pointer-events: none;
 }
 
-/* تگ اسم شکلاتی بیسکویتی */
 .akame-choco-tag{
   background:linear-gradient(135deg, #533236, #372023);
   color:#ffd9e8;
@@ -561,7 +624,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   pointer-events: none;
 }
 
-/* قاب کاراکتر سمت چپ */
+/* قاب کاراکتر چپ */
 .left-char-frame{
   width:100%;
   border:4px solid var(--ink);
@@ -607,17 +670,15 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
-<!-- Left Side Background Image -->
+<!-- Side Artworks -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
-
-<!-- Right Side Manga Fade Image (حدود یک‌چهارم حاشیه راست) -->
 <img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
 
 <!-- Ambient Symbols -->
 <div class="bg-symbols">
   <span>☠</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
   <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
-  <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎</span>
+  <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎︎</span>
 </div>
 
 <!-- Audio Player Element -->
@@ -636,8 +697,20 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <div class="marquee">
-    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ takeshi abo & datealyfe ★ kiawn space 🧁🍓 ★</span>
+  <!-- نوار مارکی پیکسلی بازطراحی شده به همراه عروسک‌های چیبی -->
+  <div class="marquee-wrapper">
+    <div class="marquee-doll left-doll" title="Chibi Doll">₍ᐢ. .ᐢ₎₊˚⊹🧸</div>
+    <div class="marquee-doll right-doll" title="Chibi Doll">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა🎀</div>
+
+    <div class="marquee">
+      <span>
+        <em>[ JAYDES ]</em> ✦ heartbreak hotel ✦ romantic blvd ✦ poison ✦ static dreams ✦ fade away ✦ diary entries ✦ cold nights ✦ runaway love ✦ midnight call ✦
+        <em>[ LUCY / BEDROCK ]</em> ✦ counting sins ✦ bedrock pavement ✦ basement noise ✦ fluorescent glow ✦ shadow dance ✦ quiet escape ✦ broken cassette ✦ heavy steps ✦
+        <em>[ WIFISKELETON ]</em> ✦ suburban daredevil ✦ neon ghost ✦ bleeding static ✦ perfect timing ✦ wire veins ✦ digital heartache ✦ 2008 nostalgia ✦ late night drive ✦
+        <em>[ AETER ]</em> ✦ velvet seats ✦ cold headlights ✦ angel wings ✦ copper rain ✦ whisper in the hall ✦ dried roses ✦ broken glass ✦ lost frequencies ✦
+        <em>[ LOSTRUSHI ARCHIVE ]</em> ✦ リリイ・シュシュ ✦ takeshi abo ✦ datealyfe ✦ uwannaknow :3 ✦
+      </span>
+    </div>
   </div>
 
   <div class="grid">
@@ -650,7 +723,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           music, cute symbols, anime, random thoughts and whatever i feel like posting.
         </p>
 
-        <!-- دکمه‌های شبکه‌های اجتماعی -->
+        <!-- لینک‌های شبکه‌های اجتماعی -->
         <div class="links">
           <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
             <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
@@ -713,7 +786,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
           </div>
           
-          <!-- نوار پیشرفت و تایم‌لاین کیوت -->
           <div class="timeline-container">
             <div class="timeline-bar" id="timelineBar">
               <div class="timeline-fill" id="timelineFill"></div>
@@ -780,9 +852,8 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <!-- ==============================================================
-     CHARACTERS (DRAGGABLE - هر دو قاب با ماوس یا لمس جابه‌جا می‌شوند)
+     CHARACTERS (DRAGGABLE)
      ============================================================== -->
-<!-- Left Character -->
 <div class="character left" id="leftChar">
   <div class="left-char-frame">
     <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
@@ -790,7 +861,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <div class="left-char-tag">🤍 Pout :3 ✦</div>
 </div>
 
-<!-- Tall Akame (Right) -->
 <div class="character right" id="rightChar">
   <div class="akame-choco-frame">
     <img src="akame.jpg" alt="Akame" onerror="this.src='https://i.pinimg.com/736x/b7/87/f1/b787f1f2963f685a30c562f46dbeef8b.jpg'">
@@ -799,7 +869,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // ساند افکت کیوت کلیک با Web Audio API
+  // صدای کلیک کیوت با وب‌آدیو
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -822,16 +892,13 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
-  // پخش صدای کلیک
   document.addEventListener('click', (e) => {
     if (e.target.closest('button, a, .timeline-bar, .badge')) {
       playCuteClick();
     }
   });
 
-  // ==============================================================
-  // سیستم حرکت و درگ کردن آزادانه قاب‌های دو طرف (Drag & Drop)
-  // ==============================================================
+  // کنترل جابه‌جایی آزاد المان‌ها (درگ اند دراپ با تاچ و ماوس)
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -872,7 +939,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       document.removeEventListener('mousemove', elementDrag);
     }
 
-    // پشتیبانی تاچ برای گوشی/تبلت
     function dragTouchStart(e) {
       const touch = e.touches[0];
       pos3 = touch.clientX;
@@ -911,7 +977,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // پلی‌لیست دوترکه با کاورها
+  // پلی‌‌لیست دوترکه
   const playlist = [
     {
       title: "you're so vile",
