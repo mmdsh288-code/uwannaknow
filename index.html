@@ -563,6 +563,87 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, isPlaying);
   });
+   // Playlist Definition (آهنگ دوم مستقیماً آنلاین پخش می‌شود)
+  const playlist = [
+    {
+      title: "you're so vile",
+      artist: "datealyfe ✦",
+      file: "music.mp3",
+      cover: "🍰"
+    },
+    {
+      title: "LEASE",
+      artist: "阿保剛 (Takeshi Abo) ✦",
+      file: "https://ia801503.us.archive.org/15/items/takeshi-abo-lease/lease.mp3",
+      cover: "💿"
+    }
+  ];
+
+  let currentIdx = 0;
+  const audio = document.getElementById('bgMusic');
+  const playBtn = document.getElementById('playBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const trackTitle = document.getElementById('trackTitle');
+  const trackArtist = document.getElementById('trackArtist');
+  const albumCover = document.getElementById('albumCover');
+  const playerBadge = document.getElementById('playerBadge');
+  let isPlaying = false;
+
+  function loadTrack(index, autoPlay = true) {
+    currentIdx = index;
+    const track = playlist[currentIdx];
+    audio.src = track.file;
+    audio.load();
+    trackTitle.innerText = track.title;
+    trackArtist.innerText = track.artist;
+    albumCover.innerText = track.cover;
+    playerBadge.innerText = `TRACK ${currentIdx + 1}/${playlist.length}`;
+
+    if (autoPlay) {
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause 🍬';
+      }).catch((e) => {
+        console.log(e);
+      });
+    }
+  }
+
+  // Autoplay on first click
+  document.body.addEventListener('click', () => {
+    if (!isPlaying) {
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause 🍬';
+      }).catch(() => {});
+    }
+  }, { once: true });
+
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) {
+      audio.play();
+      playBtn.innerText = '❚❚ Pause 🍬';
+      isPlaying = true;
+    } else {
+      audio.pause();
+      playBtn.innerText = '▶ Play 🍬';
+      isPlaying = false;
+    }
+  });
+
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
+    loadTrack(currentIdx, true);
+  });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % playlist.length;
+    loadTrack(currentIdx, true);
+  });
 </script>
 
 </body>
