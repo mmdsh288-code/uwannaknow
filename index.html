@@ -50,7 +50,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* حاشیه سمت چپ عکس فید شده */
+/* Left Side Margin Artwork (Faded & Parallax) */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -197,7 +197,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   height:100%;width:0%;
   background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%);
   background-size:24px 24px;
-  /* انیمیشن موجی و بافت شیرینی پاستیلی Y2K */
   background-image:linear-gradient(
     45deg, 
     rgba(255,255,255,0.4) 25%, 
@@ -395,7 +394,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
-<!-- عکس پس‌زمینه حاشیه سمت چپ -->
+<!-- Left Side Background Image -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
 
 <!-- Ambient Symbols -->
@@ -405,7 +404,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎</span>
 </div>
 
-<!-- المان اصلی پخش صدا (بدون تگ source اضافه تا باگ لود شدن ترک ۲ حل شود) -->
+<!-- Audio Player Element -->
 <audio id="bgMusic" preload="auto"></audio>
 
 <div class="wrap">
@@ -469,9 +468,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           </div>
 
           <div class="now">
-            <!-- کاور عکس‌دار به جای ایموجی -->
+            <!-- کاور اختصاصی متصل به موزیک پلیر -->
             <div class="cover-img-box">
-              <img id="trackCoverImg" src="cover1.jpg" onerror="this.src='https://i.pinimg.com/564x/e7/7b/72/e77b72ebfbe1f092782b3d368e7ec892.jpg'" alt="Album Art">
+              <img id="trackCoverImg" src="cover1.jpg" onerror="this.src='cover1.jpg'" alt="Album Cover">
             </div>
             <div>
               <div class="song" id="trackTitle">you're so vile</div>
@@ -479,7 +478,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
           </div>
           
-          <!-- نوار پیشرفت و تایم‌لاین کیوت با انیمیشن موجی -->
+          <!-- نوار پیشرفت و تایم‌لاین کیوت -->
           <div class="timeline-container">
             <div class="timeline-bar" id="timelineBar">
               <div class="timeline-fill" id="timelineFill"></div>
@@ -567,14 +566,15 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // تعریف دقیق پلی‌لیست به همراه کاور اختصاصی و مسیرهای جایگزین
+  // تعریف دقیق دو ترک و تنظیم کاورها بر اساس درخواست:
+  // ترک ۱ (you're so vile): کاور دختر مو قهوه‌ای صورتی (cover1.jpg)
+  // ترک ۲ (LEASE): کاور انیمه‌ای آبی My Merry May be (cover2.jpg)
   const playlist = [
     {
       title: "you're so vile",
       artist: "datealyfe ✦",
       src: "music.mp3",
       cover: "cover1.jpg",
-      fallbackCover: "https://i.pinimg.com/564x/e7/7b/72/e77b72ebfbe1f092782b3d368e7ec892.jpg",
       badge: "TRACK 1/2"
     },
     {
@@ -582,7 +582,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       artist: "阿保剛 (Takeshi Abo) ✦",
       src: "music2.mp3",
       cover: "cover2.jpg",
-      fallbackCover: "https://i.pinimg.com/564x/cb/c7/30/cbc730bfe7ec38dbf5c53106571beff4.jpg",
       badge: "TRACK 2/2"
     }
   ];
@@ -604,7 +603,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   const currentTimeDisplay = document.getElementById('currentTime');
   const totalDurationDisplay = document.getElementById('totalDuration');
 
-  // فرمت زمان به دقیقه و ثانیه (مثلاً 03:25)
   function formatTime(sec) {
     if (isNaN(sec)) return "00:00";
     const minutes = Math.floor(sec / 60);
@@ -612,12 +610,10 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 
-  // بارگذاری قطعی آهنگ و رفع مشکل تغییر ترک
   function loadTrack(idx, shouldPlay = false) {
     currentIdx = idx;
     const track = playlist[currentIdx];
 
-    // بارگذاری فایل و آدرس صوتی
     audio.pause();
     audio.src = track.src;
     audio.load();
@@ -625,12 +621,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     trackTitle.innerText = track.title;
     trackArtist.innerText = track.artist;
     if (playerBadge) playerBadge.innerText = track.badge;
-
-    // لود کاور با پشتیبانی از خطای لودینگ
     trackCoverImg.src = track.cover;
-    trackCoverImg.onerror = function() {
-      this.src = track.fallbackCover;
-    };
 
     timelineFill.style.width = '0%';
     currentTimeDisplay.innerText = "00:00";
@@ -640,7 +631,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         isPlaying = true;
         playBtn.innerText = '❚❚ Pause 🍬';
       }).catch(err => {
-        console.warn("پخش خودکار متوقف شد:", err);
+        console.warn("Autoplay prevention:", err);
       });
     } else {
       isPlaying = false;
@@ -648,7 +639,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }
 
-  // رویداد آپدیت زمان و نوار موجی تایم‌لاین
+  // به‌روزرسانی تایم‌لاین با پیشرفت موزیک
   audio.addEventListener('timeupdate', () => {
     if (audio.duration) {
       const percent = (audio.currentTime / audio.duration) * 100;
@@ -662,13 +653,13 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     totalDurationDisplay.innerText = formatTime(audio.duration);
   });
 
-  // وقتی آهنگ به پایان رسید، خودکار برود ترک بعدی
+  // رفتن به ترک بعدی پس از اتمام آهنگ
   audio.addEventListener('ended', () => {
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, true);
   });
 
-  // کلیک روی نوار زمان برای عقب و جلو بردن آهنگ
+  // کلیک روی نوار تایم‌لاین برای پرش در آهنگ (Seek)
   timelineBar.addEventListener('click', (e) => {
     const rect = timelineBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
@@ -678,7 +669,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // دکمه پلی / پاز
+  // کلیک دکمه پلی / مکث
   playBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (audio.paused) {
@@ -693,7 +684,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // دکمه‌های ترک قبلی و بعدی
+  // دکمه‌های آهنگ قبلی و بعدی
   prevBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
@@ -706,7 +697,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     loadTrack(currentIdx, true);
   });
 
-  // پخش هنگام اولین کلیک در صفحه
+  // پخش با اولین کلیک در صفحه
   window.addEventListener('click', () => {
     if (!isPlaying && audio.paused) {
       audio.play().then(() => {
@@ -716,7 +707,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }, { once: true });
 
-  // افکت پارالاکس عکس حاشیه چپ
+  // افکت پارالاکس عکس سمت چپ با اسکرول
   window.addEventListener('scroll', () => {
     const sideImg = document.getElementById('leftSideImg');
     if (sideImg) {
@@ -724,7 +715,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }, { passive: true });
 
-  // راه‌اندازی اولیه
+  // اجرای اولیه ترک اول
   loadTrack(0, false);
 </script>
 
