@@ -1,10 +1,9 @@
-@@ -0,0 +1,237 @@
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>uwannaknow.me</title>
+<title>uwannaknow.me ✦ Ether</title>
 <style>
 /* =========================
    EASY EDIT SETTINGS
@@ -36,7 +35,7 @@ body:before{
   background-size:7px 7px;mix-blend-mode:multiply;
 }
 a{color:inherit}
-.wrap{max-width:1080px;margin:auto;padding:18px}
+.wrap{max-width:1080px;margin:auto;padding:18px;position:relative;z-index:2;}
 .topbar{
   border:3px solid var(--ink);background:#fff;
   box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
@@ -46,9 +45,9 @@ a{color:inherit}
 .logo{font-size:21px;color:#ff3da9;text-shadow:2px 2px #a9efff}
 .marquee{
   margin:22px 0;border:3px dashed var(--pink);background:#fff;
-  padding:8px;overflow:hidden;white-space:nowrap;font-size:12px;
+  padding:8px;overflow:hidden;white-space:nowrap;font-size:12px;font-weight:bold;
 }
-.marquee span{display:inline-block;animation:slide 16s linear infinite}
+.marquee span{display:inline-block;animation:slide 18s linear infinite}
 @keyframes slide{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
 .grid{
   display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
@@ -79,76 +78,129 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9}
 .date{font-size:10px;color:#776b86;letter-spacing:1px}
 .post h3{margin:5px 0;font-size:17px}
 .post p{font-size:13px;line-height:1.7;margin:7px 0}
+
+/* =========================
+   SPOTIFY & Y2K PLAYER
+   ========================= */
 .spotify{
-  background:linear-gradient(135deg,#d9ffcf,#fff);
-  border:2px solid #1d4b27;padding:14px;
+  background:linear-gradient(135deg,#c3fadc,#eefdf5);
+  border:2px solid #145e31;padding:14px;box-shadow:inset 0 0 8px rgba(30,215,96,0.25);
 }
 .now{display:flex;align-items:center;gap:12px}
 .cover{
   width:58px;height:58px;border:2px solid var(--ink);
-  background:linear-gradient(135deg,#111,#ff8bd5,#9ff);
-  display:grid;place-items:center;font-weight:bold
+  background:#111;
+  display:grid;place-items:center;font-size:24px;
+  box-shadow:3px 3px 0 var(--ink);
 }
-.song{font-weight:bold;font-size:14px}
-.artist{font-size:11px;color:#6e6577;margin-top:3px}
-.bar{height:7px;background:#d0c8d9;margin-top:13px;border:1px solid #665b72}
-.bar i{display:block;width:43%;height:100%;background:#ff4eb4}
+.song{font-weight:bold;font-size:13px;color:#0b3b19}
+.artist{font-size:11px;color:#2c6b41;margin-top:3px;font-weight:bold}
+.spotify-live{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#0b3b19;color:#55f893;font-size:9px;padding:2px 6px;
+  font-family:monospace;letter-spacing:1px;margin-bottom:6px;border-radius:3px;
+}
+.live-dot{
+  width:6px;height:6px;border-radius:50%;background:#1ed760;
+  box-shadow:0 0 6px #1ed760;animation:pulse 1s infinite alternate;
+}
+@keyframes pulse{from{opacity:0.4}to{opacity:1}}
+.bar{height:8px;background:#96dfb2;margin-top:12px;border:1px solid #145e31;position:relative;overflow:hidden;}
+.bar i{
+  display:block;width:55%;height:100%;background:#1ed760;
+  animation:playProgress 20s linear infinite;
+}
+@keyframes playProgress{0%{width:5%}100%{width:95%}}
+.spotify-actions{
+  margin-top:12px;display:flex;flex-direction:column;gap:6px;
+}
+.spotify-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:#fff;border:2px solid var(--ink);
+  padding:6px;font-size:11px;font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);transition:.15s;
+}
+.spotify-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);background:#c3fadc}
+.audio-ctrl{
+  cursor:pointer;background:#ff72c8;color:#fff;
+  border:2px solid var(--ink);padding:6px;font-size:11px;font-weight:bold;
+  width:100%;box-shadow:2px 2px 0 var(--ink);margin-top:6px;
+}
+
 .side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px}
 .facts{font-size:12px;line-height:2}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
 .badge{border:1px solid var(--ink);background:#fff;padding:4px 7px;font-size:10px}
 .guestbook{font-size:12px;line-height:1.7}
+
+/* =========================
+   DANCING ANIME CHARACTERS
+   ========================= */
 .character{
-  position:fixed;z-index:10;bottom:12px;pointer-events:none;
-  width:135px;filter:drop-shadow(4px 5px 0 rgba(33,28,46,.45));
-  animation:dance 1.8s ease-in-out infinite;
+  position:fixed;z-index:99;bottom:10px;pointer-events:none;
+  width:140px;filter:drop-shadow(4px 5px 0 rgba(33,28,46,.4));
+  animation:dance 1.4s ease-in-out infinite;
 }
-.character.left{left:5px}
-.character.right{right:5px;animation-delay:-.9s}
-.character img{width:100%;height:auto;display:block}
-.char-placeholder{
-  width:120px;height:160px;border:3px solid var(--ink);background:#fff;
-  display:grid;place-items:center;text-align:center;font-size:11px;padding:8px
+.character.left{left:10px}
+.character.right{right:10px;animation-delay:-0.7s}
+.character img{
+  width:100%;height:auto;display:block;
+  image-rendering:pixelated;
 }
+.char-tag{
+  background:#fff;border:2px solid var(--ink);
+  font-size:10px;font-weight:bold;padding:2px 6px;
+  text-align:center;margin-top:3px;box-shadow:2px 2px 0 var(--ink);
+}
+
 @keyframes dance{
-  0%,100%{transform:translateY(0) rotate(-4deg)}
-  25%{transform:translateY(-14px) rotate(5deg)}
-  50%{transform:translateY(0) rotate(-2deg)}
-  75%{transform:translateY(-9px) rotate(6deg)}
+  0%,100%{transform:translateY(0) rotate(-4deg) scale(1)}
+  25%{transform:translateY(-18px) rotate(6deg) scale(1.04)}
+  50%{transform:translateY(0) rotate(-3deg) scale(1)}
+  75%{transform:translateY(-12px) rotate(5deg) scale(1.02)}
 }
+
 footer{text-align:center;font-size:10px;padding:15px 0 45px;color:#73697c}
+
 @media(max-width:800px){
  .grid{grid-template-columns:1fr}
- .character{position:fixed;width:85px;bottom:6px}
- .character.left{left:-3px}.character.right{right:-3px}
+ .character{position:fixed;width:90px;bottom:5px}
+ .character.left{left:2px}
+ .character.right{right:2px}
  h1{letter-spacing:-4px}
 }
 </style>
 </head>
 <body>
 
+<!-- Hidden Audio Player for "you're so vile" by datealyfe -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="wrap">
   <header class="topbar">
     <span class="logo">uwannaknow.me ✦</span>
-    <span>PERSONAL WEBLOG // ONLINE</span>
+    <span>PERSONAL WEBLOG // ⟡ ETHER ONLINE ⟡</span>
   </header>
 
-  <div class="marquee"><span>★ welcome to my little corner of the internet ★ music ★ thoughts ★ anime ★ random stuff ★</span></div>
+  <div class="marquee">
+    <span>★ welcome to my little corner of the internet ★ all about lily chou-chou ✦ ether is everywhere ★ yumeko jabami 🎲 ★ akame ⚔️ ★ music: datealyfe ★</span>
+  </div>
 
   <div class="grid">
     <main>
       <section class="card hero">
-        <span class="sticker">HELLO INTERNET!</span>
+        <span class="sticker">ETHER RESIDUE ˚✧₊</span>
         <h1>uwanna<br>know?</h1>
         <p class="subtitle">
           this is my personal space on the web — a tiny blog about me,
           music, things i'm into, random thoughts and whatever i feel like posting.
         </p>
         <div class="links">
-          <!-- CHANGE THESE LINKS -->
           <a href="https://instagram.com/" target="_blank">♡ INSTAGRAM</a>
           <a href="https://t.me/" target="_blank">✉ TELEGRAM</a>
-          <a href="https://open.spotify.com/" target="_blank">♫ SPOTIFY</a>
+          <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank">♫ SPOTIFY</a>
           <a href="#blog">▣ BLOG</a>
         </div>
       </section>
@@ -156,37 +208,50 @@ footer{text-align:center;font-size:10px;padding:15px 0 45px;color:#73697c}
       <section class="card" id="blog">
         <h2>★ my weblog</h2>
 
-        <!-- COPY THIS .post BLOCK TO ADD MORE POSTS -->
         <article class="post">
           <div class="date">03 / 10 / 2026 — 17:00</div>
-          <h3>first post :3</h3>
+          <h3>all about lily chou-chou (リリイ・シュシュのすべて)</h3>
           <p>
-            welcome to my website. i'll put random thoughts, music,
-            pictures and other internet nonsense here.
+            "The Ether is the light that heals the pain... It resonates through every sound."
+            floating somewhere between the green fields and headphone wires.
           </p>
         </article>
 
         <article class="post">
           <div class="date">02 / 10 / 2026</div>
           <h3>currently listening...</h3>
-          <p>put whatever you're listening to here.</p>
+          <p>datealyfe - you're so vile (playing right now on background!)</p>
         </article>
       </section>
     </main>
 
     <aside>
+      <!-- SPOTIFY SECTION -->
       <section class="card">
-        <div class="side-title">♪ spotify</div>
+        <div class="side-title">♪ spotify feed</div>
         <div class="spotify">
+          <div class="spotify-live">
+            <div class="live-dot"></div>
+            <span>LIVE NOW</span>
+          </div>
           <div class="now">
-            <div class="cover">♫</div>
+            <div class="cover">💿</div>
             <div>
-              <!-- CHANGE SONG INFO -->
-              <div class="song">your current song</div>
-              <div class="artist">your artist</div>
+              <div class="song">you're so vile</div>
+              <div class="artist">datealyfe</div>
             </div>
           </div>
           <div class="bar"><i></i></div>
+          
+          <div class="spotify-actions">
+            <button class="audio-ctrl" id="playBtn">▶ Click to Play Audio</button>
+            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
+              🎧 View Profile
+            </a>
+            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
+              💿 Open My Playlists
+            </a>
+          </div>
         </div>
       </section>
 
@@ -194,45 +259,81 @@ footer{text-align:center;font-size:10px;padding:15px 0 45px;color:#73697c}
         <div class="side-title">☆ about me</div>
         <div class="facts">
           name: <b>Jaydes</b><br>
-          location: <b>internet</b><br>
+          location: <b>in the ether</b><br>
           status: <b>making music</b><br>
-          mood: <b>???</b>
+          mood: <b>kakegurui 🎲</b>
         </div>
       </section>
 
       <section class="card">
         <div class="side-title">★ interests</div>
         <div class="badges">
-          <span class="badge">MUSIC</span><span class="badge">ANIME</span>
-          <span class="badge">FL STUDIO</span><span class="badge">Y2K</span>
-          <span class="badge">GAMES</span><span class="badge">INTERNET</span>
+          <span class="badge">MUSIC</span>
+          <span class="badge">LILY CHOU-CHOU</span>
+          <span class="badge">AKAME GA KILL</span>
+          <span class="badge">YUMEKO</span>
+          <span class="badge">FL STUDIO</span>
+          <span class="badge">Y2K</span>
+          <span class="badge">INTERNET</span>
         </div>
       </section>
 
       <section class="card">
         <div class="side-title">♡ guestbook</div>
         <div class="guestbook">
-          this space can later become a real guestbook where visitors leave messages.
+          leave your thoughts here or catch me in the ether.
         </div>
       </section>
     </aside>
   </div>
 
-  <footer>uwannaknow.me // made with too much internet</footer>
+  <footer>uwannaknow.me // made with too much internet ✦ ether</footer>
 </div>
 
-<!--
-  ANIME CHARACTERS:
-  Replace the two placeholder blocks below with your own GIF/PNG.
-  Example:
-  <img src="assets/character1.gif" alt="">
--->
+<!-- =========================
+     DANCING CHARACTERS
+     ========================= -->
+<!-- Yumeko Jabami (Left) -->
 <div class="character left">
-  <div class="char-placeholder">ANIME GIF<br>GOES HERE<br>↑<br>replace me</div>
+  <img src="https://media.tenor.com/13131059/yumeko-jabami-kakegurui-happy-dance.gif" alt="Yumeko Dancing">
+  <div class="char-tag">Yumeko 🎲</div>
 </div>
+
+<!-- Akame (Right) -->
 <div class="character right">
-  <div class="char-placeholder">ANIME GIF<br>GOES HERE<br>↑<br>replace me</div>
+  <img src="https://media.tenor.com/9027817482393376530/doodledance-akame-akame-ga-kill-doodle-dance-anime-girl.gif" alt="Akame Dancing">
+  <div class="char-tag">Akame ⚔️</div>
 </div>
+
+<script>
+  // Audio Player Logic
+  const audio = document.getElementById('bgMusic');
+  const playBtn = document.getElementById('playBtn');
+  let isPlaying = false;
+
+  // Autoplay on first interaction
+  document.body.addEventListener('click', () => {
+    if (!isPlaying) {
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause Audio';
+      }).catch(() => {});
+    }
+  }, { once: true });
+
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) {
+      audio.play();
+      playBtn.innerText = '❚❚ Pause Audio';
+      isPlaying = true;
+    } else {
+      audio.pause();
+      playBtn.innerText = '▶ Play Audio';
+      isPlaying = false;
+    }
+  });
+</script>
 
 </body>
 </html>
