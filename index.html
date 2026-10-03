@@ -1,237 +1,438 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>uwannaknow.me</title>
-<style>
-/* =========================
-   EASY EDIT SETTINGS
-   ========================= */
-:root{
-  --pink:#ff72c8;
-  --blue:#72d9ff;
-  --purple:#b38cff;
-  --yellow:#fff58a;
-  --ink:#211c2e;
-  --paper:#fffaff;
-  --glass:rgba(255,255,255,.76);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;color:var(--ink);
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  background:
-    radial-gradient(circle at 10% 10%,#ffd7f1 0 8%,transparent 23%),
-    radial-gradient(circle at 90% 20%,#c7efff 0 7%,transparent 25%),
-    linear-gradient(135deg,#fff 0%,#e8e4ff 48%,#fff 100%);
-  background-attachment:fixed;
-  overflow-x:hidden;
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;
-  background-image:radial-gradient(#777 1px,transparent 1px);
-  background-size:7px 7px;mix-blend-mode:multiply;
-}
-a{color:inherit}
-.wrap{max-width:1080px;margin:auto;padding:18px}
-.topbar{
-  border:3px solid var(--ink);background:#fff;
-  box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
-  display:flex;justify-content:space-between;gap:12px;align-items:center;
-  font-size:12px;font-weight:bold;letter-spacing:1px;
-}
-.logo{font-size:21px;color:#ff3da9;text-shadow:2px 2px #a9efff}
-.marquee{
-  margin:22px 0;border:3px dashed var(--pink);background:#fff;
-  padding:8px;overflow:hidden;white-space:nowrap;font-size:12px;
-}
-.marquee span{display:inline-block;animation:slide 16s linear infinite}
-@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-.grid{
-  display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
-}
-.card{
-  background:var(--glass);backdrop-filter:blur(8px);
-  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
-  padding:18px;margin-bottom:20px;
-}
-.hero{min-height:330px;position:relative;overflow:hidden}
-.sticker{
-  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
-  padding:5px 9px;transform:rotate(-3deg);font-size:12px;font-weight:bold
-}
-h1{font-size:clamp(52px,9vw,105px);line-height:.82;margin:25px 0 18px;letter-spacing:-6px}
-.subtitle{font-size:15px;max-width:600px;line-height:1.7}
-.pixelline{font-size:11px;color:#6b607b}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.links a{
-  text-decoration:none;background:#fff;border:2px solid var(--ink);
-  padding:9px 12px;font-size:12px;font-weight:bold;
-  box-shadow:3px 3px 0 var(--ink);transition:.15s
-}
-.links a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
-h2{font-size:20px;margin:0 0 14px;color:#ff3da9}
-.post{border-top:2px dotted #9c91ab;padding:14px 0}
-.post:first-of-type{border-top:0}
-.date{font-size:10px;color:#776b86;letter-spacing:1px}
-.post h3{margin:5px 0;font-size:17px}
-.post p{font-size:13px;line-height:1.7;margin:7px 0}
-.spotify{
-  background:linear-gradient(135deg,#d9ffcf,#fff);
-  border:2px solid #1d4b27;padding:14px;
-}
-.now{display:flex;align-items:center;gap:12px}
-.cover{
-  width:58px;height:58px;border:2px solid var(--ink);
-  background:linear-gradient(135deg,#111,#ff8bd5,#9ff);
-  display:grid;place-items:center;font-weight:bold
-}
-.song{font-weight:bold;font-size:14px}
-.artist{font-size:11px;color:#6e6577;margin-top:3px}
-.bar{height:7px;background:#d0c8d9;margin-top:13px;border:1px solid #665b72}
-.bar i{display:block;width:43%;height:100%;background:#ff4eb4}
-.side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px}
-.facts{font-size:12px;line-height:2}
-.badges{display:flex;flex-wrap:wrap;gap:6px}
-.badge{border:1px solid var(--ink);background:#fff;padding:4px 7px;font-size:10px}
-.guestbook{font-size:12px;line-height:1.7}
-.character{
-  position:fixed;z-index:10;bottom:12px;pointer-events:none;
-  width:135px;filter:drop-shadow(4px 5px 0 rgba(33,28,46,.45));
-  animation:dance 1.8s ease-in-out infinite;
-}
-.character.left{left:5px}
-.character.right{right:5px;animation-delay:-.9s}
-.character img{width:100%;height:auto;display:block}
-.char-placeholder{
-  width:120px;height:160px;border:3px solid var(--ink);background:#fff;
-  display:grid;place-items:center;text-align:center;font-size:11px;padding:8px
-}
-@keyframes dance{
-  0%,100%{transform:translateY(0) rotate(-4deg)}
-  25%{transform:translateY(-14px) rotate(5deg)}
-  50%{transform:translateY(0) rotate(-2deg)}
-  75%{transform:translateY(-9px) rotate(6deg)}
-}
-footer{text-align:center;font-size:10px;padding:15px 0 45px;color:#73697c}
-@media(max-width:800px){
- .grid{grid-template-columns:1fr}
- .character{position:fixed;width:85px;bottom:6px}
- .character.left{left:-3px}.character.right{right:-3px}
- h1{letter-spacing:-4px}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✧ U WANNA KNOW ✧ Frutiger Aero x Y2K</title>
+  
+  <!-- Retro Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --aero-blue: #72d6ec;
+      --aero-green: #a8e063;
+      --aero-glass: rgba(255, 255, 255, 0.45);
+      --aero-border: rgba(255, 255, 255, 0.75);
+      --glass-shadow: 0 12px 30px rgba(0, 80, 140, 0.25);
+      --font-pixel: 'DotGothic16', monospace;
+      --font-retro: 'VT323', monospace;
+      --font-aero: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-aero);
+      background: radial-gradient(circle at 50% 20%, #8de5fc 0%, #3baad6 45%, #186b99 100%);
+      color: #0b3452;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating Aero Bubbles */
+    .bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 60%, rgba(135, 206, 250, 0.4) 100%);
+      border-radius: 50%;
+      box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.9), 0 4px 10px rgba(0,0,0,0.1);
+      animation: floatUp 12s infinite linear;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.8); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Windows Aero Glass Window Containers */
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(220, 245, 255, 0.35) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--aero-border);
+      border-radius: 18px;
+      box-shadow: var(--glass-shadow), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    /* Window Vista/7 Style Header bar */
+    .window-header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(180,225,245,0.4) 100%);
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0c436b;
+    }
+
+    .window-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .win-btn {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .win-btn.close { background: #ff5f57; }
+    .win-btn.min { background: #ffbd2e; }
+    .win-btn.max { background: #28ca42; }
+
+    /* Lily Chou-Chou Header Section */
+    .lily-section {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .lily-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(180deg, #094770 0%, #158ec2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+    }
+
+    .lily-quote {
+      font-family: var(--font-pixel);
+      font-size: 0.95rem;
+      margin-top: 8px;
+      color: #085675;
+      background: rgba(255,255,255,0.5);
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    /* Anime Character Floating Badges */
+    .anime-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .anime-badge img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      box-shadow: 0 0 10px rgba(114,214,236,0.8);
+    }
+
+    .anime-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0e3b5e;
+    }
+
+    .anime-info p {
+      font-size: 0.78rem;
+      color: #27658c;
+      font-family: var(--font-pixel);
+    }
+
+    .characters-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* Spotify Cute / Pixel / Y2K Player */
+    .spotify-box {
+      padding: 22px;
+    }
+
+    .spotify-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .spotify-logo {
+      width: 28px;
+      height: 28px;
+      filter: drop-shadow(0 2px 4px rgba(30,215,96,0.4));
+    }
+
+    .pixel-tag {
+      font-family: var(--font-pixel);
+      background: #1ed760;
+      color: #032b13;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      box-shadow: inset 1px 1px 0 #85f3ab, inset -1px -1px 0 #0f7a35;
+    }
+
+    .now-playing-banner {
+      background: rgba(0, 0, 0, 0.4);
+      color: #a4f7b6;
+      font-family: var(--font-retro);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1.4rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #1ed760;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #1ed760;
+      animation: pulse 1.2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(0.8); opacity: 0.6; }
+      to { transform: scale(1.3); opacity: 1; }
+    }
+
+    .spotify-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .aero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #053b5a;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(200,235,250,0.7) 100%);
+      border: 1.5px solid white;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,70,120,0.15), inset 0 2px 3px rgba(255,255,255,0.8);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .aero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,120,200,0.3);
+      background: linear-gradient(180deg, #ffffff 0%, #b2e6ff 100%);
+    }
+
+    /* Windows Media Player Audio Bar */
+    .wmp-bar {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(160,215,245,0.4) 100%);
+      border-radius: 14px;
+    }
+
+    .wmp-info {
+      font-family: var(--font-pixel);
+      font-size: 0.85rem;
+      color: #074768;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .characters-row {
+        grid-template-columns: 1fr;
+      }
+      .lily-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="topbar">
-    <span class="logo">uwannaknow.me ✦</span>
-    <span>PERSONAL WEBLOG // ONLINE</span>
-  </header>
+  <!-- Floating Bubbles (Frutiger Aero signature) -->
+  <div class="bubbles" id="bubbleContainer"></div>
 
-  <div class="marquee"><span>★ welcome to my little corner of the internet ★ music ★ thoughts ★ anime ★ random stuff ★</span></div>
+  <!-- Hidden Audio Player for "you're so vile" by datealyfe -->
+  <!-- Note: You can place your audio file inside the repo as 'music.mp3' -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
-  <div class="grid">
-    <main>
-      <section class="card hero">
-        <span class="sticker">HELLO INTERNET!</span>
-        <h1>uwanna<br>know?</h1>
-        <p class="subtitle">
-          this is my personal space on the web — a tiny blog about me,
-          music, things i'm into, random thoughts and whatever i feel like posting.
-        </p>
-        <div class="links">
-          <!-- CHANGE THESE LINKS -->
-          <a href="https://instagram.com/" target="_blank">♡ INSTAGRAM</a>
-          <a href="https://t.me/" target="_blank">✉ TELEGRAM</a>
-          <a href="https://open.spotify.com/" target="_blank">♫ SPOTIFY</a>
-          <a href="#blog">▣ BLOG</a>
+  <div class="container">
+    
+    <!-- Main Window -->
+    <div class="glass-card">
+      <div class="window-header">
+        <span>🌐 ˚✧₊ Aero Explorer v2.0 - [lily-chou-chou.exe]</span>
+        <div class="window-buttons">
+          <div class="win-btn min"></div>
+          <div class="win-btn max"></div>
+          <div class="win-btn close"></div>
         </div>
-      </section>
+      </div>
 
-      <section class="card" id="blog">
-        <h2>★ my weblog</h2>
-
-        <!-- COPY THIS .post BLOCK TO ADD MORE POSTS -->
-        <article class="post">
-          <div class="date">03 / 10 / 2026 — 17:00</div>
-          <h3>first post :3</h3>
-          <p>
-            welcome to my website. i'll put random thoughts, music,
-            pictures and other internet nonsense here.
-          </p>
-        </article>
-
-        <article class="post">
-          <div class="date">02 / 10 / 2026</div>
-          <h3>currently listening...</h3>
-          <p>put whatever you're listening to here.</p>
-        </article>
-      </section>
-    </main>
-
-    <aside>
-      <section class="card">
-        <div class="side-title">♪ spotify</div>
-        <div class="spotify">
-          <div class="now">
-            <div class="cover">♫</div>
-            <div>
-              <!-- CHANGE SONG INFO -->
-              <div class="song">your current song</div>
-              <div class="artist">your artist</div>
-            </div>
-          </div>
-          <div class="bar"><i></i></div>
+      <div class="lily-section">
+        <h1 class="lily-title">UW4NN4KN0W ༚✧˳</h1>
+        <div class="lily-quote">
+          ✦ Ether (エーテル) is everywhere... all about lily chou-chou ✦
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section class="card">
-        <div class="side-title">☆ about me</div>
-        <div class="facts">
-          name: <b>Jaydes</b><br>
-          location: <b>internet</b><br>
-          status: <b>making music</b><br>
-          mood: <b>???</b>
+    <!-- Anime Characters Showcase -->
+    <div class="characters-row">
+      <!-- Yumeko Jabami -->
+      <div class="glass-card anime-badge">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=yumeko" id="yumekoImg" alt="Yumeko Jabami" onerror="this.src='https://picsum.photos/100/100?random=1'">
+        <div class="anime-info">
+          <h4>Yumeko Jabami 🎲</h4>
+          <p>“Let's get our gamble on...”</p>
         </div>
-      </section>
+      </div>
 
-      <section class="card">
-        <div class="side-title">★ interests</div>
-        <div class="badges">
-          <span class="badge">MUSIC</span><span class="badge">ANIME</span>
-          <span class="badge">FL STUDIO</span><span class="badge">Y2K</span>
-          <span class="badge">GAMES</span><span class="badge">INTERNET</span>
+      <!-- Akame (Akame ga Kill) -->
+      <div class="glass-card anime-badge">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=akame" id="akameImg" alt="Akame" onerror="this.src='https://picsum.photos/100/100?random=2'">
+        <div class="anime-info">
+          <h4>Akame (赤目) ⚔️</h4>
+          <p>“Eliminate... Murasame ready.”</p>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section class="card">
-        <div class="side-title">♡ guestbook</div>
-        <div class="guestbook">
-          this space can later become a real guestbook where visitors leave messages.
+    <!-- Spotify & Music Section -->
+    <div class="glass-card spotify-box">
+      <div class="spotify-header">
+        <svg class="spotify-logo" viewBox="0 0 24 24" fill="#1ed760">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.502 17.306c-.218.358-.68.472-1.038.254-2.846-1.74-6.428-2.133-10.648-1.168-.41.094-.82-.162-.914-.572-.094-.41.162-.82.572-.914 4.628-1.057 8.583-.612 11.77 1.34.358.218.472.68.254 1.06zm1.468-3.264c-.274.444-.86.586-1.304.312-3.258-2.003-8.225-2.583-12.078-1.413-.5.152-1.028-.135-1.18-.635-.152-.5.135-1.028.635-1.18 4.407-1.338 9.89-.696 13.615 1.597.444.274.586.86.312 1.319zm.126-3.41c-3.907-2.32-10.347-2.533-14.072-1.402-.6.182-1.233-.162-1.415-.762-.182-.6.162-1.233.762-1.415 4.283-1.3 11.39-1.05 15.86 1.606.538.32.713 1.018.393 1.556-.32.538-1.018.713-1.556.393z"/>
+        </svg>
+        <span style="font-weight: 700; color: #084368;">SPOTIFY FEED</span>
+        <span class="pixel-tag">LIVE STATUS</span>
+      </div>
+
+      <!-- Retro Pixel Status -->
+      <div class="now-playing-banner">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="pulse-dot"></div>
+          <span id="spotifyStatus">LISTENING TO: "you're so vile" - datealyfe</span>
         </div>
-      </section>
-    </aside>
+        <span style="font-size: 1rem; opacity: 0.8;">[ONLINE]</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="spotify-actions">
+        <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="aero-btn">
+          <span>🎧</span> View Spotify Profile
+        </a>
+        <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="aero-btn">
+          <span>💿</span> My Playlists (Y2K / Ether)
+        </a>
+      </div>
+    </div>
+
+    <!-- Retro Player Controller Bar -->
+    <div class="glass-card wmp-bar">
+      <div class="wmp-info">
+        <span>♪ Now Playing: <b>datealyfe - you're so vile</b></span>
+      </div>
+      <button class="aero-btn" id="playToggleBtn" style="padding: 6px 14px; font-size: 0.8rem;">
+        ▶ Play Sound
+      </button>
+    </div>
+
   </div>
 
-  <footer>uwannaknow.me // made with too much internet</footer>
-</div>
+  <script>
+    // 1. Generate Floating Aero Bubbles
+    const container = document.getElementById('bubbleContainer');
+    for (let i = 0; i < 18; i++) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      const size = Math.random() * 50 + 20;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.left = Math.random() * 100 + 'vw';
+      bubble.style.animationDuration = (Math.random() * 8 + 8) + 's';
+      bubble.style.animationDelay = (Math.random() * 6) + 's';
+      container.appendChild(bubble);
+    }
 
-<!--
-  ANIME CHARACTERS:
-  Replace the two placeholder blocks below with your own GIF/PNG.
-  Example:
-  <img src="assets/character1.gif" alt="">
--->
-<div class="character left">
-  <div class="char-placeholder">ANIME GIF<br>GOES HERE<br>↑<br>replace me</div>
-</div>
-<div class="character right">
-  <div class="char-placeholder">ANIME GIF<br>GOES HERE<br>↑<br>replace me</div>
-</div>
+    // 2. Audio Control (datealyfe - you're so vile)
+    const audio = document.getElementById('bgMusic');
+    const playBtn = document.getElementById('playToggleBtn');
+    let isPlaying = false;
 
+    // Auto-play on first user click anywhere (bypassing browser autoplay restrictions)
+    document.body.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          playBtn.innerText = '❚❚ Pause Sound';
+        }).catch(() => {});
+      }
+    }, { once: true });
+
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audio.paused) {
+        audio.play();
+        playBtn.innerText = '❚❚ Pause Sound';
+        isPlaying = true;
+      } else {
+        audio.pause();
+        playBtn.innerText = '▶ Play Sound';
+        isPlaying = false;
+      }
+    });
+  </script>
 </body>
 </html>
