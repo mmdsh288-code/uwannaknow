@@ -180,33 +180,29 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   CUTE MARQUEE WITH CHIBI DOLLS
+   CUTE MARQUEE WITH SITTING DOLL
    ============================================================== */
 .marquee-wrapper {
   position: relative;
-  margin: 34px 0 24px;
-}
-.marquee-doll {
-  position: absolute;
-  top: -26px;
-  z-index: 5;
-  font-size: 26px;
-  filter: drop-shadow(0 4px 6px rgba(255, 107, 189, 0.45));
-  user-select: none;
-  pointer-events: none;
-  animation: dollBounce 2.5s ease-in-out infinite alternate;
-}
-.marquee-doll.left-doll {
-  left: 24px;
-}
-.marquee-doll.right-doll {
-  right: 24px;
-  animation-delay: 1.2s;
+  margin: 45px 0 24px;
 }
 
-@keyframes dollBounce {
-  0% { transform: translateY(0px) rotate(-3deg); }
-  100% { transform: translateY(-5px) rotate(4deg); }
+/* تصویر عروسک نشسته روی لبه نوار */
+.sitting-doll-img {
+  position: absolute;
+  top: -62px;
+  right: 38px;
+  width: 88px;
+  height: auto;
+  z-index: 6;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 6px rgba(255, 107, 189, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.marquee-wrapper:hover .sitting-doll-img {
+  transform: translateY(-3px) scale(1.03);
 }
 
 .marquee {
@@ -239,16 +235,16 @@ a{color:inherit}
 .marquee span {
   display: inline-block;
   font-family: 'VT323', monospace;
-  font-size: 20px;
+  font-size: 21px;
   letter-spacing: 1.5px;
   color: #3b284c;
   text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
-  animation: slide 110s linear infinite;
+  animation: slide 180s linear infinite; /* سرعت ملایم و خوانا برای ۳۵ نقل قول */
 }
-.marquee span em {
-  font-style: normal;
+.marquee span b {
+  font-weight: normal;
   color: #ff1f8f;
-  margin: 0 12px;
+  margin: 0 10px;
 }
 
 @keyframes slide{
@@ -665,6 +661,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   .character.right{width:95px;}
   .akame-choco-frame img{height:140px;}
   .left-char-frame img{height:130px;}
+  .sitting-doll-img{width: 70px; top: -50px; right: 20px;}
 }
 </style>
 </head>
@@ -678,7 +675,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 <div class="bg-symbols">
   <span>☠</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
   <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
-  <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎︎</span>
+  <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠</span>
 </div>
 
 <!-- Audio Player Element -->
@@ -697,18 +694,47 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <!-- نوار مارکی پیکسلی بازطراحی شده به همراه عروسک‌های چیبی -->
+  <!-- نوار مارکی متحرک با عروسک نشسته و ۳۵ نقل‌قول -->
   <div class="marquee-wrapper">
-    <div class="marquee-doll left-doll" title="Chibi Doll">₍ᐢ. .ᐢ₎₊˚⊹🧸</div>
-    <div class="marquee-doll right-doll" title="Chibi Doll">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა🎀</div>
+    <img src="doll-sitting.png" class="sitting-doll-img" alt="Sitting Doll">
 
     <div class="marquee">
       <span>
-        <em>[ JAYDES ]</em> ✦ heartbreak hotel ✦ romantic blvd ✦ poison ✦ static dreams ✦ fade away ✦ diary entries ✦ cold nights ✦ runaway love ✦ midnight call ✦
-        <em>[ LUCY / BEDROCK ]</em> ✦ counting sins ✦ bedrock pavement ✦ basement noise ✦ fluorescent glow ✦ shadow dance ✦ quiet escape ✦ broken cassette ✦ heavy steps ✦
-        <em>[ WIFISKELETON ]</em> ✦ suburban daredevil ✦ neon ghost ✦ bleeding static ✦ perfect timing ✦ wire veins ✦ digital heartache ✦ 2008 nostalgia ✦ late night drive ✦
-        <em>[ AETER ]</em> ✦ velvet seats ✦ cold headlights ✦ angel wings ✦ copper rain ✦ whisper in the hall ✦ dried roses ✦ broken glass ✦ lost frequencies ✦
-        <em>[ LOSTRUSHI ARCHIVE ]</em> ✦ リリイ・シュシュ ✦ takeshi abo ✦ datealyfe ✦ uwannaknow :3 ✦
+        "I miss the person I used to be." <b>✦</b>
+        "I don't know how to feel anything anymore." <b>✦</b>
+        "Maybe I was happier when I didn't understand." <b>✦</b>
+        "I wish someone could see what I hide." <b>✦</b>
+        "I keep smiling like nothing ever happened." <b>✦</b>
+        "I wonder if you ever miss me too." <b>✦</b>
+        "I don't want to be remembered this way." <b>✦</b>
+        "Everything feels different when you're not here." <b>✦</b>
+        "I gave you everything and somehow lost myself." <b>✦</b>
+        "I still think about you when nobody's around." <b>✦</b>
+        "Some memories hurt more when they're beautiful." <b>✦</b>
+        "I wish I could go back before everything changed." <b>✦</b>
+        "You were the closest thing I had to home." <b>✦</b>
+        "I never learned how to say goodbye." <b>✦</b>
+        "I pretend I don't care because it's easier." <b>✦</b>
+        "There are things I will never be able to explain." <b>✦</b>
+        "I wonder if you remember the little things." <b>✦</b>
+        "Sometimes I just want everything to be quiet." <b>✦</b>
+        "I don't think anyone really knows me." <b>✦</b>
+        "I keep looking for you in places you'll never be." <b>✦</b>
+        "Maybe we were meant to meet, not to stay." <b>✦</b>
+        "I loved you more than I knew how to say." <b>✦</b>
+        "I wish I could forget without losing the memories." <b>✦</b>
+        "You left, but somehow you're still everywhere." <b>✦</b>
+        "I don't know when I stopped feeling like myself." <b>✦</b>
+        "I hope you know that I really tried." <b>✦</b>
+        "Some nights feel longer than they should." <b>✦</b>
+        "I wonder who I would've become without you." <b>✦</b>
+        "I still hear your voice in my head sometimes." <b>✦</b>
+        "I wanted forever, but you only wanted a moment." <b>✦</b>
+        "Maybe someday this won't hurt anymore." <b>✦</b>
+        "I wish I had known it was the last time." <b>✦</b>
+        "I keep holding on to something that's already gone." <b>✦</b>
+        "You meant more to me than I ever admitted." <b>✦</b>
+        "If I could tell you one thing, I'd say I miss you." <b>✦</b>
       </span>
     </div>
   </div>
@@ -869,7 +895,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // صدای کلیک کیوت با وب‌آدیو
+  // صدای کلیک کیوت
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -898,7 +924,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // کنترل جابه‌جایی آزاد المان‌ها (درگ اند دراپ با تاچ و ماوس)
+  // درگ اند دراپ المان‌ها
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -977,7 +1003,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // پلی‌‌لیست دوترکه
+  // موزیک پلیر
   const playlist = [
     {
       title: "you're so vile",
