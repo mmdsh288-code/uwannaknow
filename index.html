@@ -180,31 +180,55 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   CUTE MARQUEE WITH SITTING DOLL
+   CUTE MARQUEE WITH NATURALLY SEATED DOLL
    ============================================================== */
 .marquee-wrapper {
   position: relative;
-  margin: 45px 0 24px;
+  margin: 54px 0 22px;
 }
 
-/* تصویر عروسک نشسته روی لبه نوار */
-.sitting-doll-img {
+/* عروسک نشسته هماهنگ با تم سایت */
+.sitting-doll-container {
   position: absolute;
-  top: -62px;
-  right: 38px;
-  width: 88px;
-  height: auto;
-  z-index: 6;
+  top: -64px;
+  right: 48px;
+  z-index: 10;
   pointer-events: none;
   user-select: none;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 6px rgba(255, 107, 189, 0.4));
-  transition: transform 0.3s ease;
+  animation: dollSubtleBreathing 4s ease-in-out infinite alternate;
 }
 
-.marquee-wrapper:hover .sitting-doll-img {
-  transform: translateY(-3px) scale(1.03);
+.sitting-doll-container img {
+  width: 82px;
+  height: auto;
+  display: block;
+  /* هماهنگی با رنگ‌بندی تم Y2K و حذف لبه‌های ناهماهنگ */
+  filter: 
+    contrast(1.08) 
+    brightness(1.02) 
+    drop-shadow(0 6px 4px rgba(33, 28, 46, 0.35))
+    drop-shadow(0 0 10px rgba(255, 107, 189, 0.45));
 }
 
+/* سایه کف نشیمن عروسک روی لبه نوار */
+.sitting-doll-container::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 10%;
+  width: 80%;
+  height: 9px;
+  background: radial-gradient(ellipse at center, rgba(33, 28, 46, 0.45) 0%, transparent 75%);
+  z-index: -1;
+}
+
+@keyframes dollSubtleBreathing {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(0.8deg); }
+  100% { transform: translateY(0.5px) rotate(-0.5deg); }
+}
+
+/* بدنه نوار مارکی */
 .marquee {
   position: relative;
   border: 3px solid var(--ink);
@@ -222,6 +246,7 @@ a{color:inherit}
   box-shadow: 
     5px 5px 0 var(--ink),
     0 0 16px rgba(255, 107, 189, 0.35);
+  display: flex;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .marquee:hover {
@@ -232,24 +257,31 @@ a{color:inherit}
   border-color: #ff2a9d;
 }
 
-.marquee span {
-  display: inline-block;
+/* شروع آنی و حرکت روان بدون وقفه */
+.marquee-content {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: smoothMarquee 150s linear infinite; /* سرعت روان و ملایم */
   font-family: 'VT323', monospace;
   font-size: 21px;
   letter-spacing: 1.5px;
   color: #3b284c;
   text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
-  animation: slide 180s linear infinite; /* سرعت ملایم و خوانا برای ۳۵ نقل قول */
-}
-.marquee span b {
-  font-weight: normal;
-  color: #ff1f8f;
-  margin: 0 10px;
 }
 
-@keyframes slide{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
+.marquee:hover .marquee-content {
+  animation-play-state: running; /* همیشه روان کار کند */
+}
+
+.marquee-content span b {
+  font-weight: normal;
+  color: #ff1f8f;
+  margin: 0 14px;
+}
+
+@keyframes smoothMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .grid{
@@ -661,7 +693,8 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   .character.right{width:95px;}
   .akame-choco-frame img{height:140px;}
   .left-char-frame img{height:130px;}
-  .sitting-doll-img{width: 70px; top: -50px; right: 20px;}
+  .sitting-doll-container{top: -50px; right: 24px;}
+  .sitting-doll-container img{width: 65px;}
 }
 </style>
 </head>
@@ -694,48 +727,90 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <!-- نوار مارکی متحرک با عروسک نشسته و ۳۵ نقل‌قول -->
+  <!-- نوار مارکی متحرک (عروسک خوش‌فرم و نشسته طبیعی روی لبه + لود آنی و سرعت آرام و پیوسته) -->
   <div class="marquee-wrapper">
-    <img src="doll-sitting.png" class="sitting-doll-img" alt="Sitting Doll">
+    <div class="sitting-doll-container">
+      <img src="doll-sitting.png" alt="Sitting Doll">
+    </div>
 
     <div class="marquee">
-      <span>
-        "I miss the person I used to be." <b>✦</b>
-        "I don't know how to feel anything anymore." <b>✦</b>
-        "Maybe I was happier when I didn't understand." <b>✦</b>
-        "I wish someone could see what I hide." <b>✦</b>
-        "I keep smiling like nothing ever happened." <b>✦</b>
-        "I wonder if you ever miss me too." <b>✦</b>
-        "I don't want to be remembered this way." <b>✦</b>
-        "Everything feels different when you're not here." <b>✦</b>
-        "I gave you everything and somehow lost myself." <b>✦</b>
-        "I still think about you when nobody's around." <b>✦</b>
-        "Some memories hurt more when they're beautiful." <b>✦</b>
-        "I wish I could go back before everything changed." <b>✦</b>
-        "You were the closest thing I had to home." <b>✦</b>
-        "I never learned how to say goodbye." <b>✦</b>
-        "I pretend I don't care because it's easier." <b>✦</b>
-        "There are things I will never be able to explain." <b>✦</b>
-        "I wonder if you remember the little things." <b>✦</b>
-        "Sometimes I just want everything to be quiet." <b>✦</b>
-        "I don't think anyone really knows me." <b>✦</b>
-        "I keep looking for you in places you'll never be." <b>✦</b>
-        "Maybe we were meant to meet, not to stay." <b>✦</b>
-        "I loved you more than I knew how to say." <b>✦</b>
-        "I wish I could forget without losing the memories." <b>✦</b>
-        "You left, but somehow you're still everywhere." <b>✦</b>
-        "I don't know when I stopped feeling like myself." <b>✦</b>
-        "I hope you know that I really tried." <b>✦</b>
-        "Some nights feel longer than they should." <b>✦</b>
-        "I wonder who I would've become without you." <b>✦</b>
-        "I still hear your voice in my head sometimes." <b>✦</b>
-        "I wanted forever, but you only wanted a moment." <b>✦</b>
-        "Maybe someday this won't hurt anymore." <b>✦</b>
-        "I wish I had known it was the last time." <b>✦</b>
-        "I keep holding on to something that's already gone." <b>✦</b>
-        "You meant more to me than I ever admitted." <b>✦</b>
-        "If I could tell you one thing, I'd say I miss you." <b>✦</b>
-      </span>
+      <div class="marquee-content">
+        <span>
+          "I miss the person I used to be." <b>✦</b>
+          "I don't know how to feel anything anymore." <b>✦</b>
+          "Maybe I was happier when I didn't understand." <b>✦</b>
+          "I wish someone could see what I hide." <b>✦</b>
+          "I keep smiling like nothing ever happened." <b>✦</b>
+          "I wonder if you ever miss me too." <b>✦</b>
+          "I don't want to be remembered this way." <b>✦</b>
+          "Everything feels different when you're not here." <b>✦</b>
+          "I gave you everything and somehow lost myself." <b>✦</b>
+          "I still think about you when nobody's around." <b>✦</b>
+          "Some memories hurt more when they're beautiful." <b>✦</b>
+          "I wish I could go back before everything changed." <b>✦</b>
+          "You were the closest thing I had to home." <b>✦</b>
+          "I never learned how to say goodbye." <b>✦</b>
+          "I pretend I don't care because it's easier." <b>✦</b>
+          "There are things I will never be able to explain." <b>✦</b>
+          "I wonder if you remember the little things." <b>✦</b>
+          "Sometimes I just want everything to be quiet." <b>✦</b>
+          "I don't think anyone really knows me." <b>✦</b>
+          "I keep looking for you in places you'll never be." <b>✦</b>
+          "Maybe we were meant to meet, not to stay." <b>✦</b>
+          "I loved you more than I knew how to say." <b>✦</b>
+          "I wish I could forget without losing the memories." <b>✦</b>
+          "You left, but somehow you're still everywhere." <b>✦</b>
+          "I don't know when I stopped feeling like myself." <b>✦</b>
+          "I hope you know that I really tried." <b>✦</b>
+          "Some nights feel longer than they should." <b>✦</b>
+          "I wonder who I would've become without you." <b>✦</b>
+          "I still hear your voice in my head sometimes." <b>✦</b>
+          "I wanted forever, but you only wanted a moment." <b>✦</b>
+          "Maybe someday this won't hurt anymore." <b>✦</b>
+          "I wish I had known it was the last time." <b>✦</b>
+          "I keep holding on to something that's already gone." <b>✦</b>
+          "You meant more to me than I ever admitted." <b>✦</b>
+          "If I could tell you one thing, I'd say I miss you." <b>✦</b>
+        </span>
+        <!-- تکرار دوم برای پیمایش بی‌وقفه و همیشگی -->
+        <span>
+          "I miss the person I used to be." <b>✦</b>
+          "I don't know how to feel anything anymore." <b>✦</b>
+          "Maybe I was happier when I didn't understand." <b>✦</b>
+          "I wish someone could see what I hide." <b>✦</b>
+          "I keep smiling like nothing ever happened." <b>✦</b>
+          "I wonder if you ever miss me too." <b>✦</b>
+          "I don't want to be remembered this way." <b>✦</b>
+          "Everything feels different when you're not here." <b>✦</b>
+          "I gave you everything and somehow lost myself." <b>✦</b>
+          "I still think about you when nobody's around." <b>✦</b>
+          "Some memories hurt more when they're beautiful." <b>✦</b>
+          "I wish I could go back before everything changed." <b>✦</b>
+          "You were the closest thing I had to home." <b>✦</b>
+          "I never learned how to say goodbye." <b>✦</b>
+          "I pretend I don't care because it's easier." <b>✦</b>
+          "There are things I will never be able to explain." <b>✦</b>
+          "I wonder if you remember the little things." <b>✦</b>
+          "Sometimes I just want everything to be quiet." <b>✦</b>
+          "I don't think anyone really knows me." <b>✦</b>
+          "I keep looking for you in places you'll never be." <b>✦</b>
+          "Maybe we were meant to meet, not to stay." <b>✦</b>
+          "I loved you more than I knew how to say." <b>✦</b>
+          "I wish I could forget without losing the memories." <b>✦</b>
+          "You left, but somehow you're still everywhere." <b>✦</b>
+          "I don't know when I stopped feeling like myself." <b>✦</b>
+          "I hope you know that I really tried." <b>✦</b>
+          "Some nights feel longer than they should." <b>✦</b>
+          "I wonder who I would've become without you." <b>✦</b>
+          "I still hear your voice in my head sometimes." <b>✦</b>
+          "I wanted forever, but you only wanted a moment." <b>✦</b>
+          "Maybe someday this won't hurt anymore." <b>✦</b>
+          "I wish I had known it was the last time." <b>✦</b>
+          "I keep holding on to something that's already gone." <b>✦</b>
+          "You meant more to me than I ever admitted." <b>✦</b>
+          "If I could tell you one thing, I'd say I miss you." <b>✦</b>
+        </span>
+      </div>
     </div>
   </div>
 
@@ -895,7 +970,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // صدای کلیک کیوت
+  // صدای کلیک کیوت با وب‌آدیو
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -924,7 +999,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // درگ اند دراپ المان‌ها
+  // کنترل جابه‌جایی آزاد المان‌ها (درگ اند دراپ)
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -1003,7 +1078,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // موزیک پلیر
+  // موزیک پلیر دوترکه
   const playlist = [
     {
       title: "you're so vile",
