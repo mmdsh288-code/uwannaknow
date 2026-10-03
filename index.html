@@ -83,15 +83,42 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
+/* ==============================================================
+   مانگای فید شده گوشه بالا سمت راست (حاشیه یک‌چهارم سمت راست)
+   ============================================================== */
+.top-right-manga {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: clamp(240px, 26vw, 400px);
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.36;
+  mix-blend-mode: multiply;
+  filter: contrast(1.12);
+  -webkit-mask-image: radial-gradient(circle at top right, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 60%, transparent 92%);
+  mask-image: radial-gradient(circle at top right, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 60%, transparent 92%);
+  transition: opacity 0.3s ease;
+}
+
 @media(max-width: 850px){
   .side-char-bg {
     opacity: 0.18;
     width: 130px;
   }
+  .top-right-manga {
+    width: clamp(170px, 32vw, 260px);
+    opacity: 0.24;
+  }
 }
 @media(max-width: 550px){
   .side-char-bg {
     display: none;
+  }
+  .top-right-manga {
+    width: 40vw;
+    opacity: 0.20;
   }
 }
 
@@ -440,9 +467,9 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
    ============================================================== */
 .character{
   position:fixed;
-  z-index:999; /* قرارگیری در بالاترین لایه هنگام جابه‌جایی */
+  z-index:999;
   cursor: grab;
-  touch-action: none; /* پشتیبانی کامل از لمس روی موبایل */
+  touch-action: none;
   user-select: none;
   transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
 }
@@ -470,7 +497,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   width:145px;
 }
 
-/* انیمیشن شناور محتویات داخل کادر تا مانع جابه‌جایی آزاد نشود */
+/* انیمیشن شناور محتویات داخل کادر */
 .character.right .akame-choco-frame{
   animation:slowFloat 6s ease-in-out infinite alternate;
 }
@@ -490,7 +517,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   100%{transform:translateY(-3px) rotate(1deg);}
 }
 
-/* متوقف شدن انیمیشن شناور هنگام جابه‌جایی برای دقت بالا */
 .character.dragging .akame-choco-frame,
 .character.dragging .left-char-frame{
   animation: none !important;
@@ -583,6 +609,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
 <!-- Left Side Background Image -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
+
+<!-- Right Side Manga Fade Image (حدود یک‌چهارم حاشیه راست) -->
+<img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
 
 <!-- Ambient Symbols -->
 <div class="bg-symbols">
@@ -810,12 +839,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
 
     function dragMouseDown(e) {
-      if (e.button !== 0) return; // فقط کلیک چپ
+      if (e.button !== 0) return;
       e.preventDefault();
       pos3 = e.clientX;
       pos4 = e.clientY;
 
-      // تبدیل موقعیت به top/left دقیق بر حسب پیکسل صفحه
       const rect = elmnt.getBoundingClientRect();
       elmnt.style.bottom = 'auto';
       elmnt.style.right = 'auto';
@@ -844,7 +872,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       document.removeEventListener('mousemove', elementDrag);
     }
 
-    // پشتیبانی کامل از تاچ برای گوشی/تبلت
+    // پشتیبانی تاچ برای گوشی/تبلت
     function dragTouchStart(e) {
       const touch = e.touches[0];
       pos3 = touch.clientX;
@@ -880,7 +908,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }
 
-  // فعال‌سازی قابلیت جابه‌جایی برای کاراکتر چپ و راست
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
@@ -955,7 +982,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }
 
-  // آپدیت زمان و نوار
   audio.addEventListener('timeupdate', () => {
     if (audio.duration) {
       const percent = (audio.currentTime / audio.duration) * 100;
