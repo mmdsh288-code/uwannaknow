@@ -50,6 +50,39 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
+/* =======================================
+   LEFT MARGIN COVER IMAGE (SIDE-CHAR)
+   فید شده، پوشش کامل حاشیه چپ با پارالاکس
+   ======================================= */
+.side-char-bg {
+  position: fixed;
+  top: -5%;
+  left: 0;
+  width: clamp(150px, 18vw, 300px);
+  height: 110vh;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.35; /* فید و نیمه‌شفاف */
+  z-index: 1; /* قرارگیری در پس‌زمینه محتوا و زیر کاراکتر یومکو */
+  pointer-events: none;
+  filter: contrast(1.1) saturate(1.05);
+  mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 60%, transparent 100%);
+  transition: transform 0.15s ease-out;
+}
+
+@media(max-width: 850px){
+  .side-char-bg {
+    opacity: 0.18;
+    width: 130px;
+  }
+}
+@media(max-width: 550px){
+  .side-char-bg {
+    display: none;
+  }
+}
+
 a{color:inherit}
 .wrap{max-width:1080px;margin:auto;padding:18px;position:relative;z-index:2;}
 .topbar{
@@ -112,9 +145,9 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .post h3{margin:6px 0;font-size:17px;color:#1e1829;}
 .post p{font-size:13.5px;line-height:1.7;margin:7px 0}
 
-/* =========================
-   SPOTIFY PLAYER (DUAL TRACK)
-   ========================= */
+/* =======================================
+   SPOTIFY DUAL TRACK PLAYER (🧁🍓)
+   ======================================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
   border:3px solid var(--ink);padding:16px;
@@ -155,22 +188,21 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 }
 @keyframes playProgress{0%{width:10%}100%{width:95%}}
 
-/* Media Controls */
 .player-controls{
-  display:flex;gap:6px;margin-top:10px;
+  display:flex;gap:6px;align-items:center;margin-top:12px;
 }
 .track-nav-btn{
   cursor:pointer;background:#fff;border:2px solid var(--ink);
-  font-size:13px;padding:6px 12px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);border-radius:5px;
-  transition:.15s;
+  box-shadow:2px 2px 0 var(--ink);font-size:14px;padding:7px 11px;
+  border-radius:5px;font-weight:bold;transition:.15s;
 }
-.track-nav-btn:hover{background:#ffdff2;transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
+.track-nav-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);background:#ffe8f6;}
+
 .audio-ctrl{
-  flex-grow:1;cursor:pointer;background:#ff6bbd;color:#fff;
-  border:2px solid var(--ink);padding:7px;font-size:12px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);border-radius:5px;
-  transition:.15s;
+  cursor:pointer;background:#ff6bbd;color:#fff;
+  border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold;
+  width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px;
+  transition:.15s;text-align:center;
 }
 .audio-ctrl:hover{background:#ff4cae;}
 
@@ -186,7 +218,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
 
 /* =======================================
-   CUSTOM ABOUT ME CARD (STRIPES + ART BG)
+   CUSTOM ALTERNATIVE ABOUT ME CARD
    ======================================= */
 .card-about{
   background:
@@ -201,7 +233,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   overflow:hidden;
 }
 
-/* Faded Art House Background (handles both about-bg.jpg and about-bg.jpg.jpg) */
 .card-about::before{
   content:"";
   position:absolute;
@@ -209,7 +240,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   background-image:url('about-bg.jpg'), url('about-bg.jpg.jpg');
   background-size:cover;
   background-position:center;
-  opacity:0.35;
+  opacity:0.32;
   pointer-events:none;
   filter:contrast(115%) saturate(110%);
   z-index:0;
@@ -223,6 +254,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .about-wiggle-title{
   display:inline-block;
   font-size:15px;
+  border:1px dashed #ff72c8;
   font-weight:900;
   letter-spacing:1.5px;
   color:#ff2497;
@@ -329,9 +361,12 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
+<!-- عکس پس‌زمینه حاشیه سمت چپ (فید شده با حرکت پارالاکس) -->
+<img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
+
 <!-- Ambient Symbols -->
 <div class="bg-symbols">
-  <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
+  <span>☠︎︎</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
   <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎</span>
 </div>
@@ -395,6 +430,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <div class="spotify-tag-row">
             <div class="spotify-live">
               <div class="live-dot"></div>
+              <span>PLAYING NOW</span>
               <span id="playerBadge">TRACK 1/2</span>
             </div>
             <span class="cute-cupcake">🧁🍓</span>
@@ -408,7 +444,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
           </div>
           <div class="bar"><i></i></div>
-          
+
           <div class="player-controls">
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
             <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
@@ -435,7 +471,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <div class="alt-facts">
             NAME: <b class="alt-name">LOSTRUSHI</b><br>
             PLACE: <span class="alt-place">tehran ✧</span><br>
-            ִ ࣪...𖤐: <span class="alt-activities">listenn to music, studyy andd gym</span><br>
+            ִ ࣪...𖤐: <span class="alt-activities">listen to music, studyy andd gym</span><br>
             MOOD: <span class="alt-mood">🪼⋆｡𖦹°🫧⋆.ೃ࿔</span>
           </div>
         </div>
@@ -445,6 +481,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         <div class="side-title">★ interests</div>
         <div class="badges">
           <span class="badge">🧁 CUPCAKES</span>
+          <span class="badge">MUSIC</span>
           <span class="badge">LEASE</span>
           <span class="badge">JAYDES</span>
           <span class="badge">HIM</span>
@@ -485,66 +522,65 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // Playlist Definition
+  // Dual Track Playlist
   const playlist = [
     {
       title: "you're so vile",
       artist: "datealyfe ✦",
-      file: "music.mp3",
+      src: "music.mp3",
+      badge: "TRACK 1/2",
       cover: "🍰"
     },
     {
       title: "LEASE",
       artist: "阿保剛 (Takeshi Abo) ✦",
-      file: "music2.mp3",
-      cover: "💿"
+      src: "music2.mp3",
+      badge: "TRACK 2/2",
+      cover: "🍓"
     }
   ];
-
   let currentIdx = 0;
+  let isPlaying = false;
+
   const audio = document.getElementById('bgMusic');
+  const audioSrc = document.getElementById('audioSrc');
   const playBtn = document.getElementById('playBtn');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const trackTitle = document.getElementById('trackTitle');
   const trackArtist = document.getElementById('trackArtist');
-  const albumCover = document.getElementById('albumCover');
   const playerBadge = document.getElementById('playerBadge');
-  let isPlaying = false;
+  const albumCover = document.getElementById('albumCover');
 
-  function loadTrack(index, autoPlay = true) {
-    currentIdx = index;
+  function loadTrack(idx, autoPlay = false) {
+    currentIdx = idx;
     const track = playlist[currentIdx];
-    audio.src = track.file;
+    audioSrc.src = track.src;
+    audio.load();
     trackTitle.innerText = track.title;
     trackArtist.innerText = track.artist;
-    albumCover.innerText = track.cover;
-    playerBadge.innerText = `TRACK ${currentIdx + 1}/${playlist.length}`;
+    if (playerBadge) playerBadge.innerText = track.badge;
+    if (albumCover) albumCover.innerText = track.cover;
 
     if (autoPlay) {
       audio.play().then(() => {
         isPlaying = true;
         playBtn.innerText = '❚❚ Pause 🍬';
       }).catch(() => {});
+    } else {
+      isPlaying = false;
+      playBtn.innerText = '▶ Play 🍬';
     }
   }
 
-  // Play automatically on first user click anywhere
-  document.body.addEventListener('click', () => {
-    if (!isPlaying) {
-      audio.play().then(() => {
-        isPlaying = true;
-        playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch(() => {});
-    }
-  }, { once: true });
-
+  // Play / Pause
   playBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (audio.paused) {
-      audio.play();
-      playBtn.innerText = '❚❚ Pause 🍬';
-      isPlaying = true;
+      audio.play().then(() => {
+        playBtn.innerText = '❚❚ Pause 🍬';
+        isPlaying = true;
+      }).catch(() => {});
     } else {
       audio.pause();
       playBtn.innerText = '▶ Play 🍬';
@@ -552,6 +588,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
+  // Previous & Next Track
   prevBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
@@ -563,36 +600,26 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, isPlaying);
   });
-   window.addEventListener('scroll', function() {
-    const charImg = document.getElementById('parallaxLeftChar');
-    if (charImg) {
-      charImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
+
+  // Autoplay on first click anywhere
+  window.addEventListener('click', () => {
+    if (!isPlaying && audio.paused) {
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause 🍬';
+      }).catch(() => {});
     }
-  });
+  }, { once: true });
+
+  // افکت پارالاکس نرم عکس حاشیه چپ با اسکرول صفحه
+  window.addEventListener('scroll', () => {
+    const sideImg = document.getElementById('leftSideImg');
+    if (sideImg) {
+      const offset = window.scrollY * 0.12;
+      sideImg.style.transform = `translateY(${offset}px)`;
+    }
+  }, { passive: true });
 </script>
-<!-- عکس سمت چپ به همراه استایل -->
-<style>
-.side-floating-char {
-    position: fixed;
-    left: 20px;
-    top: 25%;
-    width: 170px;
-    max-width: 18vw;
-    border-radius: 14px;
-    opacity: 0.58;
-    filter: contrast(1.05) drop-shadow(0 0 12px rgba(255, 105, 180, 0.35));
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    z-index: 5;
-    pointer-events: none;
-    transition: transform 0.15s ease-out;
-}
-@media (max-width: 768px) {
-    .side-floating-char {
-        display: none;
-    }
-}
-</style>
-<img src="side-char.jpg" id="parallaxLeftChar" class="side-floating-char" alt="Side Character">
+
 </body>
 </html>
-
