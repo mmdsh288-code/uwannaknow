@@ -180,17 +180,17 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   CUTE MARQUEE WITH NATURALLY SEATED DOLL
+   CUTE MARQUEE WITH FADED / SOFT BLENDED DOLL
    ============================================================== */
 .marquee-wrapper {
   position: relative;
   margin: 54px 0 22px;
 }
 
-/* عروسک نشسته هماهنگ با تم سایت */
+/* ظرف و فیلتر فید نرم عروسک نشسته */
 .sitting-doll-container {
   position: absolute;
-  top: -64px;
+  top: -62px;
   right: 48px;
   z-index: 10;
   pointer-events: none;
@@ -202,24 +202,19 @@ a{color:inherit}
   width: 82px;
   height: auto;
   display: block;
-  /* هماهنگی با رنگ‌بندی تم Y2K و حذف لبه‌های ناهماهنگ */
+  opacity: 0.62; /* فید ملایم و نرم */
+  mix-blend-mode: multiply; /* ترکیب ملایم با پس‌زمینه سایت */
   filter: 
-    contrast(1.08) 
+    contrast(1.05) 
     brightness(1.02) 
-    drop-shadow(0 6px 4px rgba(33, 28, 46, 0.35))
-    drop-shadow(0 0 10px rgba(255, 107, 189, 0.45));
+    drop-shadow(0 4px 10px rgba(255, 107, 189, 0.35));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0.15) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0.15) 100%);
+  transition: opacity 0.3s ease;
 }
 
-/* سایه کف نشیمن عروسک روی لبه نوار */
-.sitting-doll-container::after {
-  content: "";
-  position: absolute;
-  bottom: 6px;
-  left: 10%;
-  width: 80%;
-  height: 9px;
-  background: radial-gradient(ellipse at center, rgba(33, 28, 46, 0.45) 0%, transparent 75%);
-  z-index: -1;
+.marquee-wrapper:hover .sitting-doll-container img {
+  opacity: 0.78; /* کمی واضح‌تر هنگام قرار گرفتن ماوس */
 }
 
 @keyframes dollSubtleBreathing {
@@ -261,16 +256,12 @@ a{color:inherit}
 .marquee-content {
   display: inline-flex;
   white-space: nowrap;
-  animation: smoothMarquee 150s linear infinite; /* سرعت روان و ملایم */
+  animation: smoothMarquee 150s linear infinite;
   font-family: 'VT323', monospace;
   font-size: 21px;
   letter-spacing: 1.5px;
   color: #3b284c;
   text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
-}
-
-.marquee:hover .marquee-content {
-  animation-play-state: running; /* همیشه روان کار کند */
 }
 
 .marquee-content span b {
@@ -693,8 +684,8 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   .character.right{width:95px;}
   .akame-choco-frame img{height:140px;}
   .left-char-frame img{height:130px;}
-  .sitting-doll-container{top: -50px; right: 24px;}
-  .sitting-doll-container img{width: 65px;}
+  .sitting-doll-container{top: -48px; right: 24px;}
+  .sitting-doll-container img{width: 62px;}
 }
 </style>
 </head>
@@ -727,7 +718,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <!-- نوار مارکی متحرک (عروسک خوش‌فرم و نشسته طبیعی روی لبه + لود آنی و سرعت آرام و پیوسته) -->
+  <!-- نوار مارکی متحرک (عروسک فید شده نرم + شروع آنی و روان) -->
   <div class="marquee-wrapper">
     <div class="sitting-doll-container">
       <img src="doll-sitting.png" alt="Sitting Doll">
@@ -772,7 +763,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           "You meant more to me than I ever admitted." <b>✦</b>
           "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
-        <!-- تکرار دوم برای پیمایش بی‌وقفه و همیشگی -->
+        <!-- تکرار دوم برای پیوستگی بدون وقفه انیمیشن -->
         <span>
           "I miss the person I used to be." <b>✦</b>
           "I don't know how to feel anything anymore." <b>✦</b>
@@ -970,7 +961,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // صدای کلیک کیوت با وب‌آدیو
+  // صدای کلیک کیوت وب‌آدیو
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -999,7 +990,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // کنترل جابه‌جایی آزاد المان‌ها (درگ اند دراپ)
+  // کنترل جابه‌جایی آزاد المان‌ها
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -1078,7 +1069,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // موزیک پلیر دوترکه
+  // موزیک پلیر
   const playlist = [
     {
       title: "you're so vile",
