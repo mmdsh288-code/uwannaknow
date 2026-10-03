@@ -17,9 +17,12 @@
   --blue:#72d9ff;
   --purple:#b38cff;
   --yellow:#fff58a;
+  --choco-dark:#3d2527;
+  --choco-milk:#634043;
+  --choco-glow:rgba(82, 45, 48, 0.45);
   --ink:#211c2e;
   --paper:#fffaff;
-  --glass:rgba(255,255,255,.82);
+  --glass:rgba(255,255,255,.84);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -35,7 +38,7 @@ body{
   position:relative;
 }
 
-/* Y2K & Grunge Background Watermark Symbols */
+/* Y2K Ambient Symbols */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
@@ -50,7 +53,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* Left Side Margin Artwork (Faded & Parallax) */
+/* Left Side Margin Artwork */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -82,11 +85,21 @@ body:before{
 
 a{color:inherit}
 .wrap{max-width:1080px;margin:auto;padding:18px;position:relative;z-index:2;}
+
+/* TOPBAR */
 .topbar{
   border:3px solid var(--ink);background:#fff;
   box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
-  display:flex;justify-content:space-between;gap:12px;align-items:center;
+  display:flex;justify-content:space-between;gap:8px;align-items:center;
   font-size:12px;font-weight:bold;letter-spacing:1px;
+}
+.flair-symbol{
+  font-size:20px;
+  font-weight:900;
+  color:#ff2a9d;
+  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 10px rgba(255, 42, 157, 0.4);
+  letter-spacing:1px;
+  user-select:none;
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 .japanese-sub{font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;letter-spacing:2px;color:#7e5296;}
@@ -128,13 +141,20 @@ h1.kawaii-title{
 }
 
 .subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+
+/* دکمه‌های شبکه‌های اجتماعی (اینستاگرام، تلگرام، توییتر) */
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .links a{
   text-decoration:none;background:#fff;border:2px solid var(--ink);
-  padding:9px 14px;font-size:12px;font-weight:bold;
-  box-shadow:3px 3px 0 var(--ink);transition:.15s;border-radius:5px;
+  padding:9px 15px;font-size:12.5px;font-weight:bold;
+  box-shadow:3px 3px 0 var(--ink);transition:.15s;border-radius:8px;
+  display:inline-flex;align-items:center;gap:6px;
 }
 .links a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#ffeaf6;}
+.links a.btn-ig{border-color:#d62976;color:#bc1888;}
+.links a.btn-tg{border-color:#229ed9;color:#0088cc;}
+.links a.btn-tw{border-color:#1da1f2;color:#0c85d0;}
+
 h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
 .post{border-top:2px dotted #9c91ab;padding:14px 0}
 .post:first-of-type{border-top:0}
@@ -143,7 +163,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .post p{font-size:13.5px;line-height:1.7;margin:7px 0}
 
 /* =======================================
-   SPOTIFY DUAL TRACK PLAYER + CUTE WAVE TIMELINE
+   SPOTIFY DUAL TRACK PLAYER + TIMELINE
    ======================================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
@@ -183,7 +203,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 
-/* TIMELINE (WAVY & CUTE) */
+/* نوار موجی تایم‌لاین */
 .timeline-container{
   margin-top:14px;
 }
@@ -239,19 +259,8 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 }
 .audio-ctrl:hover{background:#ff4cae;}
 
-.spotify-actions{
-  margin-top:10px;display:flex;flex-direction:column;gap:6px;
-}
-.spotify-btn{
-  display:block;text-align:center;text-decoration:none;
-  background:#fff;border:2px solid var(--ink);
-  padding:7px;font-size:11.5px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
-}
-.spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
-
 /* =======================================
-   CUSTOM ALTERNATIVE ABOUT ME CARD
+   CUSTOM ABOUT ME CARD
    ======================================= */
 .card-about{
   background:
@@ -331,64 +340,111 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .badge{border:1px solid var(--ink);background:#fff;padding:4px 8px;font-size:10px;border-radius:3px;box-shadow:1px 1px 0 var(--ink);}
 .guestbook{font-size:12px;line-height:1.7}
 
-/* =========================
-   DANCING CHARACTERS
-   ========================= */
+/* ==============================================================
+   CHARACTERS: CUTE CHOCOLATE AKAME & MATCHING LEFT CHARACTER
+   ============================================================== */
 .character{
-  position:fixed;z-index:99;bottom:0px;pointer-events:none;
-  filter:drop-shadow(4px 6px 0 rgba(33,28,46,.45));
-}
-.character.left{
-  left:10px;width:130px;
-  animation:danceLeft 1.6s ease-in-out infinite;
-}
-.character.right{
-  right:15px;width:150px;
-  animation:danceRight 2s ease-in-out infinite;
+  position:fixed;z-index:99;bottom:15px;pointer-events:none;
 }
 
-.akame-img-wrap{
-  width:100%;height:auto;
-  border:3px solid var(--ink);
-  background:#fff;
-  box-shadow:4px 4px 0 var(--ink);
-  overflow:hidden;
-  border-radius:6px;
+/* انیمیشن بسیار آرام، کند و شناور آکامه */
+.character.right{
+  right:18px;width:155px;
+  animation:slowFloat 6s ease-in-out infinite alternate;
 }
-.akame-img-wrap img{
+
+/* انیمیشن آرام و شناور کاراکتر سمت چپ */
+.character.left{
+  left:18px;width:145px;
+  animation:slowFloatLeft 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes slowFloat{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-14px) rotate(1.5deg);}
+  100%{transform:translateY(-5px) rotate(-1deg);}
+}
+
+@keyframes slowFloatLeft{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-12px) rotate(-1.5deg);}
+  100%{transform:translateY(-4px) rotate(1deg);}
+}
+
+/* قاب شکلاتی، نرم و گوگولی همرنگ لباس آکامه */
+.akame-choco-frame{
+  width:100%;
+  border:4px solid var(--choco-dark);
+  background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%);
+  padding:5px;
+  border-radius:18px;
+  box-shadow:
+    0 8px 20px var(--choco-glow),
+    3px 4px 0 var(--ink),
+    inset 0 0 10px rgba(255, 182, 193, 0.25);
+  overflow:hidden;
+}
+
+.akame-choco-frame img{
   width:100%;height:220px;
   object-fit:cover;
   object-position:top center;
   display:block;
+  border-radius:12px;
+  border:2px dashed #ffb8d9;
 }
 
-.char-tag{
-  background:#fff;border:2px solid var(--ink);
-  font-size:10px;font-weight:bold;padding:3px 6px;
-  text-align:center;margin-top:4px;box-shadow:2px 2px 0 var(--ink);
-  border-radius:4px;
+/* تگ اسم شکلاتی بیسکویتی گوگولی */
+.akame-choco-tag{
+  background:linear-gradient(135deg, #533236, #372023);
+  color:#ffd9e8;
+  border:2px solid var(--choco-dark);
+  font-size:11px;font-weight:bold;padding:4px 8px;
+  text-align:center;margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:12px;
+  letter-spacing:0.5px;
+  display:flex;align-items:center;justify-content:center;gap:4px;
 }
 
-@keyframes danceLeft{
-  0%,100%{transform:translateY(0) rotate(-3deg) scale(1)}
-  25%{transform:translateY(-16px) rotate(4deg) scale(1.03)}
-  50%{transform:translateY(0) rotate(-2deg) scale(1)}
-  75%{transform:translateY(-10px) rotate(4deg) scale(1.02)}
+/* قاب کاراکتر جدید سمت چپ */
+.left-char-frame{
+  width:100%;
+  border:4px solid var(--ink);
+  background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%);
+  padding:5px;
+  border-radius:18px;
+  box-shadow:
+    0 8px 20px rgba(255, 107, 189, 0.35),
+    3px 4px 0 var(--ink);
+  overflow:hidden;
 }
-@keyframes danceRight{
-  0%,100%{transform:translateY(0) rotate(2deg) scale(1)}
-  25%{transform:translateY(-14px) rotate(-3deg) scale(1.03)}
-  50%{transform:translateY(0) rotate(1deg) scale(1)}
-  75%{transform:translateY(-8px) rotate(-2deg) scale(1.01)}
+.left-char-frame img{
+  width:100%;height:210px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  border-radius:12px;
+  border:2px dashed #ff6bbd;
+}
+.left-char-tag{
+  background:#fff;
+  color:#ff2497;
+  border:2px solid var(--ink);
+  font-size:11px;font-weight:bold;padding:4px 8px;
+  text-align:center;margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:12px;
 }
 
 footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
 
 @media(max-width:800px){
   .grid{grid-template-columns:1fr}
-  .character.left{width:80px;left:0}
-  .character.right{width:95px;right:0}
-  .akame-img-wrap img{height:140px;}
+  .character.left{width:90px;left:5px}
+  .character.right{width:95px;right:5px}
+  .akame-choco-frame img{height:140px;}
+  .left-char-frame img{height:130px;}
 }
 </style>
 </head>
@@ -409,12 +465,14 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
 <div class="wrap">
   <header class="topbar">
+    <span class="flair-symbol">꧁ঔৣ</span>
     <span class="logo">all about mee :3</span>
     <span class="japanese-sub">リリイ・シュシュ ✦ ONLINE</span>
+    <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
   <div class="marquee">
-    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ yumeko jabami 🎲 ★ akame ⚔️ ★ now playing: Takeshi Abo & datealyfe 🧁🍓 ★</span>
+    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ takeshi abo & datealyfe ★ lostrushi space 🧁🍓 ★</span>
   </div>
 
   <div class="grid">
@@ -426,11 +484,18 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           this is my personal space on the web — a tiny aesthetic corner about me,
           music, cute symbols, anime, random thoughts and whatever i feel like posting.
         </p>
+
+        <!-- لینک‌های سوشال دقیقاً طبق درخواست -->
         <div class="links">
-          <a href="https://instagram.com/" target="_blank">♡ INSTAGRAM</a>
-          <a href="https://t.me/" target="_blank">✉ TELEGRAM</a>
-          <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank">♫ SPOTIFY</a>
-          <a href="#blog">▣ BLOG</a>
+          <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
+            <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
+          </a>
+          <a href="https://t.me/TMN_lostrushi" target="_blank" class="btn-tg">
+            <span>✈️</span> ✉ TELEGRAM (@TMN_lostrushi)
+          </a>
+          <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
+            <span>💬</span> 𝕏 TWITTER (@kianhcn)
+          </a>
         </div>
       </section>
 
@@ -468,7 +533,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           </div>
 
           <div class="now">
-            <!-- کاور اختصاصی متصل به موزیک پلیر -->
             <div class="cover-img-box">
               <img id="trackCoverImg" src="cover1.jpg" onerror="this.src='cover1.jpg'" alt="Album Cover">
             </div>
@@ -493,15 +557,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
             <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
             <button class="track-nav-btn" id="nextBtn" title="Next Track">⏭</button>
-          </div>
-
-          <div class="spotify-actions">
-            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
-              🎧 View My Spotify Profile
-            </a>
-            <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
-              🧁 Open Playlists
-            </a>
           </div>
         </div>
       </section>
@@ -529,7 +584,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <span class="badge">LEASE</span>
           <span class="badge">JAYDES</span>
           <span class="badge">HIM</span>
-          <span class="badge">YUMEKO</span>
           <span class="badge">AKAME</span>
           <span class="badge">Y2K</span>
           <span class="badge">リリイ・シュシュ</span>
@@ -548,27 +602,57 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <footer>all about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
 </div>
 
-<!-- =========================
-     CHARACTERS
-     ========================= -->
-<!-- Yumeko (Left) -->
+<!-- ==============================================
+     CHARACTERS: LEFT (NEW GIRL) & RIGHT (AKAME)
+     ============================================== -->
+<!-- Left Character (جایگزین یومکو با عکس ارسالی شما) -->
 <div class="character left">
-  <img src="https://media.tenor.com/13131059/yumeko-jabami-kakegurui-happy-dance.gif" alt="Yumeko Dancing" style="width:100%;height:auto;display:block;">
-  <div class="char-tag">Yumeko 🎲</div>
+  <div class="left-char-frame">
+    <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
+  </div>
+  <div class="left-char-tag">🤍 Pout :3 ✦</div>
 </div>
 
-<!-- Tall Akame (Right) -->
+<!-- Tall Akame (Right) با قاب شکلاتی گوگولی و انیمیشن کند و شناور -->
 <div class="character right">
-  <div class="akame-img-wrap">
+  <div class="akame-choco-frame">
     <img src="akame.jpg" alt="Akame" onerror="this.src='https://i.pinimg.com/736x/b7/87/f1/b787f1f2963f685a30c562f46dbeef8b.jpg'">
   </div>
-  <div class="char-tag">Akame ⚔️</div>
+  <div class="akame-choco-tag">🍫 Akame ⚔️</div>
 </div>
 
 <script>
-  // تعریف دقیق دو ترک و تنظیم کاورها بر اساس درخواست:
-  // ترک ۱ (you're so vile): کاور دختر مو قهوه‌ای صورتی (cover1.jpg)
-  // ترک ۲ (LEASE): کاور انیمه‌ای آبی My Merry May be (cover2.jpg)
+  // ساند افکت کیوت کلیک با Web Audio API
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function playCuteClick() {
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(620, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1180, audioCtx.currentTime + 0.08);
+
+    gain.gain.setValueAtTime(0.22, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.09);
+  }
+
+  // اضافه کردن افکت صدا به همه دکمه‌ها و لینک‌ها
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('button, a, .timeline-bar, .badge')) {
+      playCuteClick();
+    }
+  });
+
+  // پلی‌لیست دوترکه با کاورها
   const playlist = [
     {
       title: "you're so vile",
@@ -639,7 +723,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }
 
-  // به‌روزرسانی تایم‌لاین با پیشرفت موزیک
+  // آپدیت زمان و نوار
   audio.addEventListener('timeupdate', () => {
     if (audio.duration) {
       const percent = (audio.currentTime / audio.duration) * 100;
@@ -653,13 +737,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     totalDurationDisplay.innerText = formatTime(audio.duration);
   });
 
-  // رفتن به ترک بعدی پس از اتمام آهنگ
   audio.addEventListener('ended', () => {
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, true);
   });
 
-  // کلیک روی نوار تایم‌لاین برای پرش در آهنگ (Seek)
   timelineBar.addEventListener('click', (e) => {
     const rect = timelineBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
@@ -669,7 +751,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // کلیک دکمه پلی / مکث
   playBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (audio.paused) {
@@ -684,7 +765,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // دکمه‌های آهنگ قبلی و بعدی
   prevBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
@@ -697,7 +777,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     loadTrack(currentIdx, true);
   });
 
-  // پخش با اولین کلیک در صفحه
   window.addEventListener('click', () => {
     if (!isPlaying && audio.paused) {
       audio.play().then(() => {
@@ -707,7 +786,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }, { once: true });
 
-  // افکت پارالاکس عکس سمت چپ با اسکرول
   window.addEventListener('scroll', () => {
     const sideImg = document.getElementById('leftSideImg');
     if (sideImg) {
@@ -715,7 +793,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   }, { passive: true });
 
-  // اجرای اولیه ترک اول
   loadTrack(0, false);
 </script>
 
