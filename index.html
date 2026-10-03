@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=M+PLUS+Rounded+1c:wght@700;800&family=VT323&display=swap" rel="stylesheet">
 <style>
 /* =========================
-   EASY EDIT SETTINGS
+   SETTINGS & THEME
    ========================= */
 :root{
   --pink:#ff6bbd;
@@ -113,7 +113,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .post p{font-size:13.5px;line-height:1.7;margin:7px 0}
 
 /* =========================
-   SPOTIFY SECTION (🧁🍓)
+   SPOTIFY PLAYER (DUAL TRACK)
    ========================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
@@ -143,9 +143,10 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   background:radial-gradient(circle,#ffc8e9 10%,#ff6bbd 90%);
   display:grid;place-items:center;font-size:26px;
   box-shadow:3px 3px 0 var(--ink);border-radius:8px;
+  transition:transform 0.2s;
 }
-.song{font-weight:bold;font-size:14px;color:#281831;font-family:'Fredoka',sans-serif;}
-.artist{font-size:12px;color:#644c77;margin-top:2px;font-weight:600;}
+.song{font-weight:bold;font-size:13px;color:#281831;font-family:'Fredoka',sans-serif;}
+.artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 .bar{height:10px;background:#ffd7ef;margin-top:14px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;position:relative;}
 .bar i{
   display:block;width:60%;height:100%;
@@ -154,27 +155,38 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 }
 @keyframes playProgress{0%{width:10%}100%{width:95%}}
 
-.spotify-actions{
-  margin-top:14px;display:flex;flex-direction:column;gap:8px;
+/* Media Controls */
+.player-controls{
+  display:flex;gap:6px;margin-top:10px;
 }
-.spotify-btn{
-  display:block;text-align:center;text-decoration:none;
-  background:#fff;border:2px solid var(--ink);
-  padding:8px;font-size:11.5px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
+.track-nav-btn{
+  cursor:pointer;background:#fff;border:2px solid var(--ink);
+  font-size:13px;padding:6px 12px;font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);border-radius:5px;
+  transition:.15s;
 }
-.spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
+.track-nav-btn:hover{background:#ffdff2;transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
 .audio-ctrl{
-  cursor:pointer;background:#ff6bbd;color:#fff;
-  border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold;
-  width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px;
+  flex-grow:1;cursor:pointer;background:#ff6bbd;color:#fff;
+  border:2px solid var(--ink);padding:7px;font-size:12px;font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);border-radius:5px;
   transition:.15s;
 }
 .audio-ctrl:hover{background:#ff4cae;}
 
+.spotify-actions{
+  margin-top:10px;display:flex;flex-direction:column;gap:6px;
+}
+.spotify-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:#fff;border:2px solid var(--ink);
+  padding:7px;font-size:11.5px;font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
+}
+.spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
+
 /* =======================================
-   CUSTOM ALTERNATIVE ABOUT ME CARD
-   Stripes + Fade Art BG + Wiggle Title
+   CUSTOM ABOUT ME CARD (STRIPES + ART BG)
    ======================================= */
 .card-about{
   background:
@@ -189,15 +201,15 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   overflow:hidden;
 }
 
-/* Faded Art House Background */
+/* Faded Art House Background (handles both about-bg.jpg and about-bg.jpg.jpg) */
 .card-about::before{
   content:"";
   position:absolute;
   inset:0;
-  background-image:url('about-bg.jpg');
+  background-image:url('about-bg.jpg'), url('about-bg.jpg.jpg');
   background-size:cover;
   background-position:center;
-  opacity:0.24;
+  opacity:0.35;
   pointer-events:none;
   filter:contrast(115%) saturate(110%);
   z-index:0;
@@ -208,7 +220,6 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   z-index:2;
 }
 
-/* Animated Wiggling Title */
 .about-wiggle-title{
   display:inline-block;
   font-size:15px;
@@ -246,21 +257,9 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   border:1px dashed #ff72c8;
 }
 
-.alt-place{
-  color:#0071a8;
-  font-weight:700;
-}
-
-.alt-activities{
-  color:#5d1e8c;
-  font-weight:700;
-  letter-spacing:0.5px;
-}
-
-.alt-mood{
-  font-size:15px;
-  letter-spacing:2px;
-}
+.alt-place{color:#0071a8;font-weight:700;}
+.alt-activities{color:#5d1e8c;font-weight:700;letter-spacing:0.5px;}
+.alt-mood{font-size:15px;letter-spacing:2px;}
 
 .side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px;font-weight:bold;}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
@@ -330,16 +329,16 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
-<!-- Ambient Symbols: Wi-Fi, Skeleton, Jaydes, HIM -->
+<!-- Ambient Symbols -->
 <div class="bg-symbols">
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
   <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠︎</span>
 </div>
 
-<!-- Audio Player for "you're so vile" by datealyfe -->
+<!-- Audio Player Element -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="music.mp3" type="audio/mpeg">
+  <source id="audioSrc" src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="wrap">
@@ -349,7 +348,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   </header>
 
   <div class="marquee">
-    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ yumeko jabami 🎲 ★ akame ⚔️ ★ now playing: datealyfe ★ cupcakes & tunes 🧁🍓 ★</span>
+    <span>★ welcome to my corner of the web ★ リリイ・シュシュ ★ yumeko jabami 🎲 ★ akame ⚔️ ★ now playing: Takeshi Abo & datealyfe 🧁🍓 ★</span>
   </div>
 
   <div class="grid">
@@ -383,35 +382,40 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         <article class="post">
           <div class="date">02 / 10 / 2026</div>
           <h3>currently listening... 🍓</h3>
-          <p>datealyfe - you're so vile</p>
+          <p>阿保剛 (Takeshi Abo) - LEASE / datealyfe - you're so vile</p>
         </article>
       </section>
     </main>
 
     <aside>
-      <!-- SPOTIFY CUTE SECTION (🧁🍓) -->
+      <!-- SPOTIFY DUAL TRACK PLAYER -->
       <section class="card">
         <div class="side-title">♪ spotify feed</div>
         <div class="spotify">
           <div class="spotify-tag-row">
             <div class="spotify-live">
               <div class="live-dot"></div>
-              <span>PLAYING NOW</span>
+              <span id="playerBadge">TRACK 1/2</span>
             </div>
             <span class="cute-cupcake">🧁🍓</span>
           </div>
 
           <div class="now">
-            <div class="cover">🍰</div>
+            <div class="cover" id="albumCover">🍰</div>
             <div>
-              <div class="song">you're so vile</div>
-              <div class="artist">datealyfe ✦</div>
+              <div class="song" id="trackTitle">you're so vile</div>
+              <div class="artist" id="trackArtist">datealyfe ✦</div>
             </div>
           </div>
           <div class="bar"><i></i></div>
           
+          <div class="player-controls">
+            <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
+            <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
+            <button class="track-nav-btn" id="nextBtn" title="Next Track">⏭</button>
+          </div>
+
           <div class="spotify-actions">
-            <button class="audio-ctrl" id="playBtn">▶ Click to Play Audio 🍬</button>
             <a href="https://open.spotify.com/user/31wql2ap5jhgnqpw5jgbqdq7rgwm" target="_blank" class="spotify-btn">
               🎧 View My Spotify Profile
             </a>
@@ -441,7 +445,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         <div class="side-title">★ interests</div>
         <div class="badges">
           <span class="badge">🧁 CUPCAKES</span>
-          <span class="badge">MUSIC</span>
+          <span class="badge">LEASE</span>
           <span class="badge">JAYDES</span>
           <span class="badge">HIM</span>
           <span class="badge">YUMEKO</span>
@@ -481,16 +485,56 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // Audio Control
+  // Playlist Definition
+  const playlist = [
+    {
+      title: "you're so vile",
+      artist: "datealyfe ✦",
+      file: "music.mp3",
+      cover: "🍰"
+    },
+    {
+      title: "LEASE",
+      artist: "阿保剛 (Takeshi Abo) ✦",
+      file: "music2.mp3",
+      cover: "💿"
+    }
+  ];
+
+  let currentIdx = 0;
   const audio = document.getElementById('bgMusic');
   const playBtn = document.getElementById('playBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const trackTitle = document.getElementById('trackTitle');
+  const trackArtist = document.getElementById('trackArtist');
+  const albumCover = document.getElementById('albumCover');
+  const playerBadge = document.getElementById('playerBadge');
   let isPlaying = false;
 
+  function loadTrack(index, autoPlay = true) {
+    currentIdx = index;
+    const track = playlist[currentIdx];
+    audio.src = track.file;
+    trackTitle.innerText = track.title;
+    trackArtist.innerText = track.artist;
+    albumCover.innerText = track.cover;
+    playerBadge.innerText = `TRACK ${currentIdx + 1}/${playlist.length}`;
+
+    if (autoPlay) {
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause 🍬';
+      }).catch(() => {});
+    }
+  }
+
+  // Play automatically on first user click anywhere
   document.body.addEventListener('click', () => {
     if (!isPlaying) {
       audio.play().then(() => {
         isPlaying = true;
-        playBtn.innerText = '❚❚ Pause Audio 🍬';
+        playBtn.innerText = '❚❚ Pause 🍬';
       }).catch(() => {});
     }
   }, { once: true });
@@ -499,13 +543,25 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     e.stopPropagation();
     if (audio.paused) {
       audio.play();
-      playBtn.innerText = '❚❚ Pause Audio 🍬';
+      playBtn.innerText = '❚❚ Pause 🍬';
       isPlaying = true;
     } else {
       audio.pause();
-      playBtn.innerText = '▶ Click to Play Audio 🍬';
+      playBtn.innerText = '▶ Play 🍬';
       isPlaying = false;
     }
+  });
+
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
+    loadTrack(currentIdx, isPlaying);
+  });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % playlist.length;
+    loadTrack(currentIdx, isPlaying);
   });
 </script>
 
