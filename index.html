@@ -563,7 +563,36 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, isPlaying);
   });
+   window.addEventListener('scroll', function() {
+    const charImg = document.getElementById('parallaxLeftChar');
+    if (charImg) {
+      charImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
+    }
+  });
 </script>
-
+<!-- عکس سمت چپ به همراه استایل -->
+<style>
+.side-floating-char {
+    position: fixed;
+    left: 20px;
+    top: 25%;
+    width: 170px;
+    max-width: 18vw;
+    border-radius: 14px;
+    opacity: 0.58;
+    filter: contrast(1.05) drop-shadow(0 0 12px rgba(255, 105, 180, 0.35));
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.15s ease-out;
+}
+@media (max-width: 768px) {
+    .side-floating-char {
+        display: none;
+    }
+}
+</style>
+<img src="side-char.jpg" id="parallaxLeftChar" class="side-floating-char" alt="Side Character">
 </body>
 </html>
+
