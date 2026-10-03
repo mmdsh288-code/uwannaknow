@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>uwannaknow.me</title>
+<style>
+/* =========================
+   EASY EDIT SETTINGS
+   ========================= */
+:root{
+  --pink:#ff72c8;
+  --blue:#72d9ff;
+  --purple:#b38cff;
+  --yellow:#fff58a;
+  --ink:#211c2e;
+  --paper:#fffaff;
+  --glass:rgba(255,255,255,.76);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,#ffd7f1 0 8%,transparent 23%),
+    radial-gradient(circle at 90% 20%,#c7efff 0 7%,transparent 25%),
+    linear-gradient(135deg,#fff 0%,#e8e4ff 48%,#fff 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(#777 1px,transparent 1px);
+  background-size:7px 7px;mix-blend-mode:multiply;
+}
+a{color:inherit}
+.wrap{max-width:1080px;margin:auto;padding:18px}
+.topbar{
+  border:3px solid var(--ink);background:#fff;
+  box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+  font-size:12px;font-weight:bold;letter-spacing:1px;
+}
+.logo{font-size:21px;color:#ff3da9;text-shadow:2px 2px #a9efff}
+.marquee{
+  margin:22px 0;border:3px dashed var(--pink);background:#fff;
+  padding:8px;overflow:hidden;white-space:nowrap;font-size:12px;
+}
+.marquee span{display:inline-block;animation:slide 16s linear infinite}
+@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.grid{
+  display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
+}
+.card{
+  background:var(--glass);backdrop-filter:blur(8px);
+  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
+  padding:18px;margin-bottom:20px;
+}
+.hero{min-height:330px;position:relative;overflow:hidden}
+.sticker{
+  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
+  padding:5px 9px;transform:rotate(-3deg);font-size:12px;font-weight:bold
+}
+h1{font-size:clamp(52px,9vw,105px);line-height:.82;margin:25px 0 18px;letter-spacing:-6px}
+.subtitle{font-size:15px;max-width:600px;line-height:1.7}
+.pixelline{font-size:11px;color:#6b607b}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.links a{
+  text-decoration:none;background:#fff;border:2px solid var(--ink);
+  padding:9px 12px;font-size:12px;font-weight:bold;
+  box-shadow:3px 3px 0 var(--ink);transition:.15s
+}
+.links a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+h2{font-size:20px;margin:0 0 14px;color:#ff3da9}
+.post{border-top:2px dotted #9c91ab;padding:14px 0}
+.post:first-of-type{border-top:0}
+.date{font-size:10px;color:#776b86;letter-spacing:1px}
+.post h3{margin:5px 0;font-size:17px}
+.post p{font-size:13px;line-height:1.7;margin:7px 0}
+.spotify{
+  background:linear-gradient(135deg,#d9ffcf,#fff);
+  border:2px solid #1d4b27;padding:14px;
+}
+.now{display:flex;align-items:center;gap:12px}
+.cover{
+  width:58px;height:58px;border:2px solid var(--ink);
+  background:linear-gradient(135deg,#111,#ff8bd5,#9ff);
+  display:grid;place-items:center;font-weight:bold
+}
+.song{font-weight:bold;font-size:14px}
+.artist{font-size:11px;color:#6e6577;margin-top:3px}
+.bar{height:7px;background:#d0c8d9;margin-top:13px;border:1px solid #665b72}
+.bar i{display:block;width:43%;height:100%;background:#ff4eb4}
+.side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px}
+.facts{font-size:12px;line-height:2}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{border:1px solid var(--ink);background:#fff;padding:4px 7px;font-size:10px}
+.guestbook{font-size:12px;line-height:1.7}
+.character{
+  position:fixed;z-index:10;bottom:12px;pointer-events:none;
+  width:135px;filter:drop-shadow(4px 5px 0 rgba(33,28,46,.45));
+  animation:dance 1.8s ease-in-out infinite;
+}
+.character.left{left:5px}
+.character.right{right:5px;animation-delay:-.9s}
+.character img{width:100%;height:auto;display:block}
+.char-placeholder{
+  width:120px;height:160px;border:3px solid var(--ink);background:#fff;
+  display:grid;place-items:center;text-align:center;font-size:11px;padding:8px
+}
+@keyframes dance{
+  0%,100%{transform:translateY(0) rotate(-4deg)}
+  25%{transform:translateY(-14px) rotate(5deg)}
+  50%{transform:translateY(0) rotate(-2deg)}
+  75%{transform:translateY(-9px) rotate(6deg)}
+}
+footer{text-align:center;font-size:10px;padding:15px 0 45px;color:#73697c}
+@media(max-width:800px){
+ .grid{grid-template-columns:1fr}
+ .character{position:fixed;width:85px;bottom:6px}
+ .character.left{left:-3px}.character.right{right:-3px}
+ h1{letter-spacing:-4px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topbar">
+    <span class="logo">uwannaknow.me ✦</span>
+    <span>PERSONAL WEBLOG // ONLINE</span>
+  </header>
+
+  <div class="marquee"><span>★ welcome to my little corner of the internet ★ music ★ thoughts ★ anime ★ random stuff ★</span></div>
+
+  <div class="grid">
+    <main>
+      <section class="card hero">
+        <span class="sticker">HELLO INTERNET!</span>
+        <h1>uwanna<br>know?</h1>
+        <p class="subtitle">
+          this is my personal space on the web — a tiny blog about me,
+          music, things i'm into, random thoughts and whatever i feel like posting.
+        </p>
+        <div class="links">
+          <!-- CHANGE THESE LINKS -->
+          <a href="https://instagram.com/" target="_blank">♡ INSTAGRAM</a>
+          <a href="https://t.me/" target="_blank">✉ TELEGRAM</a>
+          <a href="https://open.spotify.com/" target="_blank">♫ SPOTIFY</a>
+          <a href="#blog">▣ BLOG</a>
+        </div>
+      </section>
+
+      <section class="card" id="blog">
+        <h2>★ my weblog</h2>
+
+        <!-- COPY THIS .post BLOCK TO ADD MORE POSTS -->
+        <article class="post">
+          <div class="date">03 / 10 / 2026 — 17:00</div>
+          <h3>first post :3</h3>
+          <p>
+            welcome to my website. i'll put random thoughts, music,
+            pictures and other internet nonsense here.
+          </p>
+        </article>
+
+        <article class="post">
+          <div class="date">02 / 10 / 2026</div>
+          <h3>currently listening...</h3>
+          <p>put whatever you're listening to here.</p>
+        </article>
+      </section>
+    </main>
+
+    <aside>
+      <section class="card">
+        <div class="side-title">♪ spotify</div>
+        <div class="spotify">
+          <div class="now">
+            <div class="cover">♫</div>
+            <div>
+              <!-- CHANGE SONG INFO -->
+              <div class="song">your current song</div>
+              <div class="artist">your artist</div>
+            </div>
+          </div>
+          <div class="bar"><i></i></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="side-title">☆ about me</div>
+        <div class="facts">
+          name: <b>Jaydes</b><br>
+          location: <b>internet</b><br>
+          status: <b>making music</b><br>
+          mood: <b>???</b>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="side-title">★ interests</div>
+        <div class="badges">
+          <span class="badge">MUSIC</span><span class="badge">ANIME</span>
+          <span class="badge">FL STUDIO</span><span class="badge">Y2K</span>
+          <span class="badge">GAMES</span><span class="badge">INTERNET</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="side-title">♡ guestbook</div>
+        <div class="guestbook">
+          this space can later become a real guestbook where visitors leave messages.
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <footer>uwannaknow.me // made with too much internet</footer>
+</div>
+
+<!--
+  ANIME CHARACTERS:
+  Replace the two placeholder blocks below with your own GIF/PNG.
+  Example:
+  <img src="assets/character1.gif" alt="">
+-->
+<div class="character left">
+  <div class="char-placeholder">ANIME GIF<br>GOES HERE<br>↑<br>replace me</div>
+</div>
+<div class="character right">
+  <div class="char-placeholder">ANIME GIF<br>GOES HERE<br>↑<br>replace me</div>
+</div>
+
+</body>
+</html>
