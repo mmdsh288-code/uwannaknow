@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>all about mee :3 ✦ リリイ・シュシュ</title>
+<title>smth about mee :3 ✦ リリイ・シュシュ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=M+PLUS+Rounded+1c:wght@700;800&family=VT323&display=swap" rel="stylesheet">
@@ -38,13 +38,13 @@ body{
   position:relative;
 }
 
-/* انیمیشن لود اولیه صفحه */
+/* انیمیشن لود صفحه */
 @keyframes slideUpEntrance {
   0% { opacity: 0; transform: translateY(40px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* شبکه نقطه‌ای ملایم پس‌زمینه (واترمارک‌ها حذف شدند) */
+/* بافت نقطه‌ای بسیار محو پس‌زمینه */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
@@ -52,7 +52,7 @@ body:before{
   z-index:0;
 }
 
-/* آرت سمت چپ صفحه */
+/* آرت‌های پس‌زمینه دو طرف */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -70,7 +70,6 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
-/* آرت مانگای محو شده بالا راست */
 .top-right-manga {
   position: fixed;
   top: 0;
@@ -107,43 +106,50 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   TOPBAR & SNAKE ANIMATION (نوار بالا با مار صورتی و زرد)
+   TOPBAR & SNAKE ANIMATION (نوار بالا با مارهای چرخان)
    ============================================================== */
 .topbar{
-  border:3px solid var(--ink);background:#fff;
-  box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
-  display:flex;justify-content:space-between;gap:8px;align-items:center;
-  font-size:12px;font-weight:bold;letter-spacing:1px;
+  border:3px solid var(--ink);
+  background:#fff;
+  box-shadow:8px 8px 0 var(--ink);
+  padding:10px 14px;
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  align-items:center;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* برای دیده شدن بالون تول‌تیپ */
 }
 
-/* مار صورتی (بالا) */
+/* مار صورتی بالا */
 .topbar::before {
   content: '';
   position: absolute;
-  width: 20%;
+  width: 22%;
   height: 3px;
   background: #ff69b4;
   box-shadow: 0 0 8px #ff69b4, 0 0 12px #ff69b4;
   top: 0;
   left: -25%;
   z-index: 10;
-  animation: snake-pink 3.5s linear infinite;
+  animation: snake-pink 3.8s linear infinite;
 }
 
-/* مار زرد (پایین) */
+/* مار زرد پایین */
 .topbar::after {
   content: '';
   position: absolute;
-  width: 20%;
+  width: 22%;
   height: 3px;
   background: #fffb00;
   box-shadow: 0 0 8px #fffb00, 0 0 12px #fffb00;
   bottom: 0;
   right: -25%;
   z-index: 10;
-  animation: snake-yellow 3.5s linear infinite;
+  animation: snake-yellow 3.8s linear infinite;
 }
 
 @keyframes snake-pink {
@@ -162,8 +168,15 @@ a{color:inherit}
   100% { right: -25%; bottom: 0; }
 }
 
-.logo{font-size:18px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
-.flair-symbol{font-size:18px;font-weight:900;color:#ff2a9d;}
+.logo{
+  font-size:17px;
+  color:#ff3da9;
+  text-shadow:2px 2px #a9efff;
+  font-family:'Fredoka',sans-serif;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
 
 .online-status-wrap{
   display:inline-flex;
@@ -184,21 +197,74 @@ a{color:inherit}
   100%{opacity: 1;transform: scale(1.15);box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;}
 }
 
+/* --- آیکون سمت راست و تول‌تیپ wanna click? --- */
+.icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.topbar-icon {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+  background: #000;
+}
+.icon-wrapper:hover .topbar-icon {
+  transform: scale(1.12) rotate(4deg);
+}
+
+.tooltip-wanna {
+  position: absolute;
+  bottom: 145%;
+  right: -8px;
+  background: repeating-linear-gradient(-45deg, #ffb6db, #ffb6db 8px, #ffeaf4 8px, #ffeaf4 16px);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 5px 13px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+}
+.tooltip-wanna::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 16px;
+  width: 10px;
+  height: 10px;
+  background: #ffb6db;
+  border-bottom: 2px solid var(--ink);
+  border-right: 2px solid var(--ink);
+  transform: rotate(45deg);
+}
+.icon-wrapper:hover .tooltip-wanna {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* ==============================================================
    CUTE MARQUEE
    ============================================================== */
 .marquee-wrapper { position: relative; margin: 22px 0; }
 .marquee {
-  position: relative;
-  border: 3px solid var(--ink);
+  position: relative; border: 3px solid var(--ink);
   background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 10px, #fff0f8 10px, #fff0f8 20px);
-  padding: 10px 14px;
-  overflow: hidden;
-  white-space: nowrap;
-  border-radius: 14px;
-  box-shadow: 5px 5px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.35);
-  display: flex;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 10px 14px; overflow: hidden; white-space: nowrap;
+  border-radius: 14px; box-shadow: 5px 5px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.35);
+  display: flex; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .marquee:hover {
   transform: translateY(-2px);
@@ -206,59 +272,84 @@ a{color:inherit}
   border-color: #ff2a9d;
 }
 .marquee-content {
-  display: inline-flex;
-  white-space: nowrap;
+  display: inline-flex; white-space: nowrap;
   animation: smoothMarquee 150s linear infinite;
-  font-family: 'VT323', monospace;
-  font-size: 21px;
-  letter-spacing: 1.5px;
-  color: #3b284c;
-  text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
+  font-family: 'VT323', monospace; font-size: 21px; letter-spacing: 1.5px;
+  color: #3b284c; text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
 }
 .marquee-content span b { font-weight: normal; color: #ff1f8f; margin: 0 14px; }
-@keyframes smoothMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+@keyframes smoothMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* ==============================================================
-   CARDS & HOVER GLOW (افکت نوری روی باکس‌ها)
+   CARDS & HOVER GLOW (افکت نور ملایم دور تمام کادرها)
    ============================================================== */
 .grid{ display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start }
 
 .card{
   background:var(--glass);backdrop-filter:blur(8px);
   border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
-  padding:20px;margin-bottom:20px;border-radius:6px;
-  position:relative;
-  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  padding:20px;margin-bottom:20px;border-radius:6px; position:relative;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
-/* هاور خفن صورتی زرد */
+/* هاور نورانی ملایم صورتی و زرد روی کادرها */
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 15px 2px rgba(255, 105, 180, 0.35), 
-              0 0 20px 4px rgba(255, 255, 0, 0.25) !important;
+  box-shadow: 0 0 15px 2px rgba(255, 105, 180, 0.38), 
+              0 0 22px 5px rgba(255, 255, 0, 0.28) !important;
 }
 
 .hero{min-height:330px;position:relative;overflow:hidden}
+
+/* استیکر ولکام با رفتار دکمه کیبورد */
 .sticker{
   display:inline-block;background:var(--yellow);border:2px solid var(--ink);
-  padding:5px 12px;transform:rotate(-3deg);font-size:12px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);border-radius:4px;
+  padding:6px 14px;transform:rotate(-3deg);font-size:12px;font-weight:bold;
+  box-shadow:3px 3px 0 var(--ink);border-radius:6px;
+  cursor: pointer;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+.sticker:hover {
+  transform: rotate(-3deg) translateY(2px);
+  box-shadow: 1px 1px 0 var(--ink);
+  filter: brightness(1.04);
+}
+.sticker:active {
+  transform: rotate(-3deg) translateY(3px);
+  box-shadow: 0 0 0 var(--ink);
 }
 
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
-  font-size:clamp(46px,8.5vw,94px);
+  font-size:clamp(46px,8.5vw,88px);
   line-height:.95;margin:22px 0 16px;
   letter-spacing:-2px;
   color:#ff47ab;
   text-shadow: 4px 4px 0 #fff, 7px 7px 0 var(--ink), 0 0 20px rgba(255,107,189,0.4);
 }
-.subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
 
-.links{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+/* متن بیو جدید */
+.subtitle{
+  font-size:14.5px;max-width:640px;line-height:1.75;color:#352b46;
+  font-weight: 500; margin-bottom: 8px;
+}
+.inline-gif {
+  width: 32px; height: 32px; border-radius: 6px;
+  vertical-align: middle; margin-left: 6px; border: 1.5px solid var(--ink);
+  box-shadow: 1px 1px 0 var(--ink);
+  object-fit: cover;
+}
+
+/* خط‌چین گوگولی و فیدشده */
+.cute-divider {
+  border: none;
+  border-top: 3px dotted rgba(255, 107, 189, 0.45);
+  margin: 16px 0 16px 0;
+  width: 96%;
+}
+
+.links{ display:flex; flex-wrap:wrap; gap:12px; }
 .links a{
   text-decoration:none;
   background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 9px, #ffe1f2 9px, #ffe1f2 18px);
@@ -268,11 +359,7 @@ h1.kawaii-title{
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
   user-select:none;
 }
-.links a:hover{
-  transform: scale(1.08) translateY(-3px);
-  box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45);
-  filter: saturate(1.15);
-}
+.links a:hover{ transform: scale(1.08) translateY(-3px); box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45); filter: saturate(1.15); }
 .links a:active{ transform: scale(0.98) translateY(1px); box-shadow:2px 2px 0 var(--ink); }
 
 .links a.btn-ig{ color:#bc1888; border-color:#d62976; }
@@ -294,114 +381,46 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
   border:3px solid var(--ink);padding:16px;
-  box-shadow:inset 0 0 10px rgba(255,107,189,0.15);
-  border-radius:6px;
+  box-shadow:inset 0 0 10px rgba(255,107,189,0.15); border-radius:6px;
 }
 .spotify-tag-row{ display:flex;justify-content:space-between;align-items:center;margin-bottom:10px; }
-.spotify-live{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#20192b;color:#67ffaa;font-size:10px;padding:3px 8px;
-  font-family:'VT323',monospace;letter-spacing:1px;border-radius:4px;
-  box-shadow:1px 1px 0 var(--ink);
-}
-.live-dot{
-  width:7px;height:7px;border-radius:50%;background:#1ed760;
-  box-shadow:0 0 8px #1ed760;animation:pulse 1s infinite alternate;
-}
+.spotify-live{ display:inline-flex;align-items:center;gap:6px; background:#20192b;color:#67ffaa;font-size:10px;padding:3px 8px; font-family:'VT323',monospace;letter-spacing:1px;border-radius:4px; box-shadow:1px 1px 0 var(--ink); }
+.live-dot{ width:7px;height:7px;border-radius:50%;background:#1ed760; box-shadow:0 0 8px #1ed760;animation:pulse 1s infinite alternate; }
 @keyframes pulse{from{opacity:0.3;transform:scale(0.8)}to{opacity:1;transform:scale(1.2)}}
 .cute-cupcake{font-size:18px;}
-
 .now{display:flex;align-items:center;gap:12px}
-.cover-img-box{
-  width:64px;height:64px;border:2px solid var(--ink);
-  box-shadow:3px 3px 0 var(--ink);border-radius:8px;
-  overflow:hidden;flex-shrink:0;background:#ffc8e9;
-}
+.cover-img-box{ width:64px;height:64px;border:2px solid var(--ink); box-shadow:3px 3px 0 var(--ink);border-radius:8px; overflow:hidden;flex-shrink:0;background:#ffc8e9; }
 .cover-img-box img{ width:100%;height:100%;object-fit:cover;display:block; transition:transform 0.3s ease; }
 .cover-img-box:hover img{ transform:scale(1.08); }
 .song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
-
 .timeline-container{ margin-top:14px; }
-.timeline-bar{
-  width:100%;height:14px;background:#ffd4ec;
-  border:2px solid var(--ink);border-radius:10px;
-  overflow:hidden;position:relative;cursor:pointer;
-  box-shadow:inset 0 1px 4px rgba(0,0,0,0.15);
-}
-.timeline-fill{
-  height:100%;width:0%;
-  background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%);
-  background-size:24px 24px;
-  background-image:linear-gradient(45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.4) 75%, transparent 75%, transparent);
-  animation:wavePattern 1.2s linear infinite;
-  border-radius:6px;
-  transition:width 0.1s linear;
-}
+.timeline-bar{ width:100%;height:14px;background:#ffd4ec; border:2px solid var(--ink);border-radius:10px; overflow:hidden;position:relative;cursor:pointer; box-shadow:inset 0 1px 4px rgba(0,0,0,0.15); }
+.timeline-fill{ height:100%;width:0%; background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%); background-size:24px 24px; background-image:linear-gradient(45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.4) 75%, transparent 75%, transparent); animation:wavePattern 1.2s linear infinite; border-radius:6px; transition:width 0.1s linear; }
 @keyframes wavePattern { 0% { background-position: 0 0; } 100% { background-position: 24px 0; } }
-.time-display{
-  display:flex;justify-content:space-between;
-  font-family:'VT323',monospace;font-size:13px;
-  color:#5d3b66;margin-top:4px;font-weight:bold;
-}
-
+.time-display{ display:flex;justify-content:space-between; font-family:'VT323',monospace;font-size:13px; color:#5d3b66;margin-top:4px;font-weight:bold; }
 .player-controls{ display:flex;gap:6px;align-items:center;margin-top:10px; }
-.track-nav-btn{
-  cursor:pointer;background:#fff;border:2px solid var(--ink);
-  box-shadow:2px 2px 0 var(--ink);font-size:14px;padding:7px 11px;
-  border-radius:5px;font-weight:bold;transition:.15s;
-}
+.track-nav-btn{ cursor:pointer;background:#fff;border:2px solid var(--ink); box-shadow:2px 2px 0 var(--ink);font-size:14px;padding:7px 11px; border-radius:5px;font-weight:bold;transition:.15s; }
 .track-nav-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);background:#ffe8f6;}
-.audio-ctrl{
-  cursor:pointer;background:#ff6bbd;color:#fff;
-  border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold;
-  width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px;
-  transition:.15s;text-align:center;
-}
+.audio-ctrl{ cursor:pointer;background:#ff6bbd;color:#fff; border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold; width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px; transition:.15s;text-align:center; }
 .audio-ctrl:hover{background:#ff4cae;}
 .spotify-actions{ margin-top:10px;display:flex;flex-direction:column;gap:6px; }
-.spotify-btn{
-  display:block;text-align:center;text-decoration:none;
-  background:#fff;border:2px solid var(--ink);
-  padding:7px;font-size:11.5px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
-}
+.spotify-btn{ display:block;text-align:center;text-decoration:none; background:#fff;border:2px solid var(--ink); padding:7px;font-size:11.5px;font-weight:bold; box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px; }
 .spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
 
 /* =======================================
    CUSTOM ABOUT ME CARD
    ======================================= */
-.card-about{
-  background: repeating-linear-gradient(-45deg, rgba(255, 230, 245, 0.75), rgba(255, 230, 245, 0.75) 12px, rgba(255, 255, 255, 0.85) 12px, rgba(255, 255, 255, 0.85) 24px);
-  position:relative; overflow:hidden;
-}
-.card-about::before{
-  content:""; position:absolute; inset:0;
-  background-image:url('about-bg.jpg'), url('about-bg.jpg.jpg');
-  background-size:cover; background-position:center;
-  opacity:0.32; pointer-events:none; filter:contrast(115%) saturate(110%); z-index:0;
-}
+.card-about{ background: repeating-linear-gradient(-45deg, rgba(255, 230, 245, 0.75), rgba(255, 230, 245, 0.75) 12px, rgba(255, 255, 255, 0.85) 12px, rgba(255, 255, 255, 0.85) 24px); position:relative; overflow:hidden; }
+.card-about::before{ content:""; position:absolute; inset:0; background-image:url('about-bg.jpg'); background-size:cover; background-position:center; opacity:0.32; pointer-events:none; filter:contrast(115%) saturate(110%); z-index:0; }
 .about-inner{ position:relative; z-index:2; }
-.about-wiggle-title{
-  display:inline-block; font-size:22px; border:none; font-weight:900; letter-spacing:2px;
-  color:#ff2497; text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5);
-  margin-bottom:14px; animation:wiggleTitle 2.4s ease-in-out infinite;
-}
-@keyframes wiggleTitle{
-  0%, 100%{ transform: rotate(0deg) translateY(0); }
-  25%{ transform: rotate(-2.5deg) translateY(-2px); }
-  75%{ transform: rotate(2.5deg) translateY(1px); }
-}
+.about-wiggle-title{ display:inline-block; font-size:22px; border:none; font-weight:900; letter-spacing:2px; color:#ff2497; text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5); margin-bottom:14px; animation:wiggleTitle 2.4s ease-in-out infinite; }
+@keyframes wiggleTitle{ 0%, 100%{ transform: rotate(0deg) translateY(0); } 25%{ transform: rotate(-2.5deg) translateY(-2px); } 75%{ transform: rotate(2.5deg) translateY(1px); } }
 .alt-facts{ font-size:13.5px; line-height:2.2; font-weight:600; color:#1f182c; text-shadow:0 1px 3px rgba(255,255,255,0.9); }
-.alt-name{
-  font-family:'Fredoka',sans-serif; color:#e7007d; font-size:17px; letter-spacing:1px;
-  text-shadow:1px 1px 0 #fff; background:rgba(255,255,255,0.7); padding:2px 8px;
-  border-radius:6px; border:none; font-weight:800;
-}
+.alt-name{ font-family:'Fredoka',sans-serif; color:#e7007d; font-size:17px; letter-spacing:1px; text-shadow:1px 1px 0 #fff; background:rgba(255,255,255,0.7); padding:2px 8px; border-radius:6px; border:none; font-weight:800; }
 .alt-place{color:#0071a8;font-weight:700;}
 .alt-activities{color:#5d1e8c;font-weight:700;letter-spacing:0.5px;}
 .alt-mood{font-size:15px;letter-spacing:2px;}
-
 .side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px;font-weight:bold;}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
 .badge{border:1px solid var(--ink);background:#fff;padding:4px 8px;font-size:10px;border-radius:3px;box-shadow:1px 1px 0 var(--ink);}
@@ -410,63 +429,22 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 /* ==============================================================
    DRAGGABLE & FLOATING CHARACTERS
    ============================================================== */
-.character{
-  position:fixed; z-index:999; cursor: grab; touch-action: none;
-  user-select: none; transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
-}
+.character{ position:fixed; z-index:999; cursor: grab; touch-action: none; user-select: none; transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease; }
 .character:hover{ filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6)); }
 .character.dragging{ cursor: grabbing !important; transform: scale(1.06) !important; z-index: 1000 !important; }
 .character.right{ right:18px; bottom:15px; width:155px; }
 .character.left{ left:18px; bottom:15px; width:145px; }
 .character.right .akame-choco-frame{ animation:slowFloat 6s ease-in-out infinite alternate; }
 .character.left .left-char-frame{ animation:slowFloatLeft 5.5s ease-in-out infinite alternate; }
-
-@keyframes slowFloat{
-  0%{transform:translateY(0px) rotate(0deg);}
-  50%{transform:translateY(-12px) rotate(1.5deg);}
-  100%{transform:translateY(-4px) rotate(-1deg);}
-}
-@keyframes slowFloatLeft{
-  0%{transform:translateY(0px) rotate(0deg);}
-  50%{transform:translateY(-10px) rotate(-1.5deg);}
-  100%{transform:translateY(-3px) rotate(1deg);}
-}
+@keyframes slowFloat{ 0%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-12px) rotate(1.5deg);} 100%{transform:translateY(-4px) rotate(-1deg);} }
+@keyframes slowFloatLeft{ 0%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-10px) rotate(-1.5deg);} 100%{transform:translateY(-3px) rotate(1deg);} }
 .character.dragging .akame-choco-frame, .character.dragging .left-char-frame{ animation: none !important; }
-
-/* قاب شکلاتی آکامه */
-.akame-choco-frame{
-  width:100%; border:4px solid var(--choco-dark);
-  background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%); padding:5px;
-  border-radius:18px; box-shadow:0 8px 20px var(--choco-glow), 3px 4px 0 var(--ink), inset 0 0 10px rgba(255, 182, 193, 0.25);
-  overflow:hidden; pointer-events: none;
-}
-.akame-choco-frame img{
-  width:100%;height:220px; object-fit:cover; object-position:top center;
-  display:block; border-radius:12px; border:2px dashed #ffb8d9; pointer-events: none;
-}
-.akame-choco-tag{
-  background:linear-gradient(135deg, #533236, #372023); color:#ffd9e8; border:2px solid var(--choco-dark);
-  font-size:11px;font-weight:bold;padding:4px 8px; text-align:center;margin-top:6px;
-  box-shadow:2px 2px 0 var(--ink); border-radius:12px; letter-spacing:0.5px;
-  display:flex;align-items:center;justify-content:center;gap:4px; pointer-events: none;
-}
-
-/* قاب کاراکتر چپ */
-.left-char-frame{
-  width:100%; border:4px solid var(--ink);
-  background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%); padding:5px;
-  border-radius:18px; box-shadow:0 8px 20px rgba(255, 107, 189, 0.35), 3px 4px 0 var(--ink);
-  overflow:hidden; pointer-events: none;
-}
-.left-char-frame img{
-  width:100%;height:210px; object-fit:cover; object-position:top center; display:block;
-  border-radius:12px; border:2px dashed #ff6bbd; pointer-events: none;
-}
-.left-char-tag{
-  background:#fff; color:#ff2497; border:2px solid var(--ink); font-size:11px;font-weight:bold;padding:4px 8px;
-  text-align:center;margin-top:6px; box-shadow:2px 2px 0 var(--ink); border-radius:12px; pointer-events: none;
-}
-
+.akame-choco-frame{ width:100%; border:4px solid var(--choco-dark); background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%); padding:5px; border-radius:18px; box-shadow:0 8px 20px var(--choco-glow), 3px 4px 0 var(--ink), inset 0 0 10px rgba(255, 182, 193, 0.25); overflow:hidden; pointer-events: none; }
+.akame-choco-frame img{ width:100%;height:220px; object-fit:cover; object-position:top center; display:block; border-radius:12px; border:2px dashed #ffb8d9; pointer-events: none; }
+.akame-choco-tag{ background:linear-gradient(135deg, #533236, #372023); color:#ffd9e8; border:2px solid var(--choco-dark); font-size:11px;font-weight:bold;padding:4px 8px; text-align:center;margin-top:6px; box-shadow:2px 2px 0 var(--ink); border-radius:12px; letter-spacing:0.5px; display:flex;align-items:center;justify-content:center;gap:4px; pointer-events: none; }
+.left-char-frame{ width:100%; border:4px solid var(--ink); background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%); padding:5px; border-radius:18px; box-shadow:0 8px 20px rgba(255, 107, 189, 0.35), 3px 4px 0 var(--ink); overflow:hidden; pointer-events: none; }
+.left-char-frame img{ width:100%;height:210px; object-fit:cover; object-position:top center; display:block; border-radius:12px; border:2px dashed #ff6bbd; pointer-events: none; }
+.left-char-tag{ background:#fff; color:#ff2497; border:2px solid var(--ink); font-size:11px;font-weight:bold;padding:4px 8px; text-align:center;margin-top:6px; box-shadow:2px 2px 0 var(--ink); border-radius:12px; pointer-events: none; }
 footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
 
 @media(max-width:800px){
@@ -476,29 +454,43 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   .akame-choco-frame img{height:140px;}
   .left-char-frame img{height:130px;}
 }
+
+/* استایل روبان‌ها و گل‌های ریزان */
+.falling-ribbon {
+  position: fixed; top: -50px; pointer-events: none; z-index: 9999;
+  animation: fallDown linear forwards;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.3));
+}
+@keyframes fallDown {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
 </style>
 </head>
 <body>
 
-<!-- Side Artworks -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
 <img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
-
-<!-- Audio Player Element -->
 <audio id="bgMusic" preload="auto"></audio>
 
 <div class="wrap">
   
-  <!-- نوار بالای آپدیت شده -->
+  <!-- نوار بالای صفحه با مارهای چرخان و لوگو/تول‌تیپ جدید -->
   <header class="topbar">
-    <span class="logo">all about mee :3 ✦ リリイ・シュシュ</span>
+    <div class="logo">
+      <span>smth about mee :3 ✦ リリイ・シュシュ</span>
+    </div>
     
     <div class="online-status-wrap">
       <span class="online-dot"></span>
       <span>私をすごく愛しているなら ✦ ONLINE</span>
     </div>
 
-    <span class="flair-symbol">📄</span>
+    <!-- آیکون جدید همراه با تول‌تیپ راه‌راه صورتی wanna click? -->
+    <div class="icon-wrapper">
+      <img src="007bf416e695a0035c1283bc4c94fa5a.jpg" class="topbar-icon" alt="icon">
+      <span class="tooltip-wanna">wanna click?</span>
+    </div>
   </header>
 
   <!-- نوار مارکی متحرک -->
@@ -511,74 +503,13 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           "Maybe I was happier when I didn't understand." <b>✦</b>
           "I wish someone could see what I hide." <b>✦</b>
           "I keep smiling like nothing ever happened." <b>✦</b>
-          "I wonder if you ever miss me too." <b>✦</b>
-          "I don't want to be remembered this way." <b>✦</b>
-          "Everything feels different when you're not here." <b>✦</b>
-          "I gave you everything and somehow lost myself." <b>✦</b>
-          "I still think about you when nobody's around." <b>✦</b>
-          "Some memories hurt more when they're beautiful." <b>✦</b>
-          "I wish I could go back before everything changed." <b>✦</b>
-          "You were the closest thing I had to home." <b>✦</b>
-          "I never learned how to say goodbye." <b>✦</b>
-          "I pretend I don't care because it's easier." <b>✦</b>
-          "There are things I will never be able to explain." <b>✦</b>
-          "I wonder if you remember the little things." <b>✦</b>
-          "Sometimes I just want everything to be quiet." <b>✦</b>
-          "I don't think anyone really knows me." <b>✦</b>
-          "I keep looking for you in places you'll never be." <b>✦</b>
-          "Maybe we were meant to meet, not to stay." <b>✦</b>
-          "I loved you more than I knew how to say." <b>✦</b>
-          "I wish I could forget without losing the memories." <b>✦</b>
-          "You left, but somehow you're still everywhere." <b>✦</b>
-          "I don't know when I stopped feeling like myself." <b>✦</b>
-          "I hope you know that I really tried." <b>✦</b>
-          "Some nights feel longer than they should." <b>✦</b>
-          "I wonder who I would've become without you." <b>✦</b>
-          "I still hear your voice in my head sometimes." <b>✦</b>
-          "I wanted forever, but you only wanted a moment." <b>✦</b>
-          "Maybe someday this won't hurt anymore." <b>✦</b>
-          "I wish I had known it was the last time." <b>✦</b>
-          "I keep holding on to something that's already gone." <b>✦</b>
-          "You meant more to me than I ever admitted." <b>✦</b>
-          "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
-        <!-- تکرار دوم برای پیوستگی بدون وقفه انیمیشن -->
         <span>
           "I miss the person I used to be." <b>✦</b>
           "I don't know how to feel anything anymore." <b>✦</b>
           "Maybe I was happier when I didn't understand." <b>✦</b>
           "I wish someone could see what I hide." <b>✦</b>
           "I keep smiling like nothing ever happened." <b>✦</b>
-          "I wonder if you ever miss me too." <b>✦</b>
-          "I don't want to be remembered this way." <b>✦</b>
-          "Everything feels different when you're not here." <b>✦</b>
-          "I gave you everything and somehow lost myself." <b>✦</b>
-          "I still think about you when nobody's around." <b>✦</b>
-          "Some memories hurt more when they're beautiful." <b>✦</b>
-          "I wish I could go back before everything changed." <b>✦</b>
-          "You were the closest thing I had to home." <b>✦</b>
-          "I never learned how to say goodbye." <b>✦</b>
-          "I pretend I don't care because it's easier." <b>✦</b>
-          "There are things I will never be able to explain." <b>✦</b>
-          "I wonder if you remember the little things." <b>✦</b>
-          "Sometimes I just want everything to be quiet." <b>✦</b>
-          "I don't think anyone really knows me." <b>✦</b>
-          "I keep looking for you in places you'll never be." <b>✦</b>
-          "Maybe we were meant to meet, not to stay." <b>✦</b>
-          "I loved you more than I knew how to say." <b>✦</b>
-          "I wish I could forget without losing the memories." <b>✦</b>
-          "You left, but somehow you're still everywhere." <b>✦</b>
-          "I don't know when I stopped feeling like myself." <b>✦</b>
-          "I hope you know that I really tried." <b>✦</b>
-          "Some nights feel longer than they should." <b>✦</b>
-          "I wonder who I would've become without you." <b>✦</b>
-          "I still hear your voice in my head sometimes." <b>✦</b>
-          "I wanted forever, but you only wanted a moment." <b>✦</b>
-          "Maybe someday this won't hurt anymore." <b>✦</b>
-          "I wish I had known it was the last time." <b>✦</b>
-          "I keep holding on to something that's already gone." <b>✦</b>
-          "You meant more to me than I ever admitted." <b>✦</b>
-          "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
       </div>
     </div>
@@ -587,14 +518,24 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <div class="grid">
     <main>
       <section class="card hero">
-        <span class="sticker">WELCOME! 🧁₊˚✧</span>
-        <h1 class="kawaii-title">all about<br>mee :3</h1>
-        <p class="subtitle">
-          this is my personal space on the web — a tiny aesthetic corner about me,
-          music, cute symbols, anime, random thoughts and whatever i feel like posting.
-        </p>
+        <!-- استیکر WELCOME با افکت دکمه کیبورد و بارش روبان -->
+        <span class="sticker" id="welcomeSticker">WELCOME! 🧁₊˚✧</span>
+        
+        <h1 class="kawaii-title">smth about<br>mee :3</h1>
+        
+        <!-- متن بیو جدید به همراه گیف انیمه در انتهای متن -->
+        <div class="subtitle">
+          This is my personal page for my bio, random info, and a few little personal things about me.<br><br>
+          I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.<br><br>
+          And honestly, idk why I made this site so cute and girly lol :)<br><br>
+          But yeah, basically, I post whatever I’m into or whatever catches my attention — anime, music, pretty symbols, random stuff, and literally anything that gives me a good feeling.<br><br>
+          This is kinda just my little corner of the internet where I can dump whatever I like and be myself.
+          <img src="anime-girl.gif" class="inline-gif" alt="cute anime">
+        </div>
+        
+        <!-- خط‌چین صورتی فیدشده برای جداسازی از بخش کانکشن‌ها -->
+        <hr class="cute-divider">
 
-        <!-- لینک‌های شبکه‌های اجتماعی -->
         <div class="links">
           <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
             <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
@@ -616,15 +557,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
       <section class="card" id="blog">
         <h2>★ my weblog</h2>
-
         <article class="post">
-          <div class="date">03 / 10 / 2026 — 17:00</div>
+          <div class="date">05 / 10 / 2026 — 22:27</div>
           <h3>リリイ・シュシュ ✦</h3>
-          <p>
-            floating through sounds and headphone wires... welcome to my aesthetic haven.
-          </p>
+          <p>floating through sounds and headphone wires... welcome to my aesthetic haven.</p>
         </article>
-
         <article class="post">
           <div class="date">02 / 10 / 2026</div>
           <h3>currently listening... 🍓</h3>
@@ -646,7 +583,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
             <span class="cute-cupcake">🧁🍓</span>
           </div>
-
           <div class="now">
             <div class="cover-img-box">
               <img id="trackCoverImg" src="cover1.jpg" onerror="this.src='cover1.jpg'" alt="Album Cover">
@@ -656,7 +592,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
               <div class="artist" id="trackArtist">datealyfe ✦</div>
             </div>
           </div>
-          
           <div class="timeline-container">
             <div class="timeline-bar" id="timelineBar">
               <div class="timeline-fill" id="timelineFill"></div>
@@ -666,17 +601,10 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
               <span id="totalDuration">00:00</span>
             </div>
           </div>
-
           <div class="player-controls">
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
             <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
             <button class="track-nav-btn" id="nextBtn" title="Next Track">⏭</button>
-          </div>
-
-          <div class="spotify-actions">
-            <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="spotify-btn">
-              🎧 Open My Spotify Playlist
-            </a>
           </div>
         </div>
       </section>
@@ -684,9 +612,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <!-- CUSTOM ABOUT ME CARD -->
       <section class="card card-about">
         <div class="about-inner">
-          <div class="about-wiggle-title">
-            ‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙
-          </div>
+          <div class="about-wiggle-title">‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙</div>
           <div class="alt-facts">
             NAME: <b class="alt-name">kiawn</b><br>
             PLACE: <span class="alt-place">tehran ✧</span><br>
@@ -709,22 +635,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <span class="badge">リリイ・シュシュ</span>
         </div>
       </section>
-
-      <section class="card">
-        <div class="side-title">♡ guestbook</div>
-        <div class="guestbook">
-          leave your thoughts here or say hi :3 
-        </div>
-      </section>
     </aside>
   </div>
-
-  <footer>all about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
+  <footer>smth about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
 </div>
 
-<!-- ==============================================================
-     CHARACTERS (DRAGGABLE)
-     ============================================================== -->
 <div class="character left" id="leftChar">
   <div class="left-char-frame">
     <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
@@ -743,9 +658,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   // صدای کلیک کیوت وب‌آدیو
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     
@@ -758,86 +671,91 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
-
     osc.start();
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
   document.addEventListener('click', (e) => {
-    if (e.target.closest('button, a, .timeline-bar, .badge')) {
+    if (e.target.closest('button, a, .timeline-bar, .badge, .sticker, .icon-wrapper')) {
       playCuteClick();
     }
   });
 
-  // کنترل جابه‌جایی آزاد المان‌ها
+  // کنترل افکت بارش روبان و گل با نگه داشتن یا هاور روی دکمه WELCOME
+  const welcomeSticker = document.getElementById('welcomeSticker');
+  if(welcomeSticker) {
+    const triggerRain = () => {
+      if(welcomeSticker.dataset.animating === "true") return;
+      welcomeSticker.dataset.animating = "true";
+      
+      const emojis = ['🌸', '🎀', '✨', '🍓', '💌', '🍡'];
+      for(let i=0; i<16; i++) {
+        setTimeout(() => {
+          const ribbon = document.createElement('div');
+          ribbon.classList.add('falling-ribbon');
+          ribbon.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+          ribbon.style.left = (Math.random() * 100) + 'vw';
+          ribbon.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          ribbon.style.fontSize = (Math.random() * 10 + 16) + 'px';
+          document.body.appendChild(ribbon);
+          
+          setTimeout(() => ribbon.remove(), 4000);
+        }, i * 140);
+      }
+      setTimeout(() => { welcomeSticker.dataset.animating = "false"; }, 2500);
+    };
+
+    welcomeSticker.addEventListener('mouseenter', triggerRain);
+    welcomeSticker.addEventListener('click', triggerRain);
+  }
+
+  // درگ کردن کاراکترهای شناور
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
     elmnt.addEventListener('mousedown', dragMouseDown);
     elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
 
     function dragMouseDown(e) {
       if (e.button !== 0) return;
       e.preventDefault();
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-
+      pos3 = e.clientX; pos4 = e.clientY;
       const rect = elmnt.getBoundingClientRect();
-      elmnt.style.bottom = 'auto';
-      elmnt.style.right = 'auto';
-      elmnt.style.left = rect.left + 'px';
-      elmnt.style.top = rect.top + 'px';
-
+      elmnt.style.bottom = 'auto'; elmnt.style.right = 'auto';
+      elmnt.style.left = rect.left + 'px'; elmnt.style.top = rect.top + 'px';
       elmnt.classList.add('dragging');
       document.addEventListener('mouseup', closeDragElement);
       document.addEventListener('mousemove', elementDrag);
     }
-
     function elementDrag(e) {
       e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-
+      pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY;
+      pos3 = e.clientX; pos4 = e.clientY;
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
-
     function closeDragElement() {
       elmnt.classList.remove('dragging');
       document.removeEventListener('mouseup', closeDragElement);
       document.removeEventListener('mousemove', elementDrag);
     }
-
     function dragTouchStart(e) {
       const touch = e.touches[0];
-      pos3 = touch.clientX;
-      pos4 = touch.clientY;
-
+      pos3 = touch.clientX; pos4 = touch.clientY;
       const rect = elmnt.getBoundingClientRect();
-      elmnt.style.bottom = 'auto';
-      elmnt.style.right = 'auto';
-      elmnt.style.left = rect.left + 'px';
-      elmnt.style.top = rect.top + 'px';
-
+      elmnt.style.bottom = 'auto'; elmnt.style.right = 'auto';
+      elmnt.style.left = rect.left + 'px'; elmnt.style.top = rect.top + 'px';
       elmnt.classList.add('dragging');
       document.addEventListener('touchend', closeTouchDrag);
       document.addEventListener('touchmove', touchDrag, { passive: false });
     }
-
     function touchDrag(e) {
       e.preventDefault();
       const touch = e.touches[0];
-      pos1 = pos3 - touch.clientX;
-      pos2 = pos4 - touch.clientY;
-      pos3 = touch.clientX;
-      pos4 = touch.clientY;
-
+      pos1 = pos3 - touch.clientX; pos2 = pos4 - touch.clientY;
+      pos3 = touch.clientX; pos4 = touch.clientY;
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
-
     function closeTouchDrag() {
       elmnt.classList.remove('dragging');
       document.removeEventListener('touchend', closeTouchDrag);
@@ -850,25 +768,10 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
   // موزیک پلیر
   const playlist = [
-    {
-      title: "you're so vile",
-      artist: "datealyfe ✦",
-      src: "music.mp3",
-      cover: "cover1.jpg",
-      badge: "TRACK 1/2"
-    },
-    {
-      title: "LEASE",
-      artist: "阿保剛 (Takeshi Abo) ✦",
-      src: "music2.mp3",
-      cover: "cover2.jpg",
-      badge: "TRACK 2/2"
-    }
+    { title: "you're so vile", artist: "datealyfe ✦", src: "music.mp3", cover: "cover1.jpg", badge: "TRACK 1/2" },
+    { title: "LEASE", artist: "阿保剛 (Takeshi Abo) ✦", src: "music2.mp3", cover: "cover2.jpg", badge: "TRACK 2/2" }
   ];
-
-  let currentIdx = 0;
-  let isPlaying = false;
-
+  let currentIdx = 0; let isPlaying = false;
   const audio = document.getElementById('bgMusic');
   const playBtn = document.getElementById('playBtn');
   const prevBtn = document.getElementById('prevBtn');
@@ -877,7 +780,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   const trackArtist = document.getElementById('trackArtist');
   const playerBadge = document.getElementById('playerBadge');
   const trackCoverImg = document.getElementById('trackCoverImg');
-
   const timelineBar = document.getElementById('timelineBar');
   const timelineFill = document.getElementById('timelineFill');
   const currentTimeDisplay = document.getElementById('currentTime');
@@ -885,37 +787,20 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
   function formatTime(sec) {
     if (isNaN(sec)) return "00:00";
-    const minutes = Math.floor(sec / 60);
-    const seconds = Math.floor(sec % 60);
+    const minutes = Math.floor(sec / 60); const seconds = Math.floor(sec % 60);
     return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
-
   function loadTrack(idx, shouldPlay = false) {
-    currentIdx = idx;
-    const track = playlist[currentIdx];
-
-    audio.pause();
-    audio.src = track.src;
-    audio.load();
-
-    trackTitle.innerText = track.title;
-    trackArtist.innerText = track.artist;
+    currentIdx = idx; const track = playlist[currentIdx];
+    audio.pause(); audio.src = track.src; audio.load();
+    trackTitle.innerText = track.title; trackArtist.innerText = track.artist;
     if (playerBadge) playerBadge.innerText = track.badge;
     trackCoverImg.src = track.cover;
-
-    timelineFill.style.width = '0%';
-    currentTimeDisplay.innerText = "00:00";
-
+    timelineFill.style.width = '0%'; currentTimeDisplay.innerText = "00:00";
     if (shouldPlay) {
-      audio.play().then(() => {
-        isPlaying = true;
-        playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch(err => {
-        console.warn("Autoplay prevention:", err);
-      });
+      audio.play().then(() => { isPlaying = true; playBtn.innerText = '❚❚ Pause 🍬'; }).catch(()=>{});
     } else {
-      isPlaying = false;
-      playBtn.innerText = '▶ Play 🍬';
+      isPlaying = false; playBtn.innerText = '▶ Play 🍬';
     }
   }
 
@@ -927,65 +812,28 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       totalDurationDisplay.innerText = formatTime(audio.duration);
     }
   });
-
-  audio.addEventListener('loadedmetadata', () => {
-    totalDurationDisplay.innerText = formatTime(audio.duration);
-  });
-
-  audio.addEventListener('ended', () => {
-    currentIdx = (currentIdx + 1) % playlist.length;
-    loadTrack(currentIdx, true);
-  });
+  audio.addEventListener('loadedmetadata', () => { totalDurationDisplay.innerText = formatTime(audio.duration); });
+  audio.addEventListener('ended', () => { currentIdx = (currentIdx + 1) % playlist.length; loadTrack(currentIdx, true); });
 
   timelineBar.addEventListener('click', (e) => {
-    const rect = timelineBar.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const width = rect.width;
-    if (audio.duration) {
-      audio.currentTime = (clickX / width) * audio.duration;
-    }
+    const rect = timelineBar.getBoundingClientRect(); const clickX = e.clientX - rect.left;
+    if (audio.duration) audio.currentTime = (clickX / rect.width) * audio.duration;
   });
-
   playBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (audio.paused) {
-      audio.play().then(() => {
-        playBtn.innerText = '❚❚ Pause 🍬';
-        isPlaying = true;
-      }).catch(() => {});
-    } else {
-      audio.pause();
-      playBtn.innerText = '▶ Play 🍬';
-      isPlaying = false;
-    }
+    if (audio.paused) { audio.play().then(() => { playBtn.innerText = '❚❚ Pause 🍬'; isPlaying = true; }).catch(()=>{}); }
+    else { audio.pause(); playBtn.innerText = '▶ Play 🍬'; isPlaying = false; }
   });
-
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
-    loadTrack(currentIdx, true);
-  });
-
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentIdx = (currentIdx + 1) % playlist.length;
-    loadTrack(currentIdx, true);
-  });
+  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIdx = (currentIdx - 1 + playlist.length) % playlist.length; loadTrack(currentIdx, true); });
+  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIdx = (currentIdx + 1) % playlist.length; loadTrack(currentIdx, true); });
 
   window.addEventListener('click', () => {
-    if (!isPlaying && audio.paused) {
-      audio.play().then(() => {
-        isPlaying = true;
-        playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch(() => {});
-    }
+    if (!isPlaying && audio.paused) { audio.play().then(() => { isPlaying = true; playBtn.innerText = '❚❚ Pause 🍬'; }).catch(()=>{}); }
   }, { once: true });
 
   window.addEventListener('scroll', () => {
     const sideImg = document.getElementById('leftSideImg');
-    if (sideImg) {
-      sideImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
-    }
+    if (sideImg) sideImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
   }, { passive: true });
 
   loadTrack(0, false);
