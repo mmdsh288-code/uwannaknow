@@ -40,30 +40,17 @@ body{
 
 /* انیمیشن لود اولیه صفحه */
 @keyframes slideUpEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* پس‌زمینه علائم Y2K */
+/* شبکه نقطه‌ای ملایم پس‌زمینه (واترمارک‌ها حذف شدند) */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
   background-size:8px 8px;mix-blend-mode:multiply;
   z-index:0;
 }
-.bg-symbols{
-  position:fixed;inset:0;pointer-events:none;z-index:0;
-  display:flex;flex-wrap:wrap;justify-content:space-around;align-content:space-around;
-  font-family:'VT323', monospace;font-size:26px;color:#856b9c;opacity:0.22;
-  user-select:none;line-height:2.8;padding:20px;
-}
-.bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
 /* آرت سمت چپ صفحه */
 .side-char-bg {
@@ -101,23 +88,12 @@ body:before{
 }
 
 @media(max-width: 850px){
-  .side-char-bg {
-    opacity: 0.18;
-    width: 130px;
-  }
-  .top-right-manga {
-    width: clamp(170px, 32vw, 260px);
-    opacity: 0.24;
-  }
+  .side-char-bg { opacity: 0.18; width: 130px; }
+  .top-right-manga { width: clamp(170px, 32vw, 260px); opacity: 0.24; }
 }
 @media(max-width: 550px){
-  .side-char-bg {
-    display: none;
-  }
-  .top-right-manga {
-    width: 40vw;
-    opacity: 0.20;
-  }
+  .side-char-bg { display: none; }
+  .top-right-manga { width: 40vw; opacity: 0.20; }
 }
 
 a{color:inherit}
@@ -130,24 +106,65 @@ a{color:inherit}
   animation: slideUpEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* TOPBAR */
+/* ==============================================================
+   TOPBAR & SNAKE ANIMATION (نوار بالا با مار صورتی و زرد)
+   ============================================================== */
 .topbar{
   border:3px solid var(--ink);background:#fff;
   box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
   display:flex;justify-content:space-between;gap:8px;align-items:center;
   font-size:12px;font-weight:bold;letter-spacing:1px;
+  position: relative;
+  overflow: hidden;
 }
-.flair-symbol{
-  font-size:20px;
-  font-weight:900;
-  color:#ff2a9d;
-  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 10px rgba(255, 42, 157, 0.4);
-  letter-spacing:1px;
-  user-select:none;
-}
-.logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 
-/* وضعیت آنلاین */
+/* مار صورتی (بالا) */
+.topbar::before {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 3px;
+  background: #ff69b4;
+  box-shadow: 0 0 8px #ff69b4, 0 0 12px #ff69b4;
+  top: 0;
+  left: -25%;
+  z-index: 10;
+  animation: snake-pink 3.5s linear infinite;
+}
+
+/* مار زرد (پایین) */
+.topbar::after {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 3px;
+  background: #fffb00;
+  box-shadow: 0 0 8px #fffb00, 0 0 12px #fffb00;
+  bottom: 0;
+  right: -25%;
+  z-index: 10;
+  animation: snake-yellow 3.5s linear infinite;
+}
+
+@keyframes snake-pink {
+  0% { left: -25%; top: 0; }
+  45% { left: 100%; top: 0; }
+  50% { left: 100%; top: calc(100% - 3px); }
+  95% { left: -25%; top: calc(100% - 3px); }
+  100% { left: -25%; top: 0; }
+}
+
+@keyframes snake-yellow {
+  0% { right: -25%; bottom: 0; }
+  45% { right: 100%; bottom: 0; }
+  50% { right: 100%; bottom: calc(100% - 3px); }
+  95% { right: -25%; bottom: calc(100% - 3px); }
+  100% { right: -25%; bottom: 0; }
+}
+
+.logo{font-size:18px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
+.flair-symbol{font-size:18px;font-weight:900;color:#ff2a9d;}
+
 .online-status-wrap{
   display:inline-flex;
   align-items:center;
@@ -158,63 +175,36 @@ a{color:inherit}
   color:#7e5296;
 }
 .online-dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#00ff66;
-  border:1.5px solid var(--ink);
-  box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
+  width:10px;height:10px;border-radius:50%;background:#00ff66;
+  border:1.5px solid var(--ink);box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
   animation:blinkGreen 1s ease-in-out infinite alternate;
 }
 @keyframes blinkGreen{
-  0%{
-    opacity: 0.15;
-    transform: scale(0.75);
-    box-shadow: 0 0 2px #00ff66;
-  }
-  100%{
-    opacity: 1;
-    transform: scale(1.15);
-    box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
-  }
+  0%{opacity: 0.15;transform: scale(0.75);box-shadow: 0 0 2px #00ff66;}
+  100%{opacity: 1;transform: scale(1.15);box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;}
 }
 
 /* ==============================================================
-   CUTE MARQUEE (بدون عروسک، شروع فوری و حرکت یکدست)
+   CUTE MARQUEE
    ============================================================== */
-.marquee-wrapper {
-  position: relative;
-  margin: 22px 0;
-}
-
+.marquee-wrapper { position: relative; margin: 22px 0; }
 .marquee {
   position: relative;
   border: 3px solid var(--ink);
-  background: repeating-linear-gradient(
-    -45deg,
-    #ffffff,
-    #ffffff 10px,
-    #fff0f8 10px,
-    #fff0f8 20px
-  );
+  background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 10px, #fff0f8 10px, #fff0f8 20px);
   padding: 10px 14px;
   overflow: hidden;
   white-space: nowrap;
   border-radius: 14px;
-  box-shadow: 
-    5px 5px 0 var(--ink),
-    0 0 16px rgba(255, 107, 189, 0.35);
+  box-shadow: 5px 5px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.35);
   display: flex;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .marquee:hover {
   transform: translateY(-2px);
-  box-shadow: 
-    7px 7px 0 var(--ink),
-    0 0 24px rgba(255, 107, 189, 0.6);
+  box-shadow: 7px 7px 0 var(--ink), 0 0 24px rgba(255, 107, 189, 0.6);
   border-color: #ff2a9d;
 }
-
 .marquee-content {
   display: inline-flex;
   white-space: nowrap;
@@ -225,27 +215,32 @@ a{color:inherit}
   color: #3b284c;
   text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
 }
-
-.marquee-content span b {
-  font-weight: normal;
-  color: #ff1f8f;
-  margin: 0 14px;
-}
-
+.marquee-content span b { font-weight: normal; color: #ff1f8f; margin: 0 14px; }
 @keyframes smoothMarquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-.grid{
-  display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
-}
+/* ==============================================================
+   CARDS & HOVER GLOW (افکت نوری روی باکس‌ها)
+   ============================================================== */
+.grid{ display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start }
+
 .card{
   background:var(--glass);backdrop-filter:blur(8px);
   border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
   padding:20px;margin-bottom:20px;border-radius:6px;
   position:relative;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
+
+/* هاور خفن صورتی زرد */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px 2px rgba(255, 105, 180, 0.35), 
+              0 0 20px 4px rgba(255, 255, 0, 0.25) !important;
+}
+
 .hero{min-height:330px;position:relative;overflow:hidden}
 .sticker{
   display:inline-block;background:var(--yellow);border:2px solid var(--ink);
@@ -253,47 +248,23 @@ a{color:inherit}
   box-shadow:2px 2px 0 var(--ink);border-radius:4px;
 }
 
-/* تیتر کاوایی */
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
   font-size:clamp(46px,8.5vw,94px);
   line-height:.95;margin:22px 0 16px;
   letter-spacing:-2px;
   color:#ff47ab;
-  text-shadow:
-    4px 4px 0 #fff,
-    7px 7px 0 var(--ink),
-    0 0 20px rgba(255,107,189,0.4);
+  text-shadow: 4px 4px 0 #fff, 7px 7px 0 var(--ink), 0 0 20px rgba(255,107,189,0.4);
 }
-
 .subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
 
-/* لینک‌ها و دکمه‌ها */
-.links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:22px;
-}
+.links{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
 .links a{
   text-decoration:none;
-  background: repeating-linear-gradient(
-    -45deg,
-    #ffffff,
-    #ffffff 9px,
-    #ffe1f2 9px,
-    #ffe1f2 18px
-  );
-  border:2.5px solid var(--ink);
-  padding:10px 16px;
-  font-size:12.5px;
-  font-weight:800;
-  box-shadow:3px 3px 0 var(--ink);
-  border-radius:12px;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  transform: scale(1);
+  background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 9px, #ffe1f2 9px, #ffe1f2 18px);
+  border:2.5px solid var(--ink); padding:10px 16px; font-size:12.5px;
+  font-weight:800; box-shadow:3px 3px 0 var(--ink); border-radius:12px;
+  display:inline-flex; align-items:center; gap:8px;
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
   user-select:none;
 }
@@ -302,10 +273,7 @@ h1.kawaii-title{
   box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45);
   filter: saturate(1.15);
 }
-.links a:active{
-  transform: scale(0.98) translateY(1px);
-  box-shadow:2px 2px 0 var(--ink);
-}
+.links a:active{ transform: scale(0.98) translateY(1px); box-shadow:2px 2px 0 var(--ink); }
 
 .links a.btn-ig{ color:#bc1888; border-color:#d62976; }
 .links a.btn-tg{ color:#0088cc; border-color:#229ed9; }
@@ -329,9 +297,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   box-shadow:inset 0 0 10px rgba(255,107,189,0.15);
   border-radius:6px;
 }
-.spotify-tag-row{
-  display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;
-}
+.spotify-tag-row{ display:flex;justify-content:space-between;align-items:center;margin-bottom:10px; }
 .spotify-live{
   display:inline-flex;align-items:center;gap:6px;
   background:#20192b;color:#67ffaa;font-size:10px;padding:3px 8px;
@@ -351,19 +317,12 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   box-shadow:3px 3px 0 var(--ink);border-radius:8px;
   overflow:hidden;flex-shrink:0;background:#ffc8e9;
 }
-.cover-img-box img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform 0.3s ease;
-}
-.cover-img-box:hover img{
-  transform:scale(1.08);
-}
+.cover-img-box img{ width:100%;height:100%;object-fit:cover;display:block; transition:transform 0.3s ease; }
+.cover-img-box:hover img{ transform:scale(1.08); }
 .song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
 .artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
 
-.timeline-container{
-  margin-top:14px;
-}
+.timeline-container{ margin-top:14px; }
 .timeline-bar{
   width:100%;height:14px;background:#ffd4ec;
   border:2px solid var(--ink);border-radius:10px;
@@ -374,40 +333,25 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   height:100%;width:0%;
   background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%);
   background-size:24px 24px;
-  background-image:linear-gradient(
-    45deg, 
-    rgba(255,255,255,0.4) 25%, 
-    transparent 25%, 
-    transparent 50%, 
-    rgba(255,255,255,0.4) 50%, 
-    rgba(255,255,255,0.4) 75%, 
-    transparent 75%, 
-    transparent
-  );
+  background-image:linear-gradient(45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.4) 75%, transparent 75%, transparent);
   animation:wavePattern 1.2s linear infinite;
   border-radius:6px;
   transition:width 0.1s linear;
 }
-@keyframes wavePattern {
-  0% { background-position: 0 0; }
-  100% { background-position: 24px 0; }
-}
+@keyframes wavePattern { 0% { background-position: 0 0; } 100% { background-position: 24px 0; } }
 .time-display{
   display:flex;justify-content:space-between;
   font-family:'VT323',monospace;font-size:13px;
   color:#5d3b66;margin-top:4px;font-weight:bold;
 }
 
-.player-controls{
-  display:flex;gap:6px;align-items:center;margin-top:10px;
-}
+.player-controls{ display:flex;gap:6px;align-items:center;margin-top:10px; }
 .track-nav-btn{
   cursor:pointer;background:#fff;border:2px solid var(--ink);
   box-shadow:2px 2px 0 var(--ink);font-size:14px;padding:7px 11px;
   border-radius:5px;font-weight:bold;transition:.15s;
 }
 .track-nav-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);background:#ffe8f6;}
-
 .audio-ctrl{
   cursor:pointer;background:#ff6bbd;color:#fff;
   border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold;
@@ -415,10 +359,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   transition:.15s;text-align:center;
 }
 .audio-ctrl:hover{background:#ff4cae;}
-
-.spotify-actions{
-  margin-top:10px;display:flex;flex-direction:column;gap:6px;
-}
+.spotify-actions{ margin-top:10px;display:flex;flex-direction:column;gap:6px; }
 .spotify-btn{
   display:block;text-align:center;text-decoration:none;
   background:#fff;border:2px solid var(--ink);
@@ -431,75 +372,32 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
    CUSTOM ABOUT ME CARD
    ======================================= */
 .card-about{
-  background:
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 230, 245, 0.75),
-      rgba(255, 230, 245, 0.75) 12px,
-      rgba(255, 255, 255, 0.85) 12px,
-      rgba(255, 255, 255, 0.85) 24px
-    );
-  position:relative;
-  overflow:hidden;
+  background: repeating-linear-gradient(-45deg, rgba(255, 230, 245, 0.75), rgba(255, 230, 245, 0.75) 12px, rgba(255, 255, 255, 0.85) 12px, rgba(255, 255, 255, 0.85) 24px);
+  position:relative; overflow:hidden;
 }
-
 .card-about::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:""; position:absolute; inset:0;
   background-image:url('about-bg.jpg'), url('about-bg.jpg.jpg');
-  background-size:cover;
-  background-position:center;
-  opacity:0.32;
-  pointer-events:none;
-  filter:contrast(115%) saturate(110%);
-  z-index:0;
+  background-size:cover; background-position:center;
+  opacity:0.32; pointer-events:none; filter:contrast(115%) saturate(110%); z-index:0;
 }
-
-.about-inner{
-  position:relative;
-  z-index:2;
-}
-
+.about-inner{ position:relative; z-index:2; }
 .about-wiggle-title{
-  display:inline-block;
-  font-size:22px;
-  border:none;
-  font-weight:900;
-  letter-spacing:2px;
-  color:#ff2497;
-  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5);
-  margin-bottom:14px;
-  animation:wiggleTitle 2.4s ease-in-out infinite;
+  display:inline-block; font-size:22px; border:none; font-weight:900; letter-spacing:2px;
+  color:#ff2497; text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5);
+  margin-bottom:14px; animation:wiggleTitle 2.4s ease-in-out infinite;
 }
-
 @keyframes wiggleTitle{
   0%, 100%{ transform: rotate(0deg) translateY(0); }
   25%{ transform: rotate(-2.5deg) translateY(-2px); }
   75%{ transform: rotate(2.5deg) translateY(1px); }
 }
-
-.alt-facts{
-  font-size:13.5px;
-  line-height:2.2;
-  font-weight:600;
-  color:#1f182c;
-  text-shadow:0 1px 3px rgba(255,255,255,0.9);
-}
-
+.alt-facts{ font-size:13.5px; line-height:2.2; font-weight:600; color:#1f182c; text-shadow:0 1px 3px rgba(255,255,255,0.9); }
 .alt-name{
-  font-family:'Fredoka',sans-serif;
-  color:#e7007d;
-  font-size:17px;
-  letter-spacing:1px;
-  text-shadow:1px 1px 0 #fff;
-  background:rgba(255,255,255,0.7);
-  padding:2px 8px;
-  border-radius:6px;
-  border:none;
-  font-weight:800;
+  font-family:'Fredoka',sans-serif; color:#e7007d; font-size:17px; letter-spacing:1px;
+  text-shadow:1px 1px 0 #fff; background:rgba(255,255,255,0.7); padding:2px 8px;
+  border-radius:6px; border:none; font-weight:800;
 }
-
 .alt-place{color:#0071a8;font-weight:700;}
 .alt-activities{color:#5d1e8c;font-weight:700;letter-spacing:0.5px;}
 .alt-mood{font-size:15px;letter-spacing:2px;}
@@ -513,129 +411,60 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
    DRAGGABLE & FLOATING CHARACTERS
    ============================================================== */
 .character{
-  position:fixed;
-  z-index:999;
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  position:fixed; z-index:999; cursor: grab; touch-action: none;
+  user-select: none; transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
 }
-
-.character:hover{
-  filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6));
-}
-
-.character.dragging{
-  cursor: grabbing !important;
-  transform: scale(1.06) !important;
-  z-index: 1000 !important;
-}
-
-.character.right{
-  right:18px;
-  bottom:15px;
-  width:155px;
-}
-
-.character.left{
-  left:18px;
-  bottom:15px;
-  width:145px;
-}
-
-.character.right .akame-choco-frame{
-  animation:slowFloat 6s ease-in-out infinite alternate;
-}
-.character.left .left-char-frame{
-  animation:slowFloatLeft 5.5s ease-in-out infinite alternate;
-}
+.character:hover{ filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6)); }
+.character.dragging{ cursor: grabbing !important; transform: scale(1.06) !important; z-index: 1000 !important; }
+.character.right{ right:18px; bottom:15px; width:155px; }
+.character.left{ left:18px; bottom:15px; width:145px; }
+.character.right .akame-choco-frame{ animation:slowFloat 6s ease-in-out infinite alternate; }
+.character.left .left-char-frame{ animation:slowFloatLeft 5.5s ease-in-out infinite alternate; }
 
 @keyframes slowFloat{
   0%{transform:translateY(0px) rotate(0deg);}
   50%{transform:translateY(-12px) rotate(1.5deg);}
   100%{transform:translateY(-4px) rotate(-1deg);}
 }
-
 @keyframes slowFloatLeft{
   0%{transform:translateY(0px) rotate(0deg);}
   50%{transform:translateY(-10px) rotate(-1.5deg);}
   100%{transform:translateY(-3px) rotate(1deg);}
 }
-
-.character.dragging .akame-choco-frame,
-.character.dragging .left-char-frame{
-  animation: none !important;
-}
+.character.dragging .akame-choco-frame, .character.dragging .left-char-frame{ animation: none !important; }
 
 /* قاب شکلاتی آکامه */
 .akame-choco-frame{
-  width:100%;
-  border:4px solid var(--choco-dark);
-  background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%);
-  padding:5px;
-  border-radius:18px;
-  box-shadow:
-    0 8px 20px var(--choco-glow),
-    3px 4px 0 var(--ink),
-    inset 0 0 10px rgba(255, 182, 193, 0.25);
-  overflow:hidden;
-  pointer-events: none;
+  width:100%; border:4px solid var(--choco-dark);
+  background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%); padding:5px;
+  border-radius:18px; box-shadow:0 8px 20px var(--choco-glow), 3px 4px 0 var(--ink), inset 0 0 10px rgba(255, 182, 193, 0.25);
+  overflow:hidden; pointer-events: none;
 }
-
 .akame-choco-frame img{
-  width:100%;height:220px;
-  object-fit:cover;
-  object-position:top center;
-  display:block;
-  border-radius:12px;
-  border:2px dashed #ffb8d9;
-  pointer-events: none;
+  width:100%;height:220px; object-fit:cover; object-position:top center;
+  display:block; border-radius:12px; border:2px dashed #ffb8d9; pointer-events: none;
 }
-
 .akame-choco-tag{
-  background:linear-gradient(135deg, #533236, #372023);
-  color:#ffd9e8;
-  border:2px solid var(--choco-dark);
-  font-size:11px;font-weight:bold;padding:4px 8px;
-  text-align:center;margin-top:6px;
-  box-shadow:2px 2px 0 var(--ink);
-  border-radius:12px;
-  letter-spacing:0.5px;
-  display:flex;align-items:center;justify-content:center;gap:4px;
-  pointer-events: none;
+  background:linear-gradient(135deg, #533236, #372023); color:#ffd9e8; border:2px solid var(--choco-dark);
+  font-size:11px;font-weight:bold;padding:4px 8px; text-align:center;margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink); border-radius:12px; letter-spacing:0.5px;
+  display:flex;align-items:center;justify-content:center;gap:4px; pointer-events: none;
 }
 
 /* قاب کاراکتر چپ */
 .left-char-frame{
-  width:100%;
-  border:4px solid var(--ink);
-  background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%);
-  padding:5px;
-  border-radius:18px;
-  box-shadow:
-    0 8px 20px rgba(255, 107, 189, 0.35),
-    3px 4px 0 var(--ink);
-  overflow:hidden;
-  pointer-events: none;
+  width:100%; border:4px solid var(--ink);
+  background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%); padding:5px;
+  border-radius:18px; box-shadow:0 8px 20px rgba(255, 107, 189, 0.35), 3px 4px 0 var(--ink);
+  overflow:hidden; pointer-events: none;
 }
 .left-char-frame img{
-  width:100%;height:210px;
-  object-fit:cover;
-  object-position:top center;
-  display:block;
-  border-radius:12px;
-  border:2px dashed #ff6bbd;
-  pointer-events: none;
+  width:100%;height:210px; object-fit:cover; object-position:top center; display:block;
+  border-radius:12px; border:2px dashed #ff6bbd; pointer-events: none;
 }
 .left-char-tag{
-  background:#fff;
-  color:#ff2497;
-  border:2px solid var(--ink);
-  font-size:11px;font-weight:bold;padding:4px 8px;
-  text-align:center;margin-top:6px;
-  box-shadow:2px 2px 0 var(--ink);
-  border-radius:12px;
-  pointer-events: none;
+  background:#fff; color:#ff2497; border:2px solid var(--ink); font-size:11px;font-weight:bold;padding:4px 8px;
+  text-align:center;margin-top:6px; box-shadow:2px 2px 0 var(--ink); border-radius:12px; pointer-events: none;
 }
 
 footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
@@ -655,30 +484,24 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
 <img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
 
-<!-- Ambient Symbols -->
-<div class="bg-symbols">
-  <span>☠</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
-  <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
-  <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠</span>
-</div>
-
 <!-- Audio Player Element -->
 <audio id="bgMusic" preload="auto"></audio>
 
 <div class="wrap">
+  
+  <!-- نوار بالای آپدیت شده -->
   <header class="topbar">
-    <span class="flair-symbol">꧁ঔৣ</span>
-    <span class="logo">all about mee :3</span>
+    <span class="logo">all about mee :3 ✦ リリイ・シュシュ</span>
     
     <div class="online-status-wrap">
       <span class="online-dot"></span>
       <span>私をすごく愛しているなら ✦ ONLINE</span>
     </div>
 
-    <span class="flair-symbol">☬ঔৣ꧂</span>
+    <span class="flair-symbol">📄</span>
   </header>
 
-  <!-- نوار مارکی متحرک تمیز (بدون عروسک + شروع آنی و حرکت روان) -->
+  <!-- نوار مارکی متحرک -->
   <div class="marquee-wrapper">
     <div class="marquee">
       <div class="marquee-content">
