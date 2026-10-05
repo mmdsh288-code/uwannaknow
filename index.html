@@ -55,7 +55,7 @@ body{
   }
 }
 
-/* پس‌زمینه محو نقطه‌ای */
+/* پس‌زمینه نقطه‌ای محو */
 body:before{
   content:"";
   position:fixed;
@@ -136,7 +136,7 @@ a{
 }
 
 /* ==============================================================
-   TOPBAR & SNAKE ANIMATION (نوار بالا + مارهای چرخان)
+   TOPBAR & SNAKE ANIMATION (نوار بالا + مارهای زیگزاگی چرخان)
    ============================================================== */
 .topbar{
   border:3px solid var(--ink);
@@ -239,7 +239,7 @@ a{
   }
 }
 
-/* آیکون سمت راست و تول‌تیپ wanna click? */
+/* آیکون بالا سمت راست و بالون تول‌تیپ wanna click? */
 .icon-wrapper {
   position: relative;
   display: inline-flex;
@@ -299,7 +299,7 @@ a{
 }
 
 /* ==============================================================
-   CUTE MARQUEE (کامل با تمام متن‌های اورجینال)
+   CUTE MARQUEE (تمام جملات بدون حذفیات)
    ============================================================== */
 .marquee-wrapper {
   position: relative;
@@ -356,7 +356,7 @@ a{
 }
 
 /* ==============================================================
-   CARDS & HOVER GLOW (افکت نور ملایم دور تمام کادرها)
+   CARDS & HOVER GLOW (افکت نور ملایم روی تمام پنجره‌ها)
    ============================================================== */
 .grid{
   display:grid;
@@ -377,7 +377,7 @@ a{
   transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
-/* هاور نورانی ملایم صورتی و زرد روی کادرها */
+/* هاور نورانی ملایم صورتی و زرد روی تمام کادرها */
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 15px 2px rgba(255, 105, 180, 0.38), 
@@ -390,7 +390,7 @@ a{
   overflow:hidden;
 }
 
-/* استیکر ولکام با رفتار دکمه کیبورد */
+/* استیکر ولکام با افکت دکمه کیبورد */
 .sticker{
   display:inline-block;
   background:var(--yellow);
@@ -428,7 +428,7 @@ h1.kawaii-title{
     0 0 20px rgba(255,107,189,0.4);
 }
 
-/* متن بیو جدید */
+/* بیو جدید با گیف انیمه */
 .subtitle{
   font-size:14.5px;
   max-width:640px;
@@ -438,14 +438,15 @@ h1.kawaii-title{
   margin-bottom: 8px;
 }
 .inline-gif {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 6px;
   vertical-align: middle;
   margin-left: 6px;
   border: 1.5px solid var(--ink);
   box-shadow: 1px 1px 0 var(--ink);
   object-fit: cover;
+  display: inline-block;
 }
 
 /* خط‌چین صورتی فیدشده برای جداسازی بخش کانکشن‌ها */
@@ -1020,7 +1021,7 @@ footer{
     </div>
   </header>
 
-  <!-- نوار مارکی متحرک (کامل و بدون خلاصه شدن نقل قول‌ها) -->
+  <!-- نوار مارکی متحرک (کامل با تمام متن‌های اورجینال) -->
   <div class="marquee-wrapper">
     <div class="marquee">
       <div class="marquee-content">
@@ -1061,7 +1062,7 @@ footer{
           "You meant more to me than I ever admitted." <b>✦</b>
           "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
-        <!-- تکرار دوم برای حرکت پیوسته و بدون لکنت -->
+        <!-- تکرار دوم برای حرکت بدون لکنت و یکنواخت -->
         <span>
           "I miss the person I used to be." <b>✦</b>
           "I don't know how to feel anything anymore." <b>✦</b>
@@ -1111,7 +1112,7 @@ footer{
         
         <h1 class="kawaii-title">smth about<br>mee :3</h1>
         
-        <!-- متن بیو جدید به همراه گیف انیمه در انتهای متن -->
+        <!-- متن بیو جدید به همراه گیف انیمه در انتها -->
         <div class="subtitle">
           This is my personal page for my bio, random info, and a few little personal things about me.<br><br>
           I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.<br><br>
@@ -1147,7 +1148,7 @@ footer{
         <h2>★ my weblog</h2>
 
         <article class="post">
-          <div class="date">05 / 10 / 2026 — 22:45</div>
+          <div class="date">05 / 10 / 2026 — 22:50</div>
           <h3>リリイ・シュシュ ✦</h3>
           <p>
             floating through sounds and headphone wires... welcome to my aesthetic haven.
