@@ -121,7 +121,7 @@ a{color:inherit}
   font-weight:bold;
   letter-spacing:1px;
   position: relative;
-  overflow: visible; /* برای دیده شدن بالون تول‌تیپ */
+  overflow: visible;
 }
 
 /* مار صورتی بالا */
@@ -475,7 +475,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
 <div class="wrap">
   
-  <!-- نوار بالای صفحه با مارهای چرخان و لوگو/تول‌تیپ جدید -->
+  <!-- نوار بالای صفحه با مارهای چرخان و آیکون logo.jpg همراه با تول‌تیپ -->
   <header class="topbar">
     <div class="logo">
       <span>smth about mee :3 ✦ リリイ・シュシュ</span>
@@ -486,9 +486,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <span>私をすごく愛しているなら ✦ ONLINE</span>
     </div>
 
-    <!-- آیکون جدید همراه با تول‌تیپ راه‌راه صورتی wanna click? -->
+    <!-- آیکون جدید با نام logo.jpg -->
     <div class="icon-wrapper">
-      <img src="007bf416e695a0035c1283bc4c94fa5a.jpg" class="topbar-icon" alt="icon">
+      <img src="logo.jpg" class="topbar-icon" alt="icon">
       <span class="tooltip-wanna">wanna click?</span>
     </div>
   </header>
@@ -612,7 +612,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <!-- CUSTOM ABOUT ME CARD -->
       <section class="card card-about">
         <div class="about-inner">
-          <div class="about-wiggle-title">‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙</div>
+          <div class="about-wiggle-title">‿̩͙⊱༒︎︎༻♱༺༒︎⊰‿̩͙</div>
           <div class="alt-facts">
             NAME: <b class="alt-name">kiawn</b><br>
             PLACE: <span class="alt-place">tehran ✧</span><br>
@@ -655,7 +655,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // صدای کلیک کیوت وب‌آدیو
+  // افکت کلیک کیوت وب‌آدیو
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -681,7 +681,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // کنترل افکت بارش روبان و گل با نگه داشتن یا هاور روی دکمه WELCOME
+  // کنترل افکت بارش روبان و گل با هاور یا کلیک روی WELCOME
   const welcomeSticker = document.getElementById('welcomeSticker');
   if(welcomeSticker) {
     const triggerRain = () => {
@@ -709,7 +709,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     welcomeSticker.addEventListener('click', triggerRain);
   }
 
-  // درگ کردن کاراکترهای شناور
+  // کنترل درگ کاراکترها
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     elmnt.addEventListener('mousedown', dragMouseDown);
@@ -766,7 +766,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // موزیک پلیر
+  // موزیک پلیر دوترکه
   const playlist = [
     { title: "you're so vile", artist: "datealyfe ✦", src: "music.mp3", cover: "cover1.jpg", badge: "TRACK 1/2" },
     { title: "LEASE", artist: "阿保剛 (Takeshi Abo) ✦", src: "music2.mp3", cover: "cover2.jpg", badge: "TRACK 2/2" }
