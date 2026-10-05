@@ -24,10 +24,15 @@
   --paper:#fffaff;
   --glass:rgba(255,255,255,.84);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+}
+html{
+  scroll-behavior:smooth;
+}
 body{
-  margin:0;color:var(--ink);
+  margin:0;
+  color:var(--ink);
   font-family:"Trebuchet MS", Arial, sans-serif;
   background:
     radial-gradient(circle at 10% 10%,#ffd7f1 0 8%,transparent 23%),
@@ -38,21 +43,32 @@ body{
   position:relative;
 }
 
-/* انیمیشن لود صفحه */
+/* انیمیشن لود اولیه صفحه */
 @keyframes slideUpEntrance {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* بافت نقطه‌ای بسیار محو پس‌زمینه */
+/* پس‌زمینه محو نقطه‌ای */
 body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
-  background-size:8px 8px;mix-blend-mode:multiply;
+  background-size:8px 8px;
+  mix-blend-mode:multiply;
   z-index:0;
 }
 
-/* آرت‌های پس‌زمینه دو طرف */
+/* آرت سمت چپ صفحه */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -70,6 +86,7 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
+/* آرت مانگای محو شده بالا راست */
 .top-right-manga {
   position: fixed;
   top: 0;
@@ -87,15 +104,28 @@ body:before{
 }
 
 @media(max-width: 850px){
-  .side-char-bg { opacity: 0.18; width: 130px; }
-  .top-right-manga { width: clamp(170px, 32vw, 260px); opacity: 0.24; }
+  .side-char-bg {
+    opacity: 0.18;
+    width: 130px;
+  }
+  .top-right-manga {
+    width: clamp(170px, 32vw, 260px);
+    opacity: 0.24;
+  }
 }
 @media(max-width: 550px){
-  .side-char-bg { display: none; }
-  .top-right-manga { width: 40vw; opacity: 0.20; }
+  .side-char-bg {
+    display: none;
+  }
+  .top-right-manga {
+    width: 40vw;
+    opacity: 0.20;
+  }
 }
 
-a{color:inherit}
+a{
+  color:inherit;
+}
 .wrap{
   max-width:1080px;
   margin:auto;
@@ -106,7 +136,7 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   TOPBAR & SNAKE ANIMATION (نوار بالا با مارهای چرخان)
+   TOPBAR & SNAKE ANIMATION (نوار بالا + مارهای چرخان)
    ============================================================== */
 .topbar{
   border:3px solid var(--ink);
@@ -188,16 +218,28 @@ a{color:inherit}
   color:#7e5296;
 }
 .online-dot{
-  width:10px;height:10px;border-radius:50%;background:#00ff66;
-  border:1.5px solid var(--ink);box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#00ff66;
+  border:1.5px solid var(--ink);
+  box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
   animation:blinkGreen 1s ease-in-out infinite alternate;
 }
 @keyframes blinkGreen{
-  0%{opacity: 0.15;transform: scale(0.75);box-shadow: 0 0 2px #00ff66;}
-  100%{opacity: 1;transform: scale(1.15);box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;}
+  0%{
+    opacity: 0.15;
+    transform: scale(0.75);
+    box-shadow: 0 0 2px #00ff66;
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
+  }
 }
 
-/* --- آیکون سمت راست و تول‌تیپ wanna click? --- */
+/* آیکون سمت راست و تول‌تیپ wanna click? */
 .icon-wrapper {
   position: relative;
   display: inline-flex;
@@ -213,6 +255,7 @@ a{color:inherit}
   object-fit: cover;
   transition: transform 0.25s ease;
   background: #000;
+  display: block;
 }
 .icon-wrapper:hover .topbar-icon {
   transform: scale(1.12) rotate(4deg);
@@ -256,39 +299,81 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   CUTE MARQUEE
+   CUTE MARQUEE (کامل با تمام متن‌های اورجینال)
    ============================================================== */
-.marquee-wrapper { position: relative; margin: 22px 0; }
+.marquee-wrapper {
+  position: relative;
+  margin: 22px 0;
+}
 .marquee {
-  position: relative; border: 3px solid var(--ink);
-  background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 10px, #fff0f8 10px, #fff0f8 20px);
-  padding: 10px 14px; overflow: hidden; white-space: nowrap;
-  border-radius: 14px; box-shadow: 5px 5px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.35);
-  display: flex; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  border: 3px solid var(--ink);
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 10px,
+    #fff0f8 10px,
+    #fff0f8 20px
+  );
+  padding: 10px 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 14px;
+  box-shadow:
+    5px 5px 0 var(--ink),
+    0 0 16px rgba(255, 107, 189, 0.35);
+  display: flex;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .marquee:hover {
   transform: translateY(-2px);
-  box-shadow: 7px 7px 0 var(--ink), 0 0 24px rgba(255, 107, 189, 0.6);
+  box-shadow:
+    7px 7px 0 var(--ink),
+    0 0 24px rgba(255, 107, 189, 0.6);
   border-color: #ff2a9d;
 }
+
 .marquee-content {
-  display: inline-flex; white-space: nowrap;
+  display: inline-flex;
+  white-space: nowrap;
   animation: smoothMarquee 150s linear infinite;
-  font-family: 'VT323', monospace; font-size: 21px; letter-spacing: 1.5px;
-  color: #3b284c; text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
+  font-family: 'VT323', monospace;
+  font-size: 21px;
+  letter-spacing: 1.5px;
+  color: #3b284c;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
 }
-.marquee-content span b { font-weight: normal; color: #ff1f8f; margin: 0 14px; }
-@keyframes smoothMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.marquee-content span b {
+  font-weight: normal;
+  color: #ff1f8f;
+  margin: 0 14px;
+}
+
+@keyframes smoothMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 /* ==============================================================
    CARDS & HOVER GLOW (افکت نور ملایم دور تمام کادرها)
    ============================================================== */
-.grid{ display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start }
+.grid{
+  display:grid;
+  grid-template-columns:1.6fr .8fr;
+  gap:20px;
+  align-items:start;
+}
 
 .card{
-  background:var(--glass);backdrop-filter:blur(8px);
-  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
-  padding:20px;margin-bottom:20px;border-radius:6px; position:relative;
+  background:var(--glass);
+  backdrop-filter:blur(8px);
+  border:3px solid var(--ink);
+  box-shadow:7px 7px 0 var(--ink);
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:6px;
+  position:relative;
   transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
@@ -299,13 +384,23 @@ a{color:inherit}
               0 0 22px 5px rgba(255, 255, 0, 0.28) !important;
 }
 
-.hero{min-height:330px;position:relative;overflow:hidden}
+.hero{
+  min-height:330px;
+  position:relative;
+  overflow:hidden;
+}
 
 /* استیکر ولکام با رفتار دکمه کیبورد */
 .sticker{
-  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
-  padding:6px 14px;transform:rotate(-3deg);font-size:12px;font-weight:bold;
-  box-shadow:3px 3px 0 var(--ink);border-radius:6px;
+  display:inline-block;
+  background:var(--yellow);
+  border:2px solid var(--ink);
+  padding:6px 14px;
+  transform:rotate(-3deg);
+  font-size:12px;
+  font-weight:bold;
+  box-shadow:3px 3px 0 var(--ink);
+  border-radius:6px;
   cursor: pointer;
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
@@ -323,25 +418,37 @@ a{color:inherit}
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
   font-size:clamp(46px,8.5vw,88px);
-  line-height:.95;margin:22px 0 16px;
+  line-height:.95;
+  margin:22px 0 16px;
   letter-spacing:-2px;
   color:#ff47ab;
-  text-shadow: 4px 4px 0 #fff, 7px 7px 0 var(--ink), 0 0 20px rgba(255,107,189,0.4);
+  text-shadow:
+    4px 4px 0 #fff,
+    7px 7px 0 var(--ink),
+    0 0 20px rgba(255,107,189,0.4);
 }
 
 /* متن بیو جدید */
 .subtitle{
-  font-size:14.5px;max-width:640px;line-height:1.75;color:#352b46;
-  font-weight: 500; margin-bottom: 8px;
+  font-size:14.5px;
+  max-width:640px;
+  line-height:1.75;
+  color:#352b46;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 .inline-gif {
-  width: 32px; height: 32px; border-radius: 6px;
-  vertical-align: middle; margin-left: 6px; border: 1.5px solid var(--ink);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin-left: 6px;
+  border: 1.5px solid var(--ink);
   box-shadow: 1px 1px 0 var(--ink);
   object-fit: cover;
 }
 
-/* خط‌چین گوگولی و فیدشده */
+/* خط‌چین صورتی فیدشده برای جداسازی بخش کانکشن‌ها */
 .cute-divider {
   border: none;
   border-top: 3px dotted rgba(255, 107, 189, 0.45);
@@ -349,18 +456,41 @@ h1.kawaii-title{
   width: 96%;
 }
 
-.links{ display:flex; flex-wrap:wrap; gap:12px; }
+.links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
 .links a{
   text-decoration:none;
-  background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 9px, #ffe1f2 9px, #ffe1f2 18px);
-  border:2.5px solid var(--ink); padding:10px 16px; font-size:12.5px;
-  font-weight:800; box-shadow:3px 3px 0 var(--ink); border-radius:12px;
-  display:inline-flex; align-items:center; gap:8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 9px,
+    #ffe1f2 9px,
+    #ffe1f2 18px
+  );
+  border:2.5px solid var(--ink);
+  padding:10px 16px;
+  font-size:12.5px;
+  font-weight:800;
+  box-shadow:3px 3px 0 var(--ink);
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
   user-select:none;
 }
-.links a:hover{ transform: scale(1.08) translateY(-3px); box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45); filter: saturate(1.15); }
-.links a:active{ transform: scale(0.98) translateY(1px); box-shadow:2px 2px 0 var(--ink); }
+.links a:hover{
+  transform: scale(1.08) translateY(-3px);
+  box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45);
+  filter: saturate(1.15);
+}
+.links a:active{
+  transform: scale(0.98) translateY(1px);
+  box-shadow:2px 2px 0 var(--ink);
+}
 
 .links a.btn-ig{ color:#bc1888; border-color:#d62976; }
 .links a.btn-tg{ color:#0088cc; border-color:#229ed9; }
@@ -368,96 +498,490 @@ h1.kawaii-title{
 .links a.btn-tt{ color:#ff0050; border-color:#fe2c55; }
 .links a.btn-sp{ color:#1aa34a; border-color:#1db954; }
 
-h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
-.post{border-top:2px dotted #9c91ab;padding:14px 0}
-.post:first-of-type{border-top:0}
-.date{font-size:11px;color:#776b86;letter-spacing:1px;font-weight:bold;}
-.post h3{margin:6px 0;font-size:17px;color:#1e1829;}
-.post p{font-size:13.5px;line-height:1.7;margin:7px 0}
+h2{
+  font-size:20px;
+  margin:0 0 14px;
+  color:#ff3da9;
+  font-family:'Fredoka',sans-serif;
+}
+.post{
+  border-top:2px dotted #9c91ab;
+  padding:14px 0;
+}
+.post:first-of-type{
+  border-top:0;
+}
+.date{
+  font-size:11px;
+  color:#776b86;
+  letter-spacing:1px;
+  font-weight:bold;
+}
+.post h3{
+  margin:6px 0;
+  font-size:17px;
+  color:#1e1829;
+}
+.post p{
+  font-size:13.5px;
+  line-height:1.7;
+  margin:7px 0;
+}
 
 /* =======================================
    SPOTIFY DUAL TRACK PLAYER + TIMELINE
    ======================================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
-  border:3px solid var(--ink);padding:16px;
-  box-shadow:inset 0 0 10px rgba(255,107,189,0.15); border-radius:6px;
+  border:3px solid var(--ink);
+  padding:16px;
+  box-shadow:inset 0 0 10px rgba(255,107,189,0.15);
+  border-radius:6px;
 }
-.spotify-tag-row{ display:flex;justify-content:space-between;align-items:center;margin-bottom:10px; }
-.spotify-live{ display:inline-flex;align-items:center;gap:6px; background:#20192b;color:#67ffaa;font-size:10px;padding:3px 8px; font-family:'VT323',monospace;letter-spacing:1px;border-radius:4px; box-shadow:1px 1px 0 var(--ink); }
-.live-dot{ width:7px;height:7px;border-radius:50%;background:#1ed760; box-shadow:0 0 8px #1ed760;animation:pulse 1s infinite alternate; }
-@keyframes pulse{from{opacity:0.3;transform:scale(0.8)}to{opacity:1;transform:scale(1.2)}}
+.spotify-tag-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.spotify-live{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#20192b;
+  color:#67ffaa;
+  font-size:10px;
+  padding:3px 8px;
+  font-family:'VT323',monospace;
+  letter-spacing:1px;
+  border-radius:4px;
+  box-shadow:1px 1px 0 var(--ink);
+}
+.live-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#1ed760;
+  box-shadow:0 0 8px #1ed760;
+  animation:pulse 1s infinite alternate;
+}
+@keyframes pulse{
+  from{opacity:0.3;transform:scale(0.8)}
+  to{opacity:1;transform:scale(1.2)}
+}
 .cute-cupcake{font-size:18px;}
-.now{display:flex;align-items:center;gap:12px}
-.cover-img-box{ width:64px;height:64px;border:2px solid var(--ink); box-shadow:3px 3px 0 var(--ink);border-radius:8px; overflow:hidden;flex-shrink:0;background:#ffc8e9; }
-.cover-img-box img{ width:100%;height:100%;object-fit:cover;display:block; transition:transform 0.3s ease; }
-.cover-img-box:hover img{ transform:scale(1.08); }
-.song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
-.artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
-.timeline-container{ margin-top:14px; }
-.timeline-bar{ width:100%;height:14px;background:#ffd4ec; border:2px solid var(--ink);border-radius:10px; overflow:hidden;position:relative;cursor:pointer; box-shadow:inset 0 1px 4px rgba(0,0,0,0.15); }
-.timeline-fill{ height:100%;width:0%; background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%); background-size:24px 24px; background-image:linear-gradient(45deg, rgba(255,255,255,0.4) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.4) 75%, transparent 75%, transparent); animation:wavePattern 1.2s linear infinite; border-radius:6px; transition:width 0.1s linear; }
-@keyframes wavePattern { 0% { background-position: 0 0; } 100% { background-position: 24px 0; } }
-.time-display{ display:flex;justify-content:space-between; font-family:'VT323',monospace;font-size:13px; color:#5d3b66;margin-top:4px;font-weight:bold; }
-.player-controls{ display:flex;gap:6px;align-items:center;margin-top:10px; }
-.track-nav-btn{ cursor:pointer;background:#fff;border:2px solid var(--ink); box-shadow:2px 2px 0 var(--ink);font-size:14px;padding:7px 11px; border-radius:5px;font-weight:bold;transition:.15s; }
-.track-nav-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);background:#ffe8f6;}
-.audio-ctrl{ cursor:pointer;background:#ff6bbd;color:#fff; border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold; width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px; transition:.15s;text-align:center; }
-.audio-ctrl:hover{background:#ff4cae;}
-.spotify-actions{ margin-top:10px;display:flex;flex-direction:column;gap:6px; }
-.spotify-btn{ display:block;text-align:center;text-decoration:none; background:#fff;border:2px solid var(--ink); padding:7px;font-size:11.5px;font-weight:bold; box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px; }
-.spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
+
+.now{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.cover-img-box{
+  width:64px;
+  height:64px;
+  border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+  border-radius:8px;
+  overflow:hidden;
+  flex-shrink:0;
+  background:#ffc8e9;
+}
+.cover-img-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.3s ease;
+}
+.cover-img-box:hover img{
+  transform:scale(1.08);
+}
+.song{
+  font-weight:bold;
+  font-size:13.5px;
+  color:#281831;
+  font-family:'Fredoka',sans-serif;
+}
+.artist{
+  font-size:11.5px;
+  color:#644c77;
+  margin-top:2px;
+  font-weight:600;
+}
+
+.timeline-container{
+  margin-top:14px;
+}
+.timeline-bar{
+  width:100%;
+  height:14px;
+  background:#ffd4ec;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,0.15);
+}
+.timeline-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%);
+  background-size:24px 24px;
+  background-image:linear-gradient(
+    45deg,
+    rgba(255,255,255,0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0.4) 75%,
+    transparent 75%,
+    transparent
+  );
+  animation:wavePattern 1.2s linear infinite;
+  border-radius:6px;
+  transition:width 0.1s linear;
+}
+@keyframes wavePattern {
+  0% { background-position: 0 0; }
+  100% { background-position: 24px 0; }
+}
+.time-display{
+  display:flex;
+  justify-content:space-between;
+  font-family:'VT323',monospace;
+  font-size:13px;
+  color:#5d3b66;
+  margin-top:4px;
+  font-weight:bold;
+}
+
+.player-controls{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-top:10px;
+}
+.track-nav-btn{
+  cursor:pointer;
+  background:#fff;
+  border:2px solid var(--ink);
+  box-shadow:2px 2px 0 var(--ink);
+  font-size:14px;
+  padding:7px 11px;
+  border-radius:5px;
+  font-weight:bold;
+  transition:.15s;
+}
+.track-nav-btn:hover{
+  transform:translate(1px,1px);
+  box-shadow:1px 1px 0 var(--ink);
+  background:#ffe8f6;
+}
+.audio-ctrl{
+  cursor:pointer;
+  background:#ff6bbd;
+  color:#fff;
+  border:2px solid var(--ink);
+  padding:8px;
+  font-size:12px;
+  font-weight:bold;
+  width:100%;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:5px;
+  transition:.15s;
+  text-align:center;
+}
+.audio-ctrl:hover{
+  background:#ff4cae;
+}
+.spotify-actions{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.spotify-btn{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  border:2px solid var(--ink);
+  padding:7px;
+  font-size:11.5px;
+  font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);
+  transition:.15s;
+  border-radius:5px;
+}
+.spotify-btn:hover{
+  transform:translate(2px,2px);
+  box-shadow:1px 1px 0 var(--ink);
+  background:#fff2fa;
+}
 
 /* =======================================
    CUSTOM ABOUT ME CARD
    ======================================= */
-.card-about{ background: repeating-linear-gradient(-45deg, rgba(255, 230, 245, 0.75), rgba(255, 230, 245, 0.75) 12px, rgba(255, 255, 255, 0.85) 12px, rgba(255, 255, 255, 0.85) 24px); position:relative; overflow:hidden; }
-.card-about::before{ content:""; position:absolute; inset:0; background-image:url('about-bg.jpg'); background-size:cover; background-position:center; opacity:0.32; pointer-events:none; filter:contrast(115%) saturate(110%); z-index:0; }
-.about-inner{ position:relative; z-index:2; }
-.about-wiggle-title{ display:inline-block; font-size:22px; border:none; font-weight:900; letter-spacing:2px; color:#ff2497; text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5); margin-bottom:14px; animation:wiggleTitle 2.4s ease-in-out infinite; }
-@keyframes wiggleTitle{ 0%, 100%{ transform: rotate(0deg) translateY(0); } 25%{ transform: rotate(-2.5deg) translateY(-2px); } 75%{ transform: rotate(2.5deg) translateY(1px); } }
-.alt-facts{ font-size:13.5px; line-height:2.2; font-weight:600; color:#1f182c; text-shadow:0 1px 3px rgba(255,255,255,0.9); }
-.alt-name{ font-family:'Fredoka',sans-serif; color:#e7007d; font-size:17px; letter-spacing:1px; text-shadow:1px 1px 0 #fff; background:rgba(255,255,255,0.7); padding:2px 8px; border-radius:6px; border:none; font-weight:800; }
-.alt-place{color:#0071a8;font-weight:700;}
-.alt-activities{color:#5d1e8c;font-weight:700;letter-spacing:0.5px;}
-.alt-mood{font-size:15px;letter-spacing:2px;}
-.side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px;font-weight:bold;}
-.badges{display:flex;flex-wrap:wrap;gap:6px}
-.badge{border:1px solid var(--ink);background:#fff;padding:4px 8px;font-size:10px;border-radius:3px;box-shadow:1px 1px 0 var(--ink);}
-.guestbook{font-size:12px;line-height:1.7}
+.card-about{
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 230, 245, 0.75),
+    rgba(255, 230, 245, 0.75) 12px,
+    rgba(255, 255, 255, 0.85) 12px,
+    rgba(255, 255, 255, 0.85) 24px
+  );
+  position:relative;
+  overflow:hidden;
+}
+.card-about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url('about-bg.jpg');
+  background-size:cover;
+  background-position:center;
+  opacity:0.32;
+  pointer-events:none;
+  filter:contrast(115%) saturate(110%);
+  z-index:0;
+}
+.about-inner{
+  position:relative;
+  z-index:2;
+}
+.about-wiggle-title{
+  display:inline-block;
+  font-size:22px;
+  border:none;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#ff2497;
+  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5);
+  margin-bottom:14px;
+  animation:wiggleTitle 2.4s ease-in-out infinite;
+}
+@keyframes wiggleTitle{
+  0%, 100%{ transform: rotate(0deg) translateY(0); }
+  25%{ transform: rotate(-2.5deg) translateY(-2px); }
+  75%{ transform: rotate(2.5deg) translateY(1px); }
+}
+.alt-facts{
+  font-size:13.5px;
+  line-height:2.2;
+  font-weight:600;
+  color:#1f182c;
+  text-shadow:0 1px 3px rgba(255,255,255,0.9);
+}
+.alt-name{
+  font-family:'Fredoka',sans-serif;
+  color:#e7007d;
+  font-size:17px;
+  letter-spacing:1px;
+  text-shadow:1px 1px 0 #fff;
+  background:rgba(255,255,255,0.7);
+  padding:2px 8px;
+  border-radius:6px;
+  border:none;
+  font-weight:800;
+}
+.alt-place{
+  color:#0071a8;
+  font-weight:700;
+}
+.alt-activities{
+  color:#5d1e8c;
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+.alt-mood{
+  font-size:15px;
+  letter-spacing:2px;
+}
+
+.side-title{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#76677f;
+  margin-bottom:9px;
+  font-weight:bold;
+}
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.badge{
+  border:1px solid var(--ink);
+  background:#fff;
+  padding:4px 8px;
+  font-size:10px;
+  border-radius:3px;
+  box-shadow:1px 1px 0 var(--ink);
+}
+.guestbook{
+  font-size:12px;
+  line-height:1.7;
+}
 
 /* ==============================================================
    DRAGGABLE & FLOATING CHARACTERS
    ============================================================== */
-.character{ position:fixed; z-index:999; cursor: grab; touch-action: none; user-select: none; transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease; }
-.character:hover{ filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6)); }
-.character.dragging{ cursor: grabbing !important; transform: scale(1.06) !important; z-index: 1000 !important; }
-.character.right{ right:18px; bottom:15px; width:155px; }
-.character.left{ left:18px; bottom:15px; width:145px; }
-.character.right .akame-choco-frame{ animation:slowFloat 6s ease-in-out infinite alternate; }
-.character.left .left-char-frame{ animation:slowFloatLeft 5.5s ease-in-out infinite alternate; }
-@keyframes slowFloat{ 0%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-12px) rotate(1.5deg);} 100%{transform:translateY(-4px) rotate(-1deg);} }
-@keyframes slowFloatLeft{ 0%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-10px) rotate(-1.5deg);} 100%{transform:translateY(-3px) rotate(1deg);} }
-.character.dragging .akame-choco-frame, .character.dragging .left-char-frame{ animation: none !important; }
-.akame-choco-frame{ width:100%; border:4px solid var(--choco-dark); background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%); padding:5px; border-radius:18px; box-shadow:0 8px 20px var(--choco-glow), 3px 4px 0 var(--ink), inset 0 0 10px rgba(255, 182, 193, 0.25); overflow:hidden; pointer-events: none; }
-.akame-choco-frame img{ width:100%;height:220px; object-fit:cover; object-position:top center; display:block; border-radius:12px; border:2px dashed #ffb8d9; pointer-events: none; }
-.akame-choco-tag{ background:linear-gradient(135deg, #533236, #372023); color:#ffd9e8; border:2px solid var(--choco-dark); font-size:11px;font-weight:bold;padding:4px 8px; text-align:center;margin-top:6px; box-shadow:2px 2px 0 var(--ink); border-radius:12px; letter-spacing:0.5px; display:flex;align-items:center;justify-content:center;gap:4px; pointer-events: none; }
-.left-char-frame{ width:100%; border:4px solid var(--ink); background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%); padding:5px; border-radius:18px; box-shadow:0 8px 20px rgba(255, 107, 189, 0.35), 3px 4px 0 var(--ink); overflow:hidden; pointer-events: none; }
-.left-char-frame img{ width:100%;height:210px; object-fit:cover; object-position:top center; display:block; border-radius:12px; border:2px dashed #ff6bbd; pointer-events: none; }
-.left-char-tag{ background:#fff; color:#ff2497; border:2px solid var(--ink); font-size:11px;font-weight:bold;padding:4px 8px; text-align:center;margin-top:6px; box-shadow:2px 2px 0 var(--ink); border-radius:12px; pointer-events: none; }
-footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
-
-@media(max-width:800px){
-  .grid{grid-template-columns:1fr}
-  .character.left{width:90px;}
-  .character.right{width:95px;}
-  .akame-choco-frame img{height:140px;}
-  .left-char-frame img{height:130px;}
+.character{
+  position:fixed;
+  z-index:999;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+}
+.character:hover{
+  filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6));
+}
+.character.dragging{
+  cursor: grabbing !important;
+  transform: scale(1.06) !important;
+  z-index: 1000 !important;
+}
+.character.right{
+  right:18px;
+  bottom:15px;
+  width:155px;
+}
+.character.left{
+  left:18px;
+  bottom:15px;
+  width:145px;
+}
+.character.right .akame-choco-frame{
+  animation:slowFloat 6s ease-in-out infinite alternate;
+}
+.character.left .left-char-frame{
+  animation:slowFloatLeft 5.5s ease-in-out infinite alternate;
+}
+@keyframes slowFloat{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-12px) rotate(1.5deg);}
+  100%{transform:translateY(-4px) rotate(-1deg);}
+}
+@keyframes slowFloatLeft{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-10px) rotate(-1.5deg);}
+  100%{transform:translateY(-3px) rotate(1deg);}
+}
+.character.dragging .akame-choco-frame,
+.character.dragging .left-char-frame{
+  animation: none !important;
 }
 
-/* استایل روبان‌ها و گل‌های ریزان */
+/* قاب شکلاتی آکامه */
+.akame-choco-frame{
+  width:100%;
+  border:4px solid var(--choco-dark);
+  background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%);
+  padding:5px;
+  border-radius:18px;
+  box-shadow:0 8px 20px var(--choco-glow), 3px 4px 0 var(--ink), inset 0 0 10px rgba(255, 182, 193, 0.25);
+  overflow:hidden;
+  pointer-events: none;
+}
+.akame-choco-frame img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  border-radius:12px;
+  border:2px dashed #ffb8d9;
+  pointer-events: none;
+}
+.akame-choco-tag{
+  background:linear-gradient(135deg, #533236, #372023);
+  color:#ffd9e8;
+  border:2px solid var(--choco-dark);
+  font-size:11px;
+  font-weight:bold;
+  padding:4px 8px;
+  text-align:center;
+  margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:12px;
+  letter-spacing:0.5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  pointer-events: none;
+}
+
+/* قاب کاراکتر چپ */
+.left-char-frame{
+  width:100%;
+  border:4px solid var(--ink);
+  background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%);
+  padding:5px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(255, 107, 189, 0.35), 3px 4px 0 var(--ink);
+  overflow:hidden;
+  pointer-events: none;
+}
+.left-char-frame img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  border-radius:12px;
+  border:2px dashed #ff6bbd;
+  pointer-events: none;
+}
+.left-char-tag{
+  background:#fff;
+  color:#ff2497;
+  border:2px solid var(--ink);
+  font-size:11px;
+  font-weight:bold;
+  padding:4px 8px;
+  text-align:center;
+  margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:12px;
+  pointer-events: none;
+}
+
+footer{
+  text-align:center;
+  font-size:11px;
+  padding:20px 0 50px;
+  color:#73697c;
+  font-weight:bold;
+}
+
+@media(max-width:800px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .character.left{
+    width:90px;
+  }
+  .character.right{
+    width:95px;
+  }
+  .akame-choco-frame img{
+    height:140px;
+  }
+  .left-char-frame img{
+    height:130px;
+  }
+}
+
+/* افکت بارش روبان و گل */
 .falling-ribbon {
-  position: fixed; top: -50px; pointer-events: none; z-index: 9999;
+  position: fixed;
+  top: -50px;
+  pointer-events: none;
+  z-index: 9999;
   animation: fallDown linear forwards;
   filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.3));
 }
@@ -469,8 +993,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
+<!-- Side Artworks -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
 <img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
+
+<!-- Audio Player Element -->
 <audio id="bgMusic" preload="auto"></audio>
 
 <div class="wrap">
@@ -486,14 +1013,14 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <span>私をすごく愛しているなら ✦ ONLINE</span>
     </div>
 
-    <!-- آیکون جدید با نام logo.jpg -->
+    <!-- آیکون سمت راست با تول‌تیپ wanna click? -->
     <div class="icon-wrapper">
       <img src="logo.jpg" class="topbar-icon" alt="icon">
       <span class="tooltip-wanna">wanna click?</span>
     </div>
   </header>
 
-  <!-- نوار مارکی متحرک -->
+  <!-- نوار مارکی متحرک (کامل و بدون خلاصه شدن نقل قول‌ها) -->
   <div class="marquee-wrapper">
     <div class="marquee">
       <div class="marquee-content">
@@ -503,13 +1030,74 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           "Maybe I was happier when I didn't understand." <b>✦</b>
           "I wish someone could see what I hide." <b>✦</b>
           "I keep smiling like nothing ever happened." <b>✦</b>
+          "I wonder if you ever miss me too." <b>✦</b>
+          "I don't want to be remembered this way." <b>✦</b>
+          "Everything feels different when you're not here." <b>✦</b>
+          "I gave you everything and somehow lost myself." <b>✦</b>
+          "I still think about you when nobody's around." <b>✦</b>
+          "Some memories hurt more when they're beautiful." <b>✦</b>
+          "I wish I could go back before everything changed." <b>✦</b>
+          "You were the closest thing I had to home." <b>✦</b>
+          "I never learned how to say goodbye." <b>✦</b>
+          "I pretend I don't care because it's easier." <b>✦</b>
+          "There are things I will never be able to explain." <b>✦</b>
+          "I wonder if you remember the little things." <b>✦</b>
+          "Sometimes I just want everything to be quiet." <b>✦</b>
+          "I don't think anyone really knows me." <b>✦</b>
+          "I keep looking for you in places you'll never be." <b>✦</b>
+          "Maybe we were meant to meet, not to stay." <b>✦</b>
+          "I loved you more than I knew how to say." <b>✦</b>
+          "I wish I could forget without losing the memories." <b>✦</b>
+          "You left, but somehow you're still everywhere." <b>✦</b>
+          "I don't know when I stopped feeling like myself." <b>✦</b>
+          "I hope you know that I really tried." <b>✦</b>
+          "Some nights feel longer than they should." <b>✦</b>
+          "I wonder who I would've become without you." <b>✦</b>
+          "I still hear your voice in my head sometimes." <b>✦</b>
+          "I wanted forever, but you only wanted a moment." <b>✦</b>
+          "Maybe someday this won't hurt anymore." <b>✦</b>
+          "I wish I had known it was the last time." <b>✦</b>
+          "I keep holding on to something that's already gone." <b>✦</b>
+          "You meant more to me than I ever admitted." <b>✦</b>
+          "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
+        <!-- تکرار دوم برای حرکت پیوسته و بدون لکنت -->
         <span>
           "I miss the person I used to be." <b>✦</b>
           "I don't know how to feel anything anymore." <b>✦</b>
           "Maybe I was happier when I didn't understand." <b>✦</b>
           "I wish someone could see what I hide." <b>✦</b>
           "I keep smiling like nothing ever happened." <b>✦</b>
+          "I wonder if you ever miss me too." <b>✦</b>
+          "I don't want to be remembered this way." <b>✦</b>
+          "Everything feels different when you're not here." <b>✦</b>
+          "I gave you everything and somehow lost myself." <b>✦</b>
+          "I still think about you when nobody's around." <b>✦</b>
+          "Some memories hurt more when they're beautiful." <b>✦</b>
+          "I wish I could go back before everything changed." <b>✦</b>
+          "You were the closest thing I had to home." <b>✦</b>
+          "I never learned how to say goodbye." <b>✦</b>
+          "I pretend I don't care because it's easier." <b>✦</b>
+          "There are things I will never be able to explain." <b>✦</b>
+          "I wonder if you remember the little things." <b>✦</b>
+          "Sometimes I just want everything to be quiet." <b>✦</b>
+          "I don't think anyone really knows me." <b>✦</b>
+          "I keep looking for you in places you'll never be." <b>✦</b>
+          "Maybe we were meant to meet, not to stay." <b>✦</b>
+          "I loved you more than I knew how to say." <b>✦</b>
+          "I wish I could forget without losing the memories." <b>✦</b>
+          "You left, but somehow you're still everywhere." <b>✦</b>
+          "I don't know when I stopped feeling like myself." <b>✦</b>
+          "I hope you know that I really tried." <b>✦</b>
+          "Some nights feel longer than they should." <b>✦</b>
+          "I wonder who I would've become without you." <b>✦</b>
+          "I still hear your voice in my head sometimes." <b>✦</b>
+          "I wanted forever, but you only wanted a moment." <b>✦</b>
+          "Maybe someday this won't hurt anymore." <b>✦</b>
+          "I wish I had known it was the last time." <b>✦</b>
+          "I keep holding on to something that's already gone." <b>✦</b>
+          "You meant more to me than I ever admitted." <b>✦</b>
+          "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
       </div>
     </div>
@@ -533,7 +1121,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <img src="anime-girl.gif" class="inline-gif" alt="cute anime">
         </div>
         
-        <!-- خط‌چین صورتی فیدشده برای جداسازی از بخش کانکشن‌ها -->
+        <!-- خط‌چین صورتی فیدشده برای جداسازی بخش کانکشن‌ها -->
         <hr class="cute-divider">
 
         <div class="links">
@@ -557,11 +1145,15 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
       <section class="card" id="blog">
         <h2>★ my weblog</h2>
+
         <article class="post">
-          <div class="date">05 / 10 / 2026 — 22:27</div>
+          <div class="date">05 / 10 / 2026 — 22:45</div>
           <h3>リリイ・シュシュ ✦</h3>
-          <p>floating through sounds and headphone wires... welcome to my aesthetic haven.</p>
+          <p>
+            floating through sounds and headphone wires... welcome to my aesthetic haven.
+          </p>
         </article>
+
         <article class="post">
           <div class="date">02 / 10 / 2026</div>
           <h3>currently listening... 🍓</h3>
@@ -583,6 +1175,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
             </div>
             <span class="cute-cupcake">🧁🍓</span>
           </div>
+
           <div class="now">
             <div class="cover-img-box">
               <img id="trackCoverImg" src="cover1.jpg" onerror="this.src='cover1.jpg'" alt="Album Cover">
@@ -592,6 +1185,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
               <div class="artist" id="trackArtist">datealyfe ✦</div>
             </div>
           </div>
+          
           <div class="timeline-container">
             <div class="timeline-bar" id="timelineBar">
               <div class="timeline-fill" id="timelineFill"></div>
@@ -601,10 +1195,17 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
               <span id="totalDuration">00:00</span>
             </div>
           </div>
+
           <div class="player-controls">
             <button class="track-nav-btn" id="prevBtn" title="Previous Track">⏮</button>
             <button class="audio-ctrl" id="playBtn">▶ Play 🍬</button>
             <button class="track-nav-btn" id="nextBtn" title="Next Track">⏭</button>
+          </div>
+
+          <div class="spotify-actions">
+            <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="spotify-btn">
+              🎧 Open My Spotify Playlist
+            </a>
           </div>
         </div>
       </section>
@@ -612,7 +1213,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       <!-- CUSTOM ABOUT ME CARD -->
       <section class="card card-about">
         <div class="about-inner">
-          <div class="about-wiggle-title">‿̩͙⊱༒︎︎༻♱༺༒︎⊰‿̩͙</div>
+          <div class="about-wiggle-title">
+            ‿̩͙⊱༒︎༻♱༺༒︎⊰‿̩͙
+          </div>
           <div class="alt-facts">
             NAME: <b class="alt-name">kiawn</b><br>
             PLACE: <span class="alt-place">tehran ✧</span><br>
@@ -635,11 +1238,22 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           <span class="badge">リリイ・シュシュ</span>
         </div>
       </section>
+
+      <section class="card">
+        <div class="side-title">♡ guestbook</div>
+        <div class="guestbook">
+          leave your thoughts here or say hi :3 
+        </div>
+      </section>
     </aside>
   </div>
+
   <footer>smth about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
 </div>
 
+<!-- ==============================================================
+     CHARACTERS (DRAGGABLE)
+     ============================================================== -->
 <div class="character left" id="leftChar">
   <div class="left-char-frame">
     <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
@@ -655,10 +1269,12 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // افکت کلیک کیوت وب‌آدیو
+  // افکت کلیک وب‌آدیو
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     
@@ -671,6 +1287,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
+
     osc.start();
     osc.stop(audioCtx.currentTime + 0.09);
   }
@@ -709,53 +1326,75 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     welcomeSticker.addEventListener('click', triggerRain);
   }
 
-  // کنترل درگ کاراکترها
+  // کنترل جابه‌جایی آزاد المان‌ها
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
     elmnt.addEventListener('mousedown', dragMouseDown);
     elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
 
     function dragMouseDown(e) {
       if (e.button !== 0) return;
       e.preventDefault();
-      pos3 = e.clientX; pos4 = e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+
       const rect = elmnt.getBoundingClientRect();
-      elmnt.style.bottom = 'auto'; elmnt.style.right = 'auto';
-      elmnt.style.left = rect.left + 'px'; elmnt.style.top = rect.top + 'px';
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+      elmnt.style.left = rect.left + 'px';
+      elmnt.style.top = rect.top + 'px';
+
       elmnt.classList.add('dragging');
       document.addEventListener('mouseup', closeDragElement);
       document.addEventListener('mousemove', elementDrag);
     }
+
     function elementDrag(e) {
       e.preventDefault();
-      pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY;
-      pos3 = e.clientX; pos4 = e.clientY;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
+
     function closeDragElement() {
       elmnt.classList.remove('dragging');
       document.removeEventListener('mouseup', closeDragElement);
       document.removeEventListener('mousemove', elementDrag);
     }
+
     function dragTouchStart(e) {
       const touch = e.touches[0];
-      pos3 = touch.clientX; pos4 = touch.clientY;
+      pos3 = touch.clientX;
+      pos4 = touch.clientY;
+
       const rect = elmnt.getBoundingClientRect();
-      elmnt.style.bottom = 'auto'; elmnt.style.right = 'auto';
-      elmnt.style.left = rect.left + 'px'; elmnt.style.top = rect.top + 'px';
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+      elmnt.style.left = rect.left + 'px';
+      elmnt.style.top = rect.top + 'px';
+
       elmnt.classList.add('dragging');
       document.addEventListener('touchend', closeTouchDrag);
       document.addEventListener('touchmove', touchDrag, { passive: false });
     }
+
     function touchDrag(e) {
       e.preventDefault();
       const touch = e.touches[0];
-      pos1 = pos3 - touch.clientX; pos2 = pos4 - touch.clientY;
-      pos3 = touch.clientX; pos4 = touch.clientY;
+      pos1 = pos3 - touch.clientX;
+      pos2 = pos4 - touch.clientY;
+      pos3 = touch.clientX;
+      pos4 = touch.clientY;
+
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
+
     function closeTouchDrag() {
       elmnt.classList.remove('dragging');
       document.removeEventListener('touchend', closeTouchDrag);
@@ -768,10 +1407,25 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
   // موزیک پلیر دوترکه
   const playlist = [
-    { title: "you're so vile", artist: "datealyfe ✦", src: "music.mp3", cover: "cover1.jpg", badge: "TRACK 1/2" },
-    { title: "LEASE", artist: "阿保剛 (Takeshi Abo) ✦", src: "music2.mp3", cover: "cover2.jpg", badge: "TRACK 2/2" }
+    {
+      title: "you're so vile",
+      artist: "datealyfe ✦",
+      src: "music.mp3",
+      cover: "cover1.jpg",
+      badge: "TRACK 1/2"
+    },
+    {
+      title: "LEASE",
+      artist: "阿保剛 (Takeshi Abo) ✦",
+      src: "music2.mp3",
+      cover: "cover2.jpg",
+      badge: "TRACK 2/2"
+    }
   ];
-  let currentIdx = 0; let isPlaying = false;
+
+  let currentIdx = 0;
+  let isPlaying = false;
+
   const audio = document.getElementById('bgMusic');
   const playBtn = document.getElementById('playBtn');
   const prevBtn = document.getElementById('prevBtn');
@@ -780,6 +1434,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   const trackArtist = document.getElementById('trackArtist');
   const playerBadge = document.getElementById('playerBadge');
   const trackCoverImg = document.getElementById('trackCoverImg');
+
   const timelineBar = document.getElementById('timelineBar');
   const timelineFill = document.getElementById('timelineFill');
   const currentTimeDisplay = document.getElementById('currentTime');
@@ -787,20 +1442,37 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
   function formatTime(sec) {
     if (isNaN(sec)) return "00:00";
-    const minutes = Math.floor(sec / 60); const seconds = Math.floor(sec % 60);
+    const minutes = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
     return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
+
   function loadTrack(idx, shouldPlay = false) {
-    currentIdx = idx; const track = playlist[currentIdx];
-    audio.pause(); audio.src = track.src; audio.load();
-    trackTitle.innerText = track.title; trackArtist.innerText = track.artist;
+    currentIdx = idx;
+    const track = playlist[currentIdx];
+
+    audio.pause();
+    audio.src = track.src;
+    audio.load();
+
+    trackTitle.innerText = track.title;
+    trackArtist.innerText = track.artist;
     if (playerBadge) playerBadge.innerText = track.badge;
     trackCoverImg.src = track.cover;
-    timelineFill.style.width = '0%'; currentTimeDisplay.innerText = "00:00";
+
+    timelineFill.style.width = '0%';
+    currentTimeDisplay.innerText = "00:00";
+
     if (shouldPlay) {
-      audio.play().then(() => { isPlaying = true; playBtn.innerText = '❚❚ Pause 🍬'; }).catch(()=>{});
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause 🍬';
+      }).catch(err => {
+        console.warn("Autoplay prevention:", err);
+      });
     } else {
-      isPlaying = false; playBtn.innerText = '▶ Play 🍬';
+      isPlaying = false;
+      playBtn.innerText = '▶ Play 🍬';
     }
   }
 
@@ -812,28 +1484,65 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
       totalDurationDisplay.innerText = formatTime(audio.duration);
     }
   });
-  audio.addEventListener('loadedmetadata', () => { totalDurationDisplay.innerText = formatTime(audio.duration); });
-  audio.addEventListener('ended', () => { currentIdx = (currentIdx + 1) % playlist.length; loadTrack(currentIdx, true); });
+
+  audio.addEventListener('loadedmetadata', () => {
+    totalDurationDisplay.innerText = formatTime(audio.duration);
+  });
+
+  audio.addEventListener('ended', () => {
+    currentIdx = (currentIdx + 1) % playlist.length;
+    loadTrack(currentIdx, true);
+  });
 
   timelineBar.addEventListener('click', (e) => {
-    const rect = timelineBar.getBoundingClientRect(); const clickX = e.clientX - rect.left;
-    if (audio.duration) audio.currentTime = (clickX / rect.width) * audio.duration;
+    const rect = timelineBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    if (audio.duration) {
+      audio.currentTime = (clickX / width) * audio.duration;
+    }
   });
+
   playBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (audio.paused) { audio.play().then(() => { playBtn.innerText = '❚❚ Pause 🍬'; isPlaying = true; }).catch(()=>{}); }
-    else { audio.pause(); playBtn.innerText = '▶ Play 🍬'; isPlaying = false; }
+    if (audio.paused) {
+      audio.play().then(() => {
+        playBtn.innerText = '❚❚ Pause 🍬';
+        isPlaying = true;
+      }).catch(() => {});
+    } else {
+      audio.pause();
+      playBtn.innerText = '▶ Play 🍬';
+      isPlaying = false;
+    }
   });
-  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIdx = (currentIdx - 1 + playlist.length) % playlist.length; loadTrack(currentIdx, true); });
-  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIdx = (currentIdx + 1) % playlist.length; loadTrack(currentIdx, true); });
+
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
+    loadTrack(currentIdx, true);
+  });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % playlist.length;
+    loadTrack(currentIdx, true);
+  });
 
   window.addEventListener('click', () => {
-    if (!isPlaying && audio.paused) { audio.play().then(() => { isPlaying = true; playBtn.innerText = '❚❚ Pause 🍬'; }).catch(()=>{}); }
+    if (!isPlaying && audio.paused) {
+      audio.play().then(() => {
+        isPlaying = true;
+        playBtn.innerText = '❚❚ Pause 🍬';
+      }).catch(() => {});
+    }
   }, { once: true });
 
   window.addEventListener('scroll', () => {
     const sideImg = document.getElementById('leftSideImg');
-    if (sideImg) sideImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
+    if (sideImg) {
+      sideImg.style.transform = `translateY(${window.scrollY * 0.12}px)`;
+    }
   }, { passive: true });
 
   loadTrack(0, false);
