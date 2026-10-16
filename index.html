@@ -22,7 +22,7 @@
   --choco-glow:rgba(82, 45, 48, 0.45);
   --ink:#211c2e;
   --paper:#fffaff;
-  --glass:rgba(255,255,255,.86);
+  --glass:rgba(255,255,255,.84);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -38,13 +38,19 @@ body{
   position:relative;
 }
 
-/* انیمیشن لود اولیه صفحه */
+/* 初期ロードアニメーション */
 @keyframes slideUpEntrance {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* پس‌زمینه علائم Y2K */
+/* Y2K背景パターン */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
@@ -59,23 +65,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* طرح گل‌های وینتیج (فقط در گوشه سمت راست سایت)[cite: 6] */
-.vintage-global-right {
-  position: fixed;
-  bottom: -15px;
-  right: -15px;
-  width: clamp(200px, 26vw, 340px);
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.35;
-  mix-blend-mode: multiply;
-  filter: contrast(1.1) saturate(1.1);
-  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, transparent 90%);
-  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, transparent 90%);
-}
-
-/* آرت سمت چپ صفحه */
+/* 左側背景アート */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -84,7 +74,7 @@ body:before{
   height: 110vh;
   object-fit: cover;
   object-position: center;
-  opacity: 0.32;
+  opacity: 0.35;
   z-index: 1;
   pointer-events: none;
   filter: contrast(1.1) saturate(1.05);
@@ -93,7 +83,7 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
-/* آرت مانگای محو شده بالا راست */
+/* 右上マンガ背景アート */
 .top-right-manga {
   position: fixed;
   top: 0;
@@ -102,7 +92,7 @@ body:before{
   height: auto;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.34;
+  opacity: 0.36;
   mix-blend-mode: multiply;
   filter: contrast(1.12);
   -webkit-mask-image: radial-gradient(circle at top right, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 60%, transparent 92%);
@@ -111,13 +101,23 @@ body:before{
 }
 
 @media(max-width: 850px){
-  .side-char-bg { opacity: 0.18; width: 130px; }
-  .top-right-manga { width: clamp(170px, 32vw, 260px); opacity: 0.24; }
-  .vintage-global-right { opacity: 0.22; width: 150px; }
+  .side-char-bg {
+    opacity: 0.18;
+    width: 130px;
+  }
+  .top-right-manga {
+    width: clamp(170px, 32vw, 260px);
+    opacity: 0.24;
+  }
 }
 @media(max-width: 550px){
-  .side-char-bg { display: none; }
-  .top-right-manga { width: 40vw; opacity: 0.20; }
+  .side-char-bg {
+    display: none;
+  }
+  .top-right-manga {
+    width: 40vw;
+    opacity: 0.20;
+  }
 }
 
 a{color:inherit}
@@ -130,7 +130,9 @@ a{color:inherit}
   animation: slideUpEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* TOPBAR */
+/* ==============================================================
+   TOPBAR & SNAKE ANIMATION
+   ============================================================== */
 .topbar{
   border:3px solid var(--ink);background:#fff;
   box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
@@ -139,18 +141,33 @@ a{color:inherit}
   position: relative;
   overflow: hidden;
 }
+
 .topbar::before {
   content: '';
-  position: absolute; width: 20%; height: 3px; background: #ff69b4;
-  box-shadow: 0 0 8px #ff69b4, 0 0 12px #ff69b4; top: 0; left: -25%; z-index: 10;
+  position: absolute;
+  width: 20%;
+  height: 3px;
+  background: #ff69b4;
+  box-shadow: 0 0 8px #ff69b4, 0 0 12px #ff69b4;
+  top: 0;
+  left: -25%;
+  z-index: 10;
   animation: snake-pink 3.5s linear infinite;
 }
+
 .topbar::after {
   content: '';
-  position: absolute; width: 20%; height: 3px; background: #fffb00;
-  box-shadow: 0 0 8px #fffb00, 0 0 12px #fffb00; bottom: 0; right: -25%; z-index: 10;
+  position: absolute;
+  width: 20%;
+  height: 3px;
+  background: #fffb00;
+  box-shadow: 0 0 8px #fffb00, 0 0 12px #fffb00;
+  bottom: 0;
+  right: -25%;
+  z-index: 10;
   animation: snake-yellow 3.5s linear infinite;
 }
+
 @keyframes snake-pink {
   0% { left: -25%; top: 0; }
   45% { left: 100%; top: 0; }
@@ -158,6 +175,7 @@ a{color:inherit}
   95% { left: -25%; top: calc(100% - 3px); }
   100% { left: -25%; top: 0; }
 }
+
 @keyframes snake-yellow {
   0% { right: -25%; bottom: 0; }
   45% { right: 100%; bottom: 0; }
@@ -165,156 +183,345 @@ a{color:inherit}
   95% { right: -25%; bottom: calc(100% - 3px); }
   100% { right: -25%; bottom: 0; }
 }
+
 .flair-symbol{
-  font-size:20px; font-weight:900; color:#ff2a9d;
+  font-size:20px;
+  font-weight:900;
+  color:#ff2a9d;
   text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 10px rgba(255, 42, 157, 0.4);
-  letter-spacing:1px; user-select:none;
+  letter-spacing:1px;
+  user-select:none;
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 
-/* وضعیت آنلاین */
+/* オンラインステータス */
 .online-status-wrap{
-  display:inline-flex; align-items:center; gap:7px;
-  font-family:'M PLUS Rounded 1c',sans-serif; font-size:13px; letter-spacing:1px; color:#7e5296;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-size:13px;
+  letter-spacing:1px;
+  color:#7e5296;
 }
 .online-dot{
-  width:10px; height:10px; border-radius:50%; background:#00ff66;
-  border:1.5px solid var(--ink); box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#00ff66;
+  border:1.5px solid var(--ink);
+  box-shadow:0 0 10px #00ff66, 0 0 16px #00ff66;
   animation:blinkGreen 1s ease-in-out infinite alternate;
 }
 @keyframes blinkGreen{
-  0%{ opacity: 0.15; transform: scale(0.75); box-shadow: 0 0 2px #00ff66; }
-  100%{ opacity: 1; transform: scale(1.15); box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66; }
+  0%{
+    opacity: 0.15;
+    transform: scale(0.75);
+    box-shadow: 0 0 2px #00ff66;
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
+  }
 }
 
-/* MARQUEE */
-.marquee-wrapper { position: relative; margin: 22px 0; }
+/* ==============================================================
+   CUTE MARQUEE
+   ============================================================== */
+.marquee-wrapper {
+  position: relative;
+  margin: 22px 0;
+}
+
 .marquee {
-  position: relative; border: 3px solid var(--ink);
-  background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 10px, #fff0f8 10px, #fff0f8 20px);
-  padding: 10px 14px; overflow: hidden; white-space: nowrap; border-radius: 14px;
-  box-shadow: 5px 5px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.35); display: flex; transition: all 0.3s ease;
+  position: relative;
+  border: 3px solid var(--ink);
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 10px,
+    #fff0f8 10px,
+    #fff0f8 20px
+  );
+  padding: 10px 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 14px;
+  box-shadow: 
+    5px 5px 0 var(--ink),
+    0 0 16px rgba(255, 107, 189, 0.35);
+  display: flex;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .marquee:hover {
-  transform: translateY(-2px); box-shadow: 7px 7px 0 var(--ink), 0 0 24px rgba(255, 107, 189, 0.6); border-color: #ff2a9d;
+  transform: translateY(-2px);
+  box-shadow: 
+    7px 7px 0 var(--ink),
+    0 0 24px rgba(255, 107, 189, 0.6);
+  border-color: #ff2a9d;
 }
+
 .marquee-content {
-  display: inline-flex; white-space: nowrap; animation: smoothMarquee 150s linear infinite;
-  font-family: 'VT323', monospace; font-size: 21px; letter-spacing: 1.5px; color: #3b284c;
+  display: inline-flex;
+  white-space: nowrap;
+  animation: smoothMarquee 150s linear infinite;
+  font-family: 'VT323', monospace;
+  font-size: 21px;
+  letter-spacing: 1.5px;
+  color: #3b284c;
   text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(255, 107, 189, 0.4);
 }
-.marquee-content span b { font-weight: normal; color: #ff1f8f; margin: 0 14px; }
+
+.marquee-content span b {
+  font-weight: normal;
+  color: #ff1f8f;
+  margin: 0 14px;
+}
+
 @keyframes smoothMarquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-.grid{ display:grid; grid-template-columns:1.6fr .8fr; gap:20px; align-items:start; }
-@media(max-width:850px){ .grid{ grid-template-columns:1fr; } }
-
+/* ==============================================================
+   CARDS & HOVER GLOW
+   ============================================================== */
+.grid{
+  display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
+}
 .card{
-  background:var(--glass); backdrop-filter:blur(8px);
-  border:3px solid var(--ink); box-shadow:7px 7px 0 var(--ink);
-  padding:20px; margin-bottom:20px; border-radius:6px; position:relative;
+  background:var(--glass);backdrop-filter:blur(8px);
+  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
+  padding:20px;margin-bottom:20px;border-radius:6px;
+  position:relative;
   transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 7px 7px 0 var(--ink), 0 0 15px 2px rgba(255, 105, 180, 0.35), 0 0 20px 4px rgba(255, 255, 0, 0.25);
+  box-shadow: 7px 7px 0 var(--ink),
+              0 0 15px 2px rgba(255, 105, 180, 0.35), 
+              0 0 20px 4px rgba(255, 255, 0, 0.25);
 }
 
-/* HERO SECTION + FADED GIRL BG */
-.hero{ min-height:360px; position:relative; overflow:visible; z-index: 1; }
-.hero-bg-fade { position: absolute; inset: 0; border-radius: 4px; overflow: hidden; z-index: 0; pointer-events: none; }
-.hero-bg-fade::before {
-  content: ""; position: absolute; inset: 0;
-  background-image: url('HUquRv_aMAAY53h.jpg'), url('hero-girl.jpg');
-  background-size: cover; background-position: right 25%;
-  opacity: 0.36; mix-blend-mode: multiply; filter: contrast(1.08) saturate(0.95);
-  mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 25%, rgba(0,0,0,0.45) 65%, transparent 98%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 25%, rgba(0,0,0,0.45) 65%, transparent 98%);
-}
-.hero-content { position: relative; z-index: 2; }
+.hero{min-height:330px;position:relative;overflow:visible}
 
-/* WELCOME STICKER & POPUP */
-.welcome-container { position: relative; display: inline-block; margin-top: 8px; }
+/* ==============================================================
+   WELCOME STICKER & PIXEL POPUP EFFECT
+   ============================================================== */
+.welcome-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+}
+
 .sticker{
-  display:inline-block; background:var(--yellow); border:2px solid var(--ink);
-  padding:6px 14px; transform:rotate(-3deg); font-size:13px; font-weight:bold;
-  box-shadow:3px 3px 0 var(--ink); border-radius:4px; cursor: pointer; user-select: none;
+  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
+  padding:6px 14px;transform:rotate(-3deg);font-size:13px;font-weight:bold;
+  box-shadow:3px 3px 0 var(--ink);border-radius:4px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
 }
-.sticker:hover { transform: rotate(-1deg) scale(1.06); box-shadow: 4px 4px 0 var(--ink), 0 0 12px rgba(255, 245, 138, 0.9); }
-.sticker.pixel-flash { animation: pixelGlitchFlash 0.48s steps(2, end) forwards; }
+.sticker:hover {
+  transform: rotate(-1deg) scale(1.06);
+  box-shadow: 4px 4px 0 var(--ink), 0 0 12px rgba(255, 245, 138, 0.9);
+}
+
+/* クリック時のピクセルフラッシュアニメーション */
+.sticker.pixel-flash {
+  animation: pixelGlitchFlash 0.45s steps(2, end) forwards;
+}
+
 @keyframes pixelGlitchFlash {
-  0% { background: #ff6bbd; color: #fff; transform: rotate(3deg) scale(1.14); box-shadow: 0 0 0 3px #fff, 0 0 22px #ff2a9d; }
-  50% { background: #fff58a; color: #ff1f8f; transform: rotate(4deg) scale(1.1); }
-  100% { background: var(--yellow); color: var(--ink); transform: rotate(-3deg) scale(1); box-shadow: 3px 3px 0 var(--ink); }
+  0% {
+    background: #ff2a9d;
+    color: #fff;
+    transform: rotate(3deg) scale(1.14);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #ff2a9d, 0 0 20px #ff2a9d;
+    filter: contrast(200%);
+  }
+  25% {
+    background: #00ffcc;
+    color: var(--ink);
+    transform: rotate(-5deg) scale(0.96);
+    box-shadow: -4px 4px 0 var(--ink), 4px -4px 0 #ff2a9d;
+  }
+  50% {
+    background: #fffb00;
+    color: #ff1f8f;
+    transform: rotate(4deg) scale(1.1);
+    box-shadow: 4px 4px 0 #00e5ff, -4px -4px 0 var(--ink);
+  }
+  75% {
+    background: #ffffff;
+    color: var(--ink);
+    transform: rotate(-2deg) scale(1.04);
+  }
+  100% {
+    background: var(--yellow);
+    color: var(--ink);
+    transform: rotate(-3deg) scale(1);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
 }
 
+/* 「ru enjoying??」のピクセルメッセージポップアップ */
 .enjoy-popup {
-  position: absolute; bottom: calc(100% + 14px); left: 50%;
-  transform: translateX(-50%) translateY(16px) scale(0.7) rotate(-2deg);
-  background: linear-gradient(135deg, #fff0f8 0%, #ffffff 50%, #e8f9ff 100%);
-  color: #ff1f8f; font-family: 'VT323', monospace; font-size: 22px; font-weight: bold;
-  letter-spacing: 1.5px; padding: 6px 16px; border: 2.5px solid var(--ink); border-radius: 14px;
-  box-shadow: 4px 4px 0 var(--ink), 0 0 0 3px #ffb8d9, 0 0 18px rgba(255, 107, 189, 0.75);
-  white-space: nowrap; pointer-events: none; opacity: 0; z-index: 40;
-  display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(14px) scale(0.75);
+  background: #211c2e;
+  color: #00ff66;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  padding: 5px 14px;
+  border: 2.5px solid #ff6bbd;
+  box-shadow: 4px 4px 0 var(--ink), 0 0 15px rgba(255, 107, 189, 0.7);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 30;
+  transition: opacity 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.enjoy-popup .sparkle-tag { color: #7e5296; font-size: 18px; }
-.enjoy-popup::after {
-  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  border-width: 7px; border-style: solid; border-color: var(--ink) transparent transparent transparent;
-}
-.enjoy-popup.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1) rotate(-2deg); }
 
+.enjoy-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ff6bbd transparent transparent transparent;
+}
+
+.enjoy-popup.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: pixelTextPulse 0.3s steps(2, start) infinite alternate;
+}
+
+@keyframes pixelTextPulse {
+  0% {
+    text-shadow: 2px 0 0 #ff2a9d, -2px 0 0 #00e5ff;
+    border-color: #ff6bbd;
+  }
+  100% {
+    text-shadow: -1px 0 0 #ff2a9d, 1px 0 0 #fffb00;
+    border-color: #00ff66;
+  }
+}
+
+/* タイトル */
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
-  font-size:clamp(46px,8.5vw,94px); line-height:.95; margin:18px 0 16px; letter-spacing:-2px;
-  color:#ff47ab; text-shadow: 4px 4px 0 #fff, 7px 7px 0 var(--ink), 0 0 20px rgba(255,107,189,0.4);
+  font-size:clamp(46px,8.5vw,94px);
+  line-height:.95;margin:22px 0 16px;
+  letter-spacing:-2px;
+  color:#ff47ab;
+  text-shadow:
+    4px 4px 0 #fff,
+    7px 7px 0 var(--ink),
+    0 0 20px rgba(255,107,189,0.4);
 }
 
+/* 自己紹介テキストと大型絵文字サイズのアニメGIF */
 .bio-wrapper {
-  font-size: 14.5px; max-width: 630px; line-height: 1.75; color: #2b213a;
-  background: rgba(255, 255, 255, 0.78); backdrop-filter: blur(4px);
-  border: 2px dashed #ff6bbd; border-radius: 14px; padding: 15px 18px; margin-bottom: 12px;
-  box-shadow: 3px 3px 0 rgba(33, 28, 46, 0.12);
+  font-size: 14.5px;
+  max-width: 650px;
+  line-height: 1.75;
+  color: #352b46;
+  background: rgba(255, 242, 250, 0.65);
+  border: 2px dashed #ff85c8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
 }
-.bio-wrapper p { margin: 0 0 10px 0; font-weight: 600; }
-.bio-wrapper p:last-child { margin-bottom: 0; }
 
+.bio-wrapper p {
+  margin: 0 0 10px 0;
+}
+.bio-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+/* 大きめの絵文字サイズバッジとしてのアニメGIF/動画 */
 .inline-anime-emoji {
-  display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;
-  width: 56px; height: 56px; border-radius: 12px; border: 2.5px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink), 0 0 10px rgba(255, 107, 189, 0.5); overflow: hidden;
-  margin-left: 8px; background: #ffd3ec; transform: rotate(3deg); transition: transform 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink), 0 0 10px rgba(255, 107, 189, 0.5);
+  overflow: hidden;
+  margin-left: 8px;
+  background: #ffd3ec;
+  transform: rotate(3deg);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.inline-anime-emoji:hover { transform: scale(1.35) rotate(-4deg); z-index: 10; }
-.inline-anime-emoji img, .inline-anime-emoji video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.inline-anime-emoji:hover {
+  transform: scale(1.35) rotate(-4deg);
+  z-index: 10;
+}
+.inline-anime-emoji img,
+.inline-anime-emoji video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-.links{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+/* SNSリンク＆ボタン */
+.links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
 .links a{
   text-decoration:none;
-  background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 9px, #ffe1f2 9px, #ffe1f2 18px);
-  border:2.5px solid var(--ink); padding:10px 16px; font-size:12.5px; font-weight:800;
-  box-shadow:3px 3px 0 var(--ink); border-radius:12px; display:inline-flex; align-items:center; gap:8px;
-  transition: transform 0.28s ease, box-shadow 0.25s ease;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 9px,
+    #ffe1f2 9px,
+    #ffe1f2 18px
+  );
+  border:2.5px solid var(--ink);
+  padding:10px 16px;
+  font-size:12.5px;
+  font-weight:800;
+  box-shadow:3px 3px 0 var(--ink);
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transform: scale(1);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  user-select:none;
 }
-.links a:hover{ transform: scale(1.08) translateY(-3px); box-shadow: 5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45); }
+.links a:hover{
+  transform: scale(1.08) translateY(-3px);
+  box-shadow:5px 6px 0 var(--ink), 0 0 16px rgba(255, 107, 189, 0.45);
+  filter: saturate(1.15);
+}
+.links a:active{
+  transform: scale(0.98) translateY(1px);
+  box-shadow:2px 2px 0 var(--ink);
+}
+
 .links a.btn-ig{ color:#bc1888; border-color:#d62976; }
 .links a.btn-tg{ color:#0088cc; border-color:#229ed9; }
 .links a.btn-tw{ color:#0c85d0; border-color:#1da1f2; }
 .links a.btn-tt{ color:#ff0050; border-color:#fe2c55; }
 .links a.btn-sp{ color:#1aa34a; border-color:#1db954; }
-
-.floral-card { position: relative; overflow: hidden; }
-.floral-card > *:not(.floral-corner-right) { position: relative; z-index: 2; }
-.floral-corner-right {
-  position: absolute; right: -12px; bottom: -14px; width: 155px; height: auto;
-  pointer-events: none; z-index: 1; opacity: 0.48; mix-blend-mode: multiply;
-  mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 40%, transparent 85%);
-}
 
 h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
 .post{border-top:2px dotted #9c91ab;padding:14px 0}
@@ -323,65 +530,323 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 .post h3{margin:6px 0;font-size:17px;color:#1e1829;}
 .post p{font-size:13.5px;line-height:1.7;margin:7px 0}
 
-/* SPOTIFY */
+/* =======================================
+   SPOTIFY DUAL TRACK PLAYER + TIMELINE
+   ======================================= */
 .spotify{
   background:linear-gradient(135deg,#ffe8f6 0%,#f0fff4 100%);
-  border:3px solid var(--ink); padding:16px; box-shadow:inset 0 0 10px rgba(255,107,189,0.15); border-radius:6px;
+  border:3px solid var(--ink);padding:16px;
+  box-shadow:inset 0 0 10px rgba(255,107,189,0.15);
+  border-radius:6px;
 }
-.spotify-tag-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.spotify-tag-row{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;
+}
 .spotify-live{
-  display:inline-flex; align-items:center; gap:6px; background:#20192b; color:#67ffaa;
-  font-size:10px; padding:3px 8px; font-family:'VT323',monospace; border-radius:4px;
+  display:inline-flex;align-items:center;gap:6px;
+  background:#20192b;color:#67ffaa;font-size:10px;padding:3px 8px;
+  font-family:'VT323',monospace;letter-spacing:1px;border-radius:4px;
+  box-shadow:1px 1px 0 var(--ink);
 }
-.live-dot{ width:7px; height:7px; border-radius:50%; background:#1ed760; box-shadow:0 0 8px #1ed760; }
-.now{ display:flex; align-items:center; gap:12px; }
-.cover-img-box{ width:64px; height:64px; border:2px solid var(--ink); box-shadow:3px 3px 0 var(--ink); border-radius:8px; overflow:hidden; background:#ffc8e9; flex-shrink:0; }
-.cover-img-box img{ width:100%; height:100%; object-fit:cover; display:block; }
-.song{ font-weight:bold; font-size:13.5px; color:#281831; font-family:'Fredoka',sans-serif; }
-.artist{ font-size:11.5px; color:#644c77; margin-top:2px; font-weight:600; }
-.timeline-container{ margin-top:14px; }
-.timeline-bar{ width:100%; height:14px; background:#ffd4ec; border:2px solid var(--ink); border-radius:10px; overflow:hidden; position:relative; cursor:pointer; }
-.timeline-fill{ height:100%; width:0%; background:linear-gradient(90deg, #ff4cae 0%, #68d6ff 100%); border-radius:6px; }
-.time-display{ display:flex; justify-content:space-between; font-family:'VT323',monospace; font-size:13px; color:#5d3b66; margin-top:4px; font-weight:bold; }
-.player-controls{ display:flex; gap:6px; align-items:center; margin-top:10px; }
-.track-nav-btn{ cursor:pointer; background:#fff; border:2px solid var(--ink); box-shadow:2px 2px 0 var(--ink); font-size:14px; padding:7px 11px; border-radius:5px; font-weight:bold; }
-.audio-ctrl{ cursor:pointer; background:#ff6bbd; color:#fff; border:2px solid var(--ink); padding:8px; font-size:12px; font-weight:bold; width:100%; box-shadow:2px 2px 0 var(--ink); border-radius:5px; text-align:center; }
-.spotify-actions{ margin-top:10px; }
-.spotify-btn{ display:block; text-align:center; text-decoration:none; background:#fff; border:2px solid var(--ink); padding:7px; font-size:11.5px; font-weight:bold; box-shadow:2px 2px 0 var(--ink); border-radius:5px; }
+.live-dot{
+  width:7px;height:7px;border-radius:50%;background:#1ed760;
+  box-shadow:0 0 8px #1ed760;animation:pulse 1s infinite alternate;
+}
+@keyframes pulse{from{opacity:0.3;transform:scale(0.8)}to{opacity:1;transform:scale(1.2)}}
+.cute-cupcake{font-size:18px;}
 
-/* ABOUT ME CARD */
-.card-about{
-  background: repeating-linear-gradient(-45deg, rgba(255, 230, 245, 0.75), rgba(255, 230, 245, 0.75) 12px, rgba(255, 255, 255, 0.85) 12px, rgba(255, 255, 255, 0.85) 24px);
-  position:relative; overflow:hidden;
+.now{display:flex;align-items:center;gap:12px}
+.cover-img-box{
+  width:64px;height:64px;border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);border-radius:8px;
+  overflow:hidden;flex-shrink:0;background:#ffc8e9;
 }
-.about-inner{ position:relative; z-index:2; }
-.about-wiggle-title{ font-size:22px; font-weight:900; color:#ff2497; margin-bottom:14px; animation:wiggleTitle 2.4s ease-in-out infinite; }
-@keyframes wiggleTitle{ 0%, 100%{ transform: rotate(0deg) translateY(0); } 25%{ transform: rotate(-2.5deg) translateY(-2px); } 75%{ transform: rotate(2.5deg) translateY(1px); } }
-.alt-facts{ font-size:13.5px; line-height:2.2; font-weight:600; color:#1f182c; }
-.alt-name{ font-family:'Fredoka',sans-serif; color:#e7007d; font-size:17px; background:rgba(255,255,255,0.7); padding:2px 8px; border-radius:6px; font-weight:800; }
+.cover-img-box img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.3s ease;
+}
+.cover-img-box:hover img{
+  transform:scale(1.08);
+}
+.song{font-weight:bold;font-size:13.5px;color:#281831;font-family:'Fredoka',sans-serif;}
+.artist{font-size:11.5px;color:#644c77;margin-top:2px;font-weight:600;}
+
+.timeline-container{
+  margin-top:14px;
+}
+.timeline-bar{
+  width:100%;height:14px;background:#ffd4ec;
+  border:2px solid var(--ink);border-radius:10px;
+  overflow:hidden;position:relative;cursor:pointer;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,0.15);
+}
+.timeline-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg, #ff4cae 0%, #ff8adb 50%, #68d6ff 100%);
+  background-size:24px 24px;
+  background-image:linear-gradient(
+    45deg, 
+    rgba(255,255,255,0.4) 25%, 
+    transparent 25%, 
+    transparent 50%, 
+    rgba(255,255,255,0.4) 50%, 
+    rgba(255,255,255,0.4) 75%, 
+    transparent 75%, 
+    transparent
+  );
+  animation:wavePattern 1.2s linear infinite;
+  border-radius:6px;
+  transition:width 0.1s linear;
+}
+@keyframes wavePattern {
+  0% { background-position: 0 0; }
+  100% { background-position: 24px 0; }
+}
+.time-display{
+  display:flex;justify-content:space-between;
+  font-family:'VT323',monospace;font-size:13px;
+  color:#5d3b66;margin-top:4px;font-weight:bold;
+}
+
+.player-controls{
+  display:flex;gap:6px;align-items:center;margin-top:10px;
+}
+.track-nav-btn{
+  cursor:pointer;background:#fff;border:2px solid var(--ink);
+  box-shadow:2px 2px 0 var(--ink);font-size:14px;padding:7px 11px;
+  border-radius:5px;font-weight:bold;transition:.15s;
+}
+.track-nav-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);background:#ffe8f6;}
+
+.audio-ctrl{
+  cursor:pointer;background:#ff6bbd;color:#fff;
+  border:2px solid var(--ink);padding:8px;font-size:12px;font-weight:bold;
+  width:100%;box-shadow:2px 2px 0 var(--ink);border-radius:5px;
+  transition:.15s;text-align:center;
+}
+.audio-ctrl:hover{background:#ff4cae;}
+
+.spotify-actions{
+  margin-top:10px;display:flex;flex-direction:column;gap:6px;
+}
+.spotify-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:#fff;border:2px solid var(--ink);
+  padding:7px;font-size:11.5px;font-weight:bold;
+  box-shadow:2px 2px 0 var(--ink);transition:.15s;border-radius:5px;
+}
+.spotify-btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:#fff2fa;}
+
+/* =======================================
+   CUSTOM ABOUT ME CARD
+   ======================================= */
+.card-about{
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 230, 245, 0.75),
+      rgba(255, 230, 245, 0.75) 12px,
+      rgba(255, 255, 255, 0.85) 12px,
+      rgba(255, 255, 255, 0.85) 24px
+    );
+  position:relative;
+  overflow:hidden;
+}
+
+.card-about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url('about-bg.jpg'), url('about-bg.jpg.jpg');
+  background-size:cover;
+  background-position:center;
+  opacity:0.32;
+  pointer-events:none;
+  filter:contrast(115%) saturate(110%);
+  z-index:0;
+}
+
+.about-inner{
+  position:relative;
+  z-index:2;
+}
+
+.about-wiggle-title{
+  display:inline-block;
+  font-size:22px;
+  border:none;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#ff2497;
+  text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink), 0 0 12px rgba(255, 36, 151, 0.5);
+  margin-bottom:14px;
+  animation:wiggleTitle 2.4s ease-in-out infinite;
+}
+
+@keyframes wiggleTitle{
+  0%, 100%{ transform: rotate(0deg) translateY(0); }
+  25%{ transform: rotate(-2.5deg) translateY(-2px); }
+  75%{ transform: rotate(2.5deg) translateY(1px); }
+}
+
+.alt-facts{
+  font-size:13.5px;
+  line-height:2.2;
+  font-weight:600;
+  color:#1f182c;
+  text-shadow:0 1px 3px rgba(255,255,255,0.9);
+}
+
+.alt-name{
+  font-family:'Fredoka',sans-serif;
+  color:#e7007d;
+  font-size:17px;
+  letter-spacing:1px;
+  text-shadow:1px 1px 0 #fff;
+  background:rgba(255,255,255,0.7);
+  padding:2px 8px;
+  border-radius:6px;
+  border:none;
+  font-weight:800;
+}
+
 .alt-place{color:#0071a8;font-weight:700;}
-.alt-activities{color:#5d1e8c;font-weight:700;}
-.alt-mood{font-size:15px;}
+.alt-activities{color:#5d1e8c;font-weight:700;letter-spacing:0.5px;}
+.alt-mood{font-size:15px;letter-spacing:2px;}
 
 .side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px;font-weight:bold;}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
-.badge{ border:1.5px solid var(--ink); background:rgba(255,255,255,0.92); padding:5px 10px; font-size:11px; font-weight:bold; border-radius:6px; box-shadow:2px 2px 0 var(--ink); }
+.badge{border:1px solid var(--ink);background:#fff;padding:4px 8px;font-size:10px;border-radius:3px;box-shadow:1px 1px 0 var(--ink);}
 .guestbook{font-size:12px;line-height:1.7}
 
-/* DRAGGABLE CHARACTERS */
-.character{ position:fixed; z-index:999; cursor: grab; touch-action: none; user-select: none; }
-.character:hover{ filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6)); }
-.character.dragging{ cursor: grabbing !important; transform: scale(1.06) !important; }
-.character.right{ right:18px; bottom:15px; width:155px; }
-.character.left{ left:18px; bottom:15px; width:145px; }
+/* ==============================================================
+   DRAGGABLE & FLOATING CHARACTERS
+   ============================================================== */
+.character{
+  position:fixed;
+  z-index:999;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+}
 
-.akame-choco-frame{ border:4px solid var(--choco-dark); background:#452b2e; padding:5px; border-radius:18px; box-shadow:3px 4px 0 var(--ink); overflow:hidden; }
-.akame-choco-frame img{ width:100%; height:220px; object-fit:cover; display:block; border-radius:12px; border:2px dashed #ffb8d9; }
-.akame-choco-tag{ background:#533236; color:#ffd9e8; border:2px solid var(--choco-dark); font-size:11px; font-weight:bold; padding:4px; text-align:center; margin-top:6px; border-radius:12px; box-shadow:2px 2px 0 var(--ink); }
+.character:hover{
+  filter: drop-shadow(0 0 10px rgba(255, 107, 189, 0.6));
+}
 
-.left-char-frame{ border:4px solid var(--ink); background:#ffd3ec; padding:5px; border-radius:18px; box-shadow:3px 4px 0 var(--ink); overflow:hidden; }
-.left-char-frame img{ width:100%; height:210px; object-fit:cover; display:block; border-radius:12px; border:2px dashed #ff6bbd; }
-.left-char-tag{ background:#fff; color:#ff2497; border:2px solid var(--ink); font-size:11px; font-weight:bold; padding:4px; text-align:center; margin-top:6px; border-radius:12px; box-shadow:2px 2px 0 var(--ink); }
+.character.dragging{
+  cursor: grabbing !important;
+  transform: scale(1.06) !important;
+  z-index: 1000 !important;
+}
+
+.character.right{
+  right:18px;
+  bottom:15px;
+  width:155px;
+}
+
+.character.left{
+  left:18px;
+  bottom:15px;
+  width:145px;
+}
+
+.character.right .akame-choco-frame{
+  animation:slowFloat 6s ease-in-out infinite alternate;
+}
+.character.left .left-char-frame{
+  animation:slowFloatLeft 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes slowFloat{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-12px) rotate(1.5deg);}
+  100%{transform:translateY(-4px) rotate(-1deg);}
+}
+
+@keyframes slowFloatLeft{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-10px) rotate(-1.5deg);}
+  100%{transform:translateY(-3px) rotate(1deg);}
+}
+
+.character.dragging .akame-choco-frame,
+.character.dragging .left-char-frame{
+  animation: none !important;
+}
+
+/* アカメのフレーム */
+.akame-choco-frame{
+  width:100%;
+  border:4px solid var(--choco-dark);
+  background:linear-gradient(135deg, #452b2e 0%, #2f1c1f 100%);
+  padding:5px;
+  border-radius:18px;
+  box-shadow:
+    0 8px 20px var(--choco-glow),
+    3px 4px 0 var(--ink),
+    inset 0 0 10px rgba(255, 182, 193, 0.25);
+  overflow:hidden;
+  pointer-events: none;
+}
+
+.akame-choco-frame img{
+  width:100%;height:220px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  border-radius:12px;
+  border:2px dashed #ffb8d9;
+  pointer-events: none;
+}
+
+.akame-choco-tag{
+  background:linear-gradient(135deg, #533236, #372023);
+  color:#ffd9e8;
+  border:2px solid var(--choco-dark);
+  font-size:11px;font-weight:bold;padding:4px 8px;
+  text-align:center;margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:12px;
+  letter-spacing:0.5px;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  pointer-events: none;
+}
+
+/* 左キャラクターのフレーム */
+.left-char-frame{
+  width:100%;
+  border:4px solid var(--ink);
+  background:linear-gradient(135deg, #ffd3ec 0%, #e1f5fe 100%);
+  padding:5px;
+  border-radius:18px;
+  box-shadow:
+    0 8px 20px rgba(255, 107, 189, 0.35),
+    3px 4px 0 var(--ink);
+  overflow:hidden;
+  pointer-events: none;
+}
+.left-char-frame img{
+  width:100%;height:210px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  border-radius:12px;
+  border:2px dashed #ff6bbd;
+  pointer-events: none;
+}
+.left-char-tag{
+  background:#fff;
+  color:#ff2497;
+  border:2px solid var(--ink);
+  font-size:11px;font-weight:bold;padding:4px 8px;
+  text-align:center;margin-top:6px;
+  box-shadow:2px 2px 0 var(--ink);
+  border-radius:12px;
+  pointer-events: none;
+}
 
 footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-weight:bold;}
 
@@ -396,16 +861,18 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
-<img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="">
-<img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="">
-<img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="vintage-global-right" alt="">
+<!-- Side Artworks -->
+<img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
+<img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
 
+<!-- Ambient Symbols -->
 <div class="bg-symbols">
   <span>☠</span> <span>📶</span> <span>JAYDES</span> <span>𓆩♡𓆪 HIM</span> <span>✦</span>
   <span>📶</span> <span>JAYDES</span> <span>☠︎</span> <span>HIM</span> <span>𓆩♡𓆪</span>
   <span>☠︎</span> <span>📶</span> <span>JAYDES</span> <span>✦</span> <span>☠</span>
 </div>
 
+<!-- Audio Player Element -->
 <audio id="bgMusic" preload="auto"></audio>
 
 <div class="wrap">
@@ -415,12 +882,13 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     
     <div class="online-status-wrap">
       <span class="online-dot"></span>
-      <span>ONLINE</span>
+      <span>私をすごく愛しているなら ✦ ONLINE</span>
     </div>
 
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
+  <!-- マーキー -->
   <div class="marquee-wrapper">
     <div class="marquee">
       <div class="marquee-content">
@@ -505,62 +973,57 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <div class="grid">
     <main>
       <section class="card hero">
-        <div class="hero-bg-fade"></div>
-        <div class="hero-content">
-          <div class="welcome-container">
-            <div class="enjoy-popup" id="enjoyPopup">
-              <span class="sparkle-tag">˚₊‧꒰ა</span>
-              <span>ru enjoying?? ♡</span>
-              <span class="sparkle-tag">໒꒱‧₊˚</span>
-            </div>
-            <span class="sticker" id="welcomeSticker" title="Click me!">WELCOME! 🧁₊˚✧</span>
-          </div>
+        <!-- クリックでピクセルフラッシュ＆メッセージが出るWELCOMEステッカー -->
+        <div class="welcome-container">
+          <div class="enjoy-popup" id="enjoyPopup">ru enjoying?? 👾✨</div>
+          <span class="sticker" id="welcomeSticker" title="Click me!">WELCOME! 🧁₊˚✧</span>
+        </div>
 
-          <h1 class="kawaii-title">all about<br>mee :3</h1>
-          
-          <div class="bio-wrapper">
-            <p>
-              This is my personal page for my bio, random info, and a few little personal things about me.
-            </p>
-            <p>
-              I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.
-            </p>
-            <p>
-              And honestly, idk why I made this site so cute and girly lol :)
-              <span class="inline-anime-emoji" title=":3">
-                <img src="anime-girl.gif" alt="Anime Girl GIF" onerror="this.outerHTML='<video src=\'elfen-lied-kaede.mp4\' autoplay loop muted playsinline></video>'">
-              </span>
-            </p>
-            <p>
-              But yeah, basically, I post whatever I’m into or whatever catches my attention — anime, music, pretty symbols, random stuff, and literally anything that gives me a good feeling.
-            </p>
-            <p>
-              This is kinda just my little corner of the internet where I can dump whatever I like and be myself.
-            </p>
-          </div>
+        <h1 class="kawaii-title">all about<br>mee :3</h1>
+        
+        <!-- 更新された自己紹介文 + 確実にロードされるアニメGIF/動画 -->
+        <div class="bio-wrapper">
+          <p>
+            This is my personal page for my bio, random info, and a few little personal things about me.
+          </p>
+          <p>
+            I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.
+          </p>
+          <p>
+            And honestly, idk why I made this site so cute and girly lol :)
+            <span class="inline-anime-emoji" title=":3">
+              <img src="anime-girl.gif" alt="Anime Girl" onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
+            </span>
+          </p>
+          <p>
+            But yeah, basically, I post whatever I’m into or whatever catches my attention — anime, music, pretty symbols, random stuff, and literally anything that gives me a good feeling.
+          </p>
+          <p>
+            This is kinda just my little corner of the internet where I can dump whatever I like and be myself.
+          </p>
+        </div>
 
-          <div class="links">
-            <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
-              <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
-            </a>
-            <a href="https://t.me/TMN_lostrushi" target="_blank" class="btn-tg">
-              <span>✈️</span> ✉ TELEGRAM (@TMN_lostrushi)
-            </a>
-            <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
-              <span>💬</span> 𝕏 TWITTER (@kianhcn)
-            </a>
-            <a href="https://www.tiktok.com/@kianhcn" target="_blank" class="btn-tt">
-              <span>🎵</span> ✰ TIKTOK (@kianhcn)
-            </a>
-            <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="btn-sp">
-              <span>🎧</span> ♫ SPOTIFY (Playlist)
-            </a>
-          </div>
+        <!-- ソーシャルリンク -->
+        <div class="links">
+          <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
+            <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
+          </a>
+          <a href="https://t.me/TMN_lostrushi" target="_blank" class="btn-tg">
+            <span>✈️</span> ✉ TELEGRAM (@TMN_lostrushi)
+          </a>
+          <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
+            <span>💬</span> 𝕏 TWITTER (@kianhcn)
+          </a>
+          <a href="https://www.tiktok.com/@kianhcn" target="_blank" class="btn-tt">
+            <span>🎵</span> ✰ TIKTOK (@kianhcn)
+          </a>
+          <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="btn-sp">
+            <span>🎧</span> ♫ SPOTIFY (Playlist)
+          </a>
         </div>
       </section>
 
-      <section class="card floral-card" id="blog">
-        <img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="floral-corner-right" alt="">
+      <section class="card" id="blog">
         <h2>★ my weblog</h2>
 
         <article class="post">
@@ -580,6 +1043,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     </main>
 
     <aside>
+      <!-- SPOTIFY DUAL TRACK PLAYER -->
       <section class="card">
         <div class="side-title">♪ spotify feed</div>
         <div class="spotify">
@@ -626,6 +1090,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         </div>
       </section>
 
+      <!-- CUSTOM ABOUT ME CARD -->
       <section class="card card-about">
         <div class="about-inner">
           <div class="about-wiggle-title">
@@ -640,24 +1105,21 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         </div>
       </section>
 
-      <section class="card floral-card">
-        <img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="floral-corner-right" alt="">
+      <section class="card">
         <div class="side-title">★ interests</div>
         <div class="badges">
-          <span class="badge">🍵 TEA</span>
-          <span class="badge">anime</span>
-          <span class="badge">old jp movie</span>
-          <span class="badge">game</span>
-          <span class="badge">novel</span>
-          <span class="badge">book</span>
-          <span class="badge">vintage stylelish</span>
-          <span class="badge">music</span>
+          <span class="badge">🧁 CUPCAKES</span>
+          <span class="badge">MUSIC</span>
+          <span class="badge">LEASE</span>
+          <span class="badge">JAYDES</span>
+          <span class="badge">HIM</span>
+          <span class="badge">AKAME</span>
+          <span class="badge">Y2K</span>
           <span class="badge">リリイ・シュシュ</span>
         </div>
       </section>
 
-      <section class="card floral-card">
-        <img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="floral-corner-right" alt="">
+      <section class="card">
         <div class="side-title">♡ guestbook</div>
         <div class="guestbook">
           leave your thoughts here or say hi :3 
@@ -669,6 +1131,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <footer>all about mee :3 // リリイ・シュシュ ✦ uwannaknow</footer>
 </div>
 
+<!-- ==============================================================
+     CHARACTERS (DRAGGABLE)
+     ============================================================== -->
 <div class="character left" id="leftChar">
   <div class="left-char-frame">
     <img src="left-char.jpg" alt="Cute Anime Girl" onerror="this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
@@ -684,6 +1149,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
+  // Web Audio クリック効果音
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -706,6 +1172,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
+  // WELCOMEステッカー用の8ビット・ピクセルサウンド
   function playPixelBlip() {
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
@@ -732,6 +1199,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
+  // WELCOME! クリック時のピクセルフラッシュ＆「ru enjoying??」ポップアップ
   const welcomeSticker = document.getElementById('welcomeSticker');
   const enjoyPopup = document.getElementById('enjoyPopup');
   let popupTimer = null;
@@ -740,7 +1208,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     playPixelBlip();
 
     welcomeSticker.classList.remove('pixel-flash');
-    void welcomeSticker.offsetWidth;
+    void welcomeSticker.offsetWidth; // リフローでアニメーション再実行
     welcomeSticker.classList.add('pixel-flash');
 
     enjoyPopup.classList.add('show');
@@ -751,6 +1219,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }, 2800);
   });
 
+  // ドラッグ移動制御
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -829,6 +1298,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
+  // 音楽プレーヤー（画面クリックによる自動再生を完全に削除し、Playボタンでのみ再生）
   const playlist = [
     {
       title: "you're so vile",
@@ -930,7 +1400,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     e.stopPropagation();
     if (audio.paused) {
       audio.play().then(() => {
-        playBtn.innerText = '❚❚ Pause ❚❚';
+        playBtn.innerText = '❚❚ Pause 🍬';
         isPlaying = true;
       }).catch(() => {});
     } else {
