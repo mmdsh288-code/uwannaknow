@@ -38,7 +38,7 @@ body{
   position:relative;
 }
 
-/* انیمیشن لود اولیه صفحه */
+/* 初期ロードアニメーション */
 @keyframes slideUpEntrance {
   0% {
     opacity: 0;
@@ -50,7 +50,7 @@ body{
   }
 }
 
-/* پس‌زمینه علائم Y2K */
+/* Y2K背景パターン */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
@@ -65,7 +65,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* آرت سمت چپ صفحه */
+/* 左側背景アート */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -83,7 +83,7 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
-/* آرت مانگای محو شده بالا راست */
+/* 右上マンガ背景アート */
 .top-right-manga {
   position: fixed;
   top: 0;
@@ -130,13 +130,60 @@ a{color:inherit}
   animation: slideUpEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* TOPBAR */
+/* ==============================================================
+   TOPBAR & SNAKE ANIMATION
+   ============================================================== */
 .topbar{
   border:3px solid var(--ink);background:#fff;
   box-shadow:8px 8px 0 var(--ink);padding:10px 14px;
   display:flex;justify-content:space-between;gap:8px;align-items:center;
   font-size:12px;font-weight:bold;letter-spacing:1px;
+  position: relative;
+  overflow: hidden;
 }
+
+.topbar::before {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 3px;
+  background: #ff69b4;
+  box-shadow: 0 0 8px #ff69b4, 0 0 12px #ff69b4;
+  top: 0;
+  left: -25%;
+  z-index: 10;
+  animation: snake-pink 3.5s linear infinite;
+}
+
+.topbar::after {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 3px;
+  background: #fffb00;
+  box-shadow: 0 0 8px #fffb00, 0 0 12px #fffb00;
+  bottom: 0;
+  right: -25%;
+  z-index: 10;
+  animation: snake-yellow 3.5s linear infinite;
+}
+
+@keyframes snake-pink {
+  0% { left: -25%; top: 0; }
+  45% { left: 100%; top: 0; }
+  50% { left: 100%; top: calc(100% - 3px); }
+  95% { left: -25%; top: calc(100% - 3px); }
+  100% { left: -25%; top: 0; }
+}
+
+@keyframes snake-yellow {
+  0% { right: -25%; bottom: 0; }
+  45% { right: 100%; bottom: 0; }
+  50% { right: 100%; bottom: calc(100% - 3px); }
+  95% { right: -25%; bottom: calc(100% - 3px); }
+  100% { right: -25%; bottom: 0; }
+}
+
 .flair-symbol{
   font-size:20px;
   font-weight:900;
@@ -147,7 +194,7 @@ a{color:inherit}
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 
-/* وضعیت آنلاین */
+/* オンラインステータス */
 .online-status-wrap{
   display:inline-flex;
   align-items:center;
@@ -180,7 +227,7 @@ a{color:inherit}
 }
 
 /* ==============================================================
-   CUTE MARQUEE (بدون عروسک، شروع فوری و حرکت یکدست)
+   CUTE MARQUEE
    ============================================================== */
 .marquee-wrapper {
   position: relative;
@@ -237,6 +284,9 @@ a{color:inherit}
   100% { transform: translateX(-50%); }
 }
 
+/* ==============================================================
+   CARDS & HOVER GLOW
+   ============================================================== */
 .grid{
   display:grid;grid-template-columns:1.6fr .8fr;gap:20px;align-items:start
 }
@@ -245,15 +295,128 @@ a{color:inherit}
   border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
   padding:20px;margin-bottom:20px;border-radius:6px;
   position:relative;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
-.hero{min-height:330px;position:relative;overflow:hidden}
-.sticker{
-  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
-  padding:5px 12px;transform:rotate(-3deg);font-size:12px;font-weight:bold;
-  box-shadow:2px 2px 0 var(--ink);border-radius:4px;
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 7px 7px 0 var(--ink),
+              0 0 15px 2px rgba(255, 105, 180, 0.35), 
+              0 0 20px 4px rgba(255, 255, 0, 0.25);
 }
 
-/* تیتر کاوایی */
+.hero{min-height:330px;position:relative;overflow:visible}
+
+/* ==============================================================
+   WELCOME STICKER & PIXEL POPUP EFFECT
+   ============================================================== */
+.welcome-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.sticker{
+  display:inline-block;background:var(--yellow);border:2px solid var(--ink);
+  padding:6px 14px;transform:rotate(-3deg);font-size:13px;font-weight:bold;
+  box-shadow:3px 3px 0 var(--ink);border-radius:4px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+.sticker:hover {
+  transform: rotate(-1deg) scale(1.06);
+  box-shadow: 4px 4px 0 var(--ink), 0 0 12px rgba(255, 245, 138, 0.9);
+}
+
+/* クリック時のピクセルフラッシュアニメーション */
+.sticker.pixel-flash {
+  animation: pixelGlitchFlash 0.45s steps(2, end) forwards;
+}
+
+@keyframes pixelGlitchFlash {
+  0% {
+    background: #ff2a9d;
+    color: #fff;
+    transform: rotate(3deg) scale(1.14);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #ff2a9d, 0 0 20px #ff2a9d;
+    filter: contrast(200%);
+  }
+  25% {
+    background: #00ffcc;
+    color: var(--ink);
+    transform: rotate(-5deg) scale(0.96);
+    box-shadow: -4px 4px 0 var(--ink), 4px -4px 0 #ff2a9d;
+  }
+  50% {
+    background: #fffb00;
+    color: #ff1f8f;
+    transform: rotate(4deg) scale(1.1);
+    box-shadow: 4px 4px 0 #00e5ff, -4px -4px 0 var(--ink);
+  }
+  75% {
+    background: #ffffff;
+    color: var(--ink);
+    transform: rotate(-2deg) scale(1.04);
+  }
+  100% {
+    background: var(--yellow);
+    color: var(--ink);
+    transform: rotate(-3deg) scale(1);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+}
+
+/* 「ru enjoying??」のピクセルメッセージポップアップ */
+.enjoy-popup {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(14px) scale(0.75);
+  background: #211c2e;
+  color: #00ff66;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  padding: 5px 14px;
+  border: 2.5px solid #ff6bbd;
+  box-shadow: 4px 4px 0 var(--ink), 0 0 15px rgba(255, 107, 189, 0.7);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 30;
+  transition: opacity 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.enjoy-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ff6bbd transparent transparent transparent;
+}
+
+.enjoy-popup.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: pixelTextPulse 0.3s steps(2, start) infinite alternate;
+}
+
+@keyframes pixelTextPulse {
+  0% {
+    text-shadow: 2px 0 0 #ff2a9d, -2px 0 0 #00e5ff;
+    border-color: #ff6bbd;
+  }
+  100% {
+    text-shadow: -1px 0 0 #ff2a9d, 1px 0 0 #fffb00;
+    border-color: #00ff66;
+  }
+}
+
+/* タイトル */
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
   font-size:clamp(46px,8.5vw,94px);
@@ -266,9 +429,56 @@ h1.kawaii-title{
     0 0 20px rgba(255,107,189,0.4);
 }
 
-.subtitle{font-size:15px;max-width:600px;line-height:1.7;color:#352b46;}
+/* 自己紹介テキストと大型絵文字サイズのアニメGIF */
+.bio-wrapper {
+  font-size: 14.5px;
+  max-width: 650px;
+  line-height: 1.75;
+  color: #352b46;
+  background: rgba(255, 242, 250, 0.65);
+  border: 2px dashed #ff85c8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
 
-/* لینک‌ها و دکمه‌ها */
+.bio-wrapper p {
+  margin: 0 0 10px 0;
+}
+.bio-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+/* 大きめの絵文字サイズバッジとしてのアニメGIF/動画 */
+.inline-anime-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink), 0 0 10px rgba(255, 107, 189, 0.5);
+  overflow: hidden;
+  margin-left: 8px;
+  background: #ffd3ec;
+  transform: rotate(3deg);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.inline-anime-emoji:hover {
+  transform: scale(1.35) rotate(-4deg);
+  z-index: 10;
+}
+.inline-anime-emoji img,
+.inline-anime-emoji video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* SNSリンク＆ボタン */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -567,7 +777,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   animation: none !important;
 }
 
-/* قاب شکلاتی آکامه */
+/* アカメのフレーム */
 .akame-choco-frame{
   width:100%;
   border:4px solid var(--choco-dark);
@@ -605,7 +815,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   pointer-events: none;
 }
 
-/* قاب کاراکتر چپ */
+/* 左キャラクターのフレーム */
 .left-char-frame{
   width:100%;
   border:4px solid var(--ink);
@@ -668,7 +878,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 <div class="wrap">
   <header class="topbar">
     <span class="flair-symbol">꧁ঔৣ</span>
-    <span class="logo">all about mee :3</span>
+    <span class="logo">all about mee :3 ✦ リリイ・シュシュ</span>
     
     <div class="online-status-wrap">
       <span class="online-dot"></span>
@@ -678,7 +888,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <!-- نوار مارکی متحرک تمیز (بدون عروسک + شروع آنی و حرکت روان) -->
+  <!-- マーキー -->
   <div class="marquee-wrapper">
     <div class="marquee">
       <div class="marquee-content">
@@ -719,7 +929,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
           "You meant more to me than I ever admitted." <b>✦</b>
           "If I could tell you one thing, I'd say I miss you." <b>✦</b>
         </span>
-        <!-- تکرار دوم برای پیوستگی بدون وقفه انیمیشن -->
         <span>
           "I miss the person I used to be." <b>✦</b>
           "I don't know how to feel anything anymore." <b>✦</b>
@@ -764,14 +973,37 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   <div class="grid">
     <main>
       <section class="card hero">
-        <span class="sticker">WELCOME! 🧁₊˚✧</span>
-        <h1 class="kawaii-title">all about<br>mee :3</h1>
-        <p class="subtitle">
-          this is my personal space on the web — a tiny aesthetic corner about me,
-          music, cute symbols, anime, random thoughts and whatever i feel like posting.
-        </p>
+        <!-- クリックでピクセルフラッシュ＆メッセージが出るWELCOMEステッカー -->
+        <div class="welcome-container">
+          <div class="enjoy-popup" id="enjoyPopup">ru enjoying?? 👾✨</div>
+          <span class="sticker" id="welcomeSticker" title="Click me!">WELCOME! 🧁₊˚✧</span>
+        </div>
 
-        <!-- لینک‌های شبکه‌های اجتماعی -->
+        <h1 class="kawaii-title">all about<br>mee :3</h1>
+        
+        <!-- 更新された自己紹介文 + 大きめの絵文字サイズアニメGIF -->
+        <div class="bio-wrapper">
+          <p>
+            This is my personal page for my bio, random info, and a few little personal things about me.
+          </p>
+          <p>
+            I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.
+          </p>
+          <p>
+            And honestly, idk why I made this site so cute and girly lol :)
+            <span class="inline-anime-emoji" title=":3">
+              <img src="anime-girl.gif" alt="Anime Girl GIF" onerror="this.outerHTML='<video src=\'elfen-lied-kaede.mp4\' autoplay loop muted playsinline></video>'">
+            </span>
+          </p>
+          <p>
+            But yeah, basically, I post whatever I’m into or whatever catches my attention — anime, music, pretty symbols, random stuff, and literally anything that gives me a good feeling.
+          </p>
+          <p>
+            This is kinda just my little corner of the internet where I can dump whatever I like and be myself.
+          </p>
+        </div>
+
+        <!-- ソーシャルリンク -->
         <div class="links">
           <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
             <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
@@ -917,7 +1149,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // صدای کلیک کیوت وب‌آدیو
+  // Web Audio クリック効果音
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -940,13 +1172,54 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
+  // WELCOMEステッカー用の8ビット・ピクセルサウンド
+  function playPixelBlip() {
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(780, audioCtx.currentTime + 0.06);
+    osc.frequency.setValueAtTime(1040, audioCtx.currentTime + 0.12);
+
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.22);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.23);
+  }
+
   document.addEventListener('click', (e) => {
     if (e.target.closest('button, a, .timeline-bar, .badge')) {
       playCuteClick();
     }
   });
 
-  // کنترل جابه‌جایی آزاد المان‌ها
+  // WELCOME! クリック時のピクセルフラッシュ＆「ru enjoying??」ポップアップ
+  const welcomeSticker = document.getElementById('welcomeSticker');
+  const enjoyPopup = document.getElementById('enjoyPopup');
+  let popupTimer = null;
+
+  welcomeSticker.addEventListener('click', () => {
+    playPixelBlip();
+
+    welcomeSticker.classList.remove('pixel-flash');
+    void welcomeSticker.offsetWidth; // リフローでアニメーション再実行
+    welcomeSticker.classList.add('pixel-flash');
+
+    enjoyPopup.classList.add('show');
+
+    if (popupTimer) clearTimeout(popupTimer);
+    popupTimer = setTimeout(() => {
+      enjoyPopup.classList.remove('show');
+    }, 2800);
+  });
+
+  // ドラッグ移動制御
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -1025,7 +1298,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // موزیک پلیر
+  // 音楽プレーヤー（画面クリックによる自動再生を完全に削除し、Playボタンでのみ再生）
   const playlist = [
     {
       title: "you're so vile",
@@ -1088,7 +1361,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         isPlaying = true;
         playBtn.innerText = '❚❚ Pause 🍬';
       }).catch(err => {
-        console.warn("Autoplay prevention:", err);
+        console.warn("Playback error:", err);
       });
     } else {
       isPlaying = false;
@@ -1148,15 +1421,6 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     currentIdx = (currentIdx + 1) % playlist.length;
     loadTrack(currentIdx, true);
   });
-
-  window.addEventListener('click', () => {
-    if (!isPlaying && audio.paused) {
-      audio.play().then(() => {
-        isPlaying = true;
-        playBtn.innerText = '❚❚ Pause 🍬';
-      }).catch(() => {});
-    }
-  }, { once: true });
 
   window.addEventListener('scroll', () => {
     const sideImg = document.getElementById('leftSideImg');
