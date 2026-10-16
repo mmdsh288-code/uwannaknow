@@ -22,7 +22,7 @@
   --choco-glow:rgba(82, 45, 48, 0.45);
   --ink:#211c2e;
   --paper:#fffaff;
-  --glass:rgba(255,255,255,.86);
+  --glass:rgba(255,255,255,.84);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -38,7 +38,7 @@ body{
   position:relative;
 }
 
-/* انیمیشن لود اولیه صفحه */
+/* 初期ロードアニメーション */
 @keyframes slideUpEntrance {
   0% {
     opacity: 0;
@@ -50,7 +50,7 @@ body{
   }
 }
 
-/* پس‌زمینه علائم Y2K */
+/* Y2K背景パターン */
 body:before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;
   background-image:radial-gradient(#777 1px,transparent 1px);
@@ -65,40 +65,7 @@ body:before{
 }
 .bg-symbols span{display:inline-block;transform:rotate(-8deg);margin:15px;}
 
-/* ==============================================================
-   AMBIENT VINTAGE FLORAL OVERLAYS (غالب شدن طرح‌های گل در کل سایت)
-   ============================================================== */
-.vintage-global-right {
-  position: fixed;
-  bottom: -20px;
-  right: -20px;
-  width: clamp(220px, 28vw, 380px);
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.35;
-  mix-blend-mode: multiply;
-  filter: contrast(1.1) saturate(1.1);
-  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, transparent 90%);
-  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, transparent 90%);
-}
-
-.vintage-global-left {
-  position: fixed;
-  top: 12%;
-  left: -30px;
-  width: clamp(200px, 25vw, 350px);
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.32;
-  mix-blend-mode: multiply;
-  filter: contrast(1.15) sepia(0.15);
-  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 40%, transparent 85%);
-}
-
-/* آرت سمت چپ صفحه */
+/* 左側背景アート */
 .side-char-bg {
   position: fixed;
   top: -5%;
@@ -107,7 +74,7 @@ body:before{
   height: 110vh;
   object-fit: cover;
   object-position: center;
-  opacity: 0.32;
+  opacity: 0.35;
   z-index: 1;
   pointer-events: none;
   filter: contrast(1.1) saturate(1.05);
@@ -116,7 +83,7 @@ body:before{
   transition: transform 0.15s ease-out;
 }
 
-/* آرت مانگای محو شده بالا راست */
+/* 右上マンガ背景アート */
 .top-right-manga {
   position: fixed;
   top: 0;
@@ -125,7 +92,7 @@ body:before{
   height: auto;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.34;
+  opacity: 0.36;
   mix-blend-mode: multiply;
   filter: contrast(1.12);
   -webkit-mask-image: radial-gradient(circle at top right, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 60%, transparent 92%);
@@ -134,13 +101,23 @@ body:before{
 }
 
 @media(max-width: 850px){
-  .side-char-bg { opacity: 0.18; width: 130px; }
-  .top-right-manga { width: clamp(170px, 32vw, 260px); opacity: 0.24; }
-  .vintage-global-right, .vintage-global-left { opacity: 0.22; }
+  .side-char-bg {
+    opacity: 0.18;
+    width: 130px;
+  }
+  .top-right-manga {
+    width: clamp(170px, 32vw, 260px);
+    opacity: 0.24;
+  }
 }
 @media(max-width: 550px){
-  .side-char-bg { display: none; }
-  .top-right-manga { width: 40vw; opacity: 0.20; }
+  .side-char-bg {
+    display: none;
+  }
+  .top-right-manga {
+    width: 40vw;
+    opacity: 0.20;
+  }
 }
 
 a{color:inherit}
@@ -217,7 +194,7 @@ a{color:inherit}
 }
 .logo{font-size:20px;color:#ff3da9;text-shadow:2px 2px #a9efff;font-family:'Fredoka',sans-serif;}
 
-/* وضعیت آنلاین */
+/* オンラインステータス */
 .online-status-wrap{
   display:inline-flex;
   align-items:center;
@@ -327,52 +304,15 @@ a{color:inherit}
               0 0 20px 4px rgba(255, 255, 0, 0.25);
 }
 
-/* ==============================================================
-   HERO SECTION + FADED STANDING GIRL BACKGROUND
-   ============================================================== */
-.hero{
-  min-height:360px;
-  position:relative;
-  overflow:visible;
-  z-index: 1;
-}
-
-/* لایه پس‌زمینه فید شده عکس دختر ایستاده در بخش اول */
-.hero-bg-fade {
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.hero-bg-fade::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url('HUquRv_aMAAY53h.jpg'), url('hero-girl.jpg');
-  background-size: cover;
-  background-position: right 25%;
-  opacity: 0.36;
-  mix-blend-mode: multiply;
-  filter: contrast(1.08) saturate(0.95);
-  mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 25%, rgba(0,0,0,0.45) 65%, transparent 98%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 25%, rgba(0,0,0,0.45) 65%, transparent 98%);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
+.hero{min-height:330px;position:relative;overflow:visible}
 
 /* ==============================================================
-   WELCOME STICKER & CUTE Y2K "ru enjoying??" POPUP
+   WELCOME STICKER & PIXEL POPUP EFFECT
    ============================================================== */
 .welcome-container {
   position: relative;
   display: inline-block;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .sticker{
@@ -388,29 +328,30 @@ a{color:inherit}
   box-shadow: 4px 4px 0 var(--ink), 0 0 12px rgba(255, 245, 138, 0.9);
 }
 
-/* افکت برق زدن پیکسلی روی دکمه ولکام */
+/* クリック時のピクセルフラッシュアニメーション */
 .sticker.pixel-flash {
-  animation: pixelGlitchFlash 0.48s steps(2, end) forwards;
+  animation: pixelGlitchFlash 0.45s steps(2, end) forwards;
 }
 
 @keyframes pixelGlitchFlash {
   0% {
-    background: #ff6bbd;
+    background: #ff2a9d;
     color: #fff;
     transform: rotate(3deg) scale(1.14);
-    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #ff2a9d, 0 0 22px #ff2a9d;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #ff2a9d, 0 0 20px #ff2a9d;
+    filter: contrast(200%);
   }
   25% {
-    background: #a9efff;
+    background: #00ffcc;
     color: var(--ink);
     transform: rotate(-5deg) scale(0.96);
     box-shadow: -4px 4px 0 var(--ink), 4px -4px 0 #ff2a9d;
   }
   50% {
-    background: #fff58a;
+    background: #fffb00;
     color: #ff1f8f;
     transform: rotate(4deg) scale(1.1);
-    box-shadow: 4px 4px 0 #ff6bbd, -4px -4px 0 var(--ink);
+    box-shadow: 4px 4px 0 #00e5ff, -4px -4px 0 var(--ink);
   }
   75% {
     background: #ffffff;
@@ -425,75 +366,61 @@ a{color:inherit}
   }
 }
 
-/* پاپ‌آپ خیلی خوشگل و هماهنگ با تم سایت برای ru enjoying?? */
+/* 「ru enjoying??」のピクセルメッセージポップアップ */
 .enjoy-popup {
   position: absolute;
-  bottom: calc(100% + 14px);
+  bottom: calc(100% + 12px);
   left: 50%;
-  transform: translateX(-50%) translateY(16px) scale(0.7) rotate(-2deg);
-  background: linear-gradient(135deg, #fff0f8 0%, #ffffff 50%, #e8f9ff 100%);
-  color: #ff1f8f;
+  transform: translateX(-50%) translateY(14px) scale(0.75);
+  background: #211c2e;
+  color: #00ff66;
   font-family: 'VT323', monospace;
   font-size: 22px;
-  font-weight: bold;
   letter-spacing: 1.5px;
-  padding: 6px 16px;
-  border: 2.5px solid var(--ink);
-  border-radius: 14px;
-  box-shadow: 
-    4px 4px 0 var(--ink),
-    0 0 0 3px #ffb8d9,
-    0 0 18px rgba(255, 107, 189, 0.75);
+  padding: 5px 14px;
+  border: 2.5px solid #ff6bbd;
+  box-shadow: 4px 4px 0 var(--ink), 0 0 15px rgba(255, 107, 189, 0.7);
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  z-index: 40;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: opacity 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 30;
+  transition: opacity 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.enjoy-popup .sparkle-tag {
-  color: #7e5296;
-  font-size: 18px;
-}
-
-/* فلش کوچک زیر باکس پیام */
 .enjoy-popup::after {
   content: '';
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border-width: 7px;
+  border-width: 6px;
   border-style: solid;
-  border-color: var(--ink) transparent transparent transparent;
+  border-color: #ff6bbd transparent transparent transparent;
 }
 
 .enjoy-popup.show {
   opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1) rotate(-2deg);
-  animation: cutePixelFloat 0.55s steps(3, end) infinite alternate;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: pixelTextPulse 0.3s steps(2, start) infinite alternate;
 }
 
-@keyframes cutePixelFloat {
+@keyframes pixelTextPulse {
   0% {
-    transform: translateX(-50%) translateY(0px) rotate(-2deg);
-    text-shadow: 1px 1px 0 #fff, 2px 2px 0 #ffb8d9;
+    text-shadow: 2px 0 0 #ff2a9d, -2px 0 0 #00e5ff;
+    border-color: #ff6bbd;
   }
   100% {
-    transform: translateX(-50%) translateY(-4px) rotate(1.5deg);
-    text-shadow: -1px 1px 0 #a9efff, 2px 2px 0 #ff6bbd;
+    text-shadow: -1px 0 0 #ff2a9d, 1px 0 0 #fffb00;
+    border-color: #00ff66;
   }
 }
 
-/* تیتر کاوایی */
+/* タイトル */
 h1.kawaii-title{
   font-family:'Fredoka','Trebuchet MS',sans-serif;
   font-size:clamp(46px,8.5vw,94px);
-  line-height:.95;margin:18px 0 16px;
+  line-height:.95;margin:22px 0 16px;
   letter-spacing:-2px;
   color:#ff47ab;
   text-shadow:
@@ -502,36 +429,34 @@ h1.kawaii-title{
     0 0 20px rgba(255,107,189,0.4);
 }
 
-/* باکس توضیحات بیو + گیف انیمه سایز ایموجی بزرگ */
+/* 自己紹介テキストと大型絵文字サイズのアニメGIF */
 .bio-wrapper {
   font-size: 14.5px;
-  max-width: 630px;
+  max-width: 650px;
   line-height: 1.75;
-  color: #2b213a;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(4px);
-  border: 2px dashed #ff6bbd;
-  border-radius: 14px;
-  padding: 15px 18px;
-  margin-bottom: 12px;
-  box-shadow: 3px 3px 0 rgba(33, 28, 46, 0.12);
+  color: #352b46;
+  background: rgba(255, 242, 250, 0.65);
+  border: 2px dashed #ff85c8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
 }
 
 .bio-wrapper p {
   margin: 0 0 10px 0;
-  font-weight: 600;
 }
 .bio-wrapper p:last-child {
   margin-bottom: 0;
 }
 
+/* 大きめの絵文字サイズバッジとしてのアニメGIF/動画 */
 .inline-anime-emoji {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   border-radius: 12px;
   border: 2.5px solid var(--ink);
   box-shadow: 3px 3px 0 var(--ink), 0 0 10px rgba(255, 107, 189, 0.5);
@@ -553,7 +478,7 @@ h1.kawaii-title{
   display: block;
 }
 
-/* لینک‌ها و دکمه‌ها */
+/* SNSリンク＆ボタン */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -597,62 +522,6 @@ h1.kawaii-title{
 .links a.btn-tw{ color:#0c85d0; border-color:#1da1f2; }
 .links a.btn-tt{ color:#ff0050; border-color:#fe2c55; }
 .links a.btn-sp{ color:#1aa34a; border-color:#1db954; }
-
-/* ==============================================================
-   THIRD SECTION / CARDS WITH VINTAGE FLORAL CORNERS (بخش سوم با گل‌های فید شده)
-   ============================================================== */
-.floral-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.floral-card > *:not(.floral-corner-right):not(.floral-corner-left) {
-  position: relative;
-  z-index: 2;
-}
-
-/* عکس سوم: گل صورتی/بنفش فید شده در گوشه راست */
-.floral-corner-right {
-  position: absolute;
-  right: -12px;
-  bottom: -14px;
-  width: 155px;
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.48;
-  mix-blend-mode: multiply;
-  filter: contrast(1.1) saturate(1.15);
-  mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 40%, transparent 85%);
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-/* عکس چهارم: طرح اسلیمی قهوه‌ای فید شده در گوشه چپ */
-.floral-corner-left {
-  position: absolute;
-  left: -12px;
-  top: -12px;
-  width: 145px;
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.42;
-  mix-blend-mode: multiply;
-  filter: contrast(1.15);
-  mask-image: radial-gradient(circle at top left, rgba(0,0,0,1) 35%, transparent 82%);
-  -webkit-mask-image: radial-gradient(circle at top left, rgba(0,0,0,1) 35%, transparent 82%);
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.floral-card:hover .floral-corner-right {
-  transform: scale(1.06) rotate(-3deg);
-  opacity: 0.62;
-}
-.floral-card:hover .floral-corner-left {
-  transform: scale(1.06) rotate(3deg);
-  opacity: 0.55;
-}
 
 h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif;}
 .post{border-top:2px dotted #9c91ab;padding:14px 0}
@@ -847,20 +716,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
 
 .side-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#76677f;margin-bottom:9px;font-weight:bold;}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
-.badge{
-  border:1.5px solid var(--ink);
-  background:rgba(255,255,255,0.92);
-  padding:5px 10px;
-  font-size:11px;
-  font-weight:bold;
-  border-radius:6px;
-  box-shadow:2px 2px 0 var(--ink);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-.badge:hover{
-  transform: translateY(-2px);
-  background: #fff0f8;
-}
+.badge{border:1px solid var(--ink);background:#fff;padding:4px 8px;font-size:10px;border-radius:3px;box-shadow:1px 1px 0 var(--ink);}
 .guestbook{font-size:12px;line-height:1.7}
 
 /* ==============================================================
@@ -921,7 +777,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   animation: none !important;
 }
 
-/* قاب شکلاتی آکامه */
+/* アカメのフレーム */
 .akame-choco-frame{
   width:100%;
   border:4px solid var(--choco-dark);
@@ -959,7 +815,7 @@ h2{font-size:20px;margin:0 0 14px;color:#ff3da9;font-family:'Fredoka',sans-serif
   pointer-events: none;
 }
 
-/* قاب کاراکتر چپ */
+/* 左キャラクターのフレーム */
 .left-char-frame{
   width:100%;
   border:4px solid var(--ink);
@@ -1005,11 +861,9 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </head>
 <body>
 
-<!-- Side Artworks & Global Vintage Floral Overlays -->
+<!-- Side Artworks -->
 <img src="side-char.jpg" id="leftSideImg" class="side-char-bg" alt="Side Artwork">
 <img src="manga-bg.jpg" id="rightMangaImg" class="top-right-manga" alt="Manga Cutout">
-<img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="vintage-global-right" alt="">
-<img src="e42112dfb492dd19975aa051e17cfebe.jpg" onerror="this.src='swirl-left.jpg'" class="vintage-global-left" alt="">
 
 <!-- Ambient Symbols -->
 <div class="bg-symbols">
@@ -1034,7 +888,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     <span class="flair-symbol">☬ঔৣ꧂</span>
   </header>
 
-  <!-- نوار مارکی متحرک -->
+  <!-- マーキー -->
   <div class="marquee-wrapper">
     <div class="marquee">
       <div class="marquee-content">
@@ -1118,71 +972,58 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 
   <div class="grid">
     <main>
-      <!-- بخش اول: باکس اصلی با پس‌زمینه فید شده دختر ایستاده -->
       <section class="card hero">
-        <div class="hero-bg-fade"></div>
+        <!-- クリックでピクセルフラッシュ＆メッセージが出るWELCOMEステッカー -->
+        <div class="welcome-container">
+          <div class="enjoy-popup" id="enjoyPopup">ru enjoying?? 👾✨</div>
+          <span class="sticker" id="welcomeSticker" title="Click me!">WELCOME! 🧁₊˚✧</span>
+        </div>
 
-        <div class="hero-content">
-          <!-- استیکر ولکام با پاپ‌آپ پیکسلی خوشگل -->
-          <div class="welcome-container">
-            <div class="enjoy-popup" id="enjoyPopup">
-              <span class="sparkle-tag">˚₊‧꒰ა</span>
-              <span>ru enjoying?? ♡</span>
-              <span class="sparkle-tag">໒꒱‧₊˚</span>
-            </div>
-            <span class="sticker" id="welcomeSticker" title="Click me!">WELCOME! 🧁₊˚✧</span>
-          </div>
+        <h1 class="kawaii-title">all about<br>mee :3</h1>
+        
+        <!-- 更新された自己紹介文 + 確実にロードされるアニメGIF/動画 -->
+        <div class="bio-wrapper">
+          <p>
+            This is my personal page for my bio, random info, and a few little personal things about me.
+          </p>
+          <p>
+            I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.
+          </p>
+          <p>
+            And honestly, idk why I made this site so cute and girly lol :)
+            <span class="inline-anime-emoji" title=":3">
+              <img src="anime-girl.gif" alt="Anime Girl" onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/89/c0/db/89c0db29c3a1bdf1d417876c78036d7f.jpg'">
+            </span>
+          </p>
+          <p>
+            But yeah, basically, I post whatever I’m into or whatever catches my attention — anime, music, pretty symbols, random stuff, and literally anything that gives me a good feeling.
+          </p>
+          <p>
+            This is kinda just my little corner of the internet where I can dump whatever I like and be myself.
+          </p>
+        </div>
 
-          <h1 class="kawaii-title">all about<br>mee :3</h1>
-          
-          <!-- متن کامل بیو + گیف انیمه به صورت ایموجی بزرگ -->
-          <div class="bio-wrapper">
-            <p>
-              This is my personal page for my bio, random info, and a few little personal things about me.
-            </p>
-            <p>
-              I’m just a simple teenager trying to survive in Iran while dealing with emotional and affection issues and whatever life decides to throw at me.
-            </p>
-            <p>
-              And honestly, idk why I made this site so cute and girly lol :)
-              <span class="inline-anime-emoji" title=":3">
-                <img src="anime-girl.gif" alt="Anime Girl" onerror="this.outerHTML='<video src=\'elfen-lied-kaede.mp4\' autoplay loop muted playsinline></video>'">
-              </span>
-            </p>
-            <p>
-              But yeah, basically, I post whatever I’m into or whatever catches my attention — anime, music, pretty symbols, random stuff, and literally anything that gives me a good feeling.
-            </p>
-            <p>
-              This is kinda just my little corner of the internet where I can dump whatever I like and be myself.
-            </p>
-          </div>
-
-          <!-- لینک‌های شبکه‌های اجتماعی -->
-          <div class="links">
-            <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
-              <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
-            </a>
-            <a href="https://t.me/TMN_lostrushi" target="_blank" class="btn-tg">
-              <span>✈️</span> ✉ TELEGRAM (@TMN_lostrushi)
-            </a>
-            <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
-              <span>💬</span> 𝕏 TWITTER (@kianhcn)
-            </a>
-            <a href="https://www.tiktok.com/@kianhcn" target="_blank" class="btn-tt">
-              <span>🎵</span> ✰ TIKTOK (@kianhcn)
-            </a>
-            <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="btn-sp">
-              <span>🎧</span> ♫ SPOTIFY (Playlist)
-            </a>
-          </div>
+        <!-- ソーシャルリンク -->
+        <div class="links">
+          <a href="https://instagram.com/kiawn.3km" target="_blank" class="btn-ig">
+            <span>📷</span> ♡ INSTAGRAM (@kiawn.3km)
+          </a>
+          <a href="https://t.me/TMN_lostrushi" target="_blank" class="btn-tg">
+            <span>✈️</span> ✉ TELEGRAM (@TMN_lostrushi)
+          </a>
+          <a href="https://x.com/kianhcn" target="_blank" class="btn-tw">
+            <span>💬</span> 𝕏 TWITTER (@kianhcn)
+          </a>
+          <a href="https://www.tiktok.com/@kianhcn" target="_blank" class="btn-tt">
+            <span>🎵</span> ✰ TIKTOK (@kianhcn)
+          </a>
+          <a href="https://open.spotify.com/playlist/3VXgC68hQ1s3FQbIVvpBmh?si=x4PlRFdgRNaKdpXcfQxpzw" target="_blank" class="btn-sp">
+            <span>🎧</span> ♫ SPOTIFY (Playlist)
+          </a>
         </div>
       </section>
 
-      <!-- بخش وبلاگ با گل‌های وینتیج فید شده در گوشه‌های راست و چپ -->
-      <section class="card floral-card" id="blog">
-        <img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="floral-corner-right" alt="">
-        <img src="e42112dfb492dd19975aa051e17cfebe.jpg" onerror="this.src='swirl-left.jpg'" class="floral-corner-left" alt="">
-
+      <section class="card" id="blog">
         <h2>★ my weblog</h2>
 
         <article class="post">
@@ -1212,7 +1053,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
               <span>PLAYING NOW</span>
               <span id="playerBadge">TRACK 1/2</span>
             </div>
-            <span class="cute-cupcake">🍵🍓</span>
+            <span class="cute-cupcake">🧁🍓</span>
           </div>
 
           <div class="now">
@@ -1264,27 +1105,21 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
         </div>
       </section>
 
-      <!-- بخش سوم سایدبار: INTERESTS (با لیست جدید + TEA + گل‌های فید شده گوشه راست و چپ) -->
-      <section class="card floral-card">
-        <img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="floral-corner-right" alt="">
-        <img src="e42112dfb492dd19975aa051e17cfebe.jpg" onerror="this.src='swirl-left.jpg'" class="floral-corner-left" alt="">
-
+      <section class="card">
         <div class="side-title">★ interests</div>
         <div class="badges">
-          <span class="badge">🍵 TEA</span>
-          <span class="badge">anime</span>
-          <span class="badge">old jp movie</span>
-          <span class="badge">game</span>
-          <span class="badge">novel</span>
-          <span class="badge">book</span>
-          <span class="badge">vintage stylelish</span>
-          <span class="badge">music</span>
+          <span class="badge">🧁 CUPCAKES</span>
+          <span class="badge">MUSIC</span>
+          <span class="badge">LEASE</span>
+          <span class="badge">JAYDES</span>
+          <span class="badge">HIM</span>
+          <span class="badge">AKAME</span>
+          <span class="badge">Y2K</span>
           <span class="badge">リリイ・シュシュ</span>
         </div>
       </section>
 
-      <section class="card floral-card">
-        <img src="d67bb886c5fab1fa187f126c81d16a69.jpg" onerror="this.src='flower-right.jpg'" class="floral-corner-right" alt="">
+      <section class="card">
         <div class="side-title">♡ guestbook</div>
         <div class="guestbook">
           leave your thoughts here or say hi :3 
@@ -1314,7 +1149,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
 </div>
 
 <script>
-  // صدای کلیک کیوت وب‌آدیو
+  // Web Audio クリック効果音
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function playCuteClick() {
     if (audioCtx.state === 'suspended') {
@@ -1337,7 +1172,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     osc.stop(audioCtx.currentTime + 0.09);
   }
 
-  // صدای ۸ بیتی گلیچ پیکسلی مخصوص دکمه ولکام
+  // WELCOMEステッカー用の8ビット・ピクセルサウンド
   function playPixelBlip() {
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
@@ -1345,11 +1180,11 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = 'square';
-    osc.frequency.setValueAtTime(540, audioCtx.currentTime);
-    osc.frequency.setValueAtTime(810, audioCtx.currentTime + 0.055);
-    osc.frequency.setValueAtTime(1080, audioCtx.currentTime + 0.11);
+    osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(780, audioCtx.currentTime + 0.06);
+    osc.frequency.setValueAtTime(1040, audioCtx.currentTime + 0.12);
 
-    gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.22);
 
     osc.connect(gain);
@@ -1364,7 +1199,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     }
   });
 
-  // رویداد کلیک روی WELCOME! برای برق پیکسلی و نمایش پیام ru enjoying??
+  // WELCOME! クリック時のピクセルフラッシュ＆「ru enjoying??」ポップアップ
   const welcomeSticker = document.getElementById('welcomeSticker');
   const enjoyPopup = document.getElementById('enjoyPopup');
   let popupTimer = null;
@@ -1373,7 +1208,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     playPixelBlip();
 
     welcomeSticker.classList.remove('pixel-flash');
-    void welcomeSticker.offsetWidth;
+    void welcomeSticker.offsetWidth; // リフローでアニメーション再実行
     welcomeSticker.classList.add('pixel-flash');
 
     enjoyPopup.classList.add('show');
@@ -1381,10 +1216,10 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
     if (popupTimer) clearTimeout(popupTimer);
     popupTimer = setTimeout(() => {
       enjoyPopup.classList.remove('show');
-    }, 3000);
+    }, 2800);
   });
 
-  // کنترل جابه‌جایی آزاد کاراکترهای گوشه صفحه
+  // ドラッグ移動制御
   function makeElementDraggable(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -1463,7 +1298,7 @@ footer{text-align:center;font-size:11px;padding:20px 0 50px;color:#73697c;font-w
   makeElementDraggable(document.getElementById('leftChar'));
   makeElementDraggable(document.getElementById('rightChar'));
 
-  // موزیک پلیر (بدون پخش خودکار آزاردهنده با کلیک روی صفحه)
+  // 音楽プレーヤー（画面クリックによる自動再生を完全に削除し、Playボタンでのみ再生）
   const playlist = [
     {
       title: "you're so vile",
